@@ -29,20 +29,17 @@ public class ScoreBoard extends JPanel {
 
             playerDataArray[i] = new PlayerData(i);
 
-            playerNameLabel[i] = new JLabel("PLAYER " + i);
+            playerNameLabel[i] = new JLabel("PLAYER " + (i + 1));
             playerNameLabel[i].setFont(new Font("boxy bold", Font.BOLD, 25));
             playerNameLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             playerNameLabel[i].setBounds(0,150,200,50);
             playerInformationPanel[i].add(playerNameLabel[i]);
 
-            playerCashLabel[i] = new JLabel("[CASH]  " + playerDataArray[i].cash+" $");
+            playerCashLabel[i] = new JLabel("[CASH]  " + playerDataArray[i].getCash()+" $");
             playerCashLabel[i].setFont(new Font("drid herder solid",Font.PLAIN, 18));
             playerCashLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             playerCashLabel[i].setBounds(0,120, 200, 30);
             playerInformationPanel[i].add(playerCashLabel[i]);
         }
-
-
-
     }
 }
