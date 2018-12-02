@@ -1,21 +1,25 @@
+import com.sun.tools.javac.comp.Flow;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class GameBoard extends JPanel {
 
-    private JPanel gameBoardGridPanel;
-    private JPanel[] place;
-    private JLabel[] placeNameLabel;
-    private Font placeNameFont;
-    private GridBagConstraints[] gbc;
-    private Color goldEggColor;
+    private JPanel                  gameBoardGridPanel, gameControllerPanel;
+    private JPanel[]                place;
+    private JLabel[]                placeNameLabel;
+    private JLabel                  projectName;
+    private Font                    placeNameFont;
+    private GridBagConstraints[]    gbc;
+    private GridBagConstraints      gameControllerGbc;
+    private Color                   goldEggColor;
 
     public GameBoard() {
         setBounds(0,0,800,550);
         setBackground(Color.white);
         setLayout(null);
 
-        placeNameFont = new Font("RixVideoGame3D",Font.PLAIN, 30);
+        placeNameFont = new Font("RixVideoGame3D",Font.PLAIN, 20);
 
         gameBoardGridPanel = new JPanel();
         gameBoardGridPanel.setBounds(0,0, 800, 550);
@@ -41,12 +45,6 @@ public class GameBoard extends JPanel {
         gbc[0].weighty = 1;
         gbc[0].fill = GridBagConstraints.BOTH;
 
-        placeNameLabel[0] = new JLabel(PlaceConstants.PLACE_NAME[0]);
-        placeNameLabel[0].setBounds(0,0,125,50);
-        placeNameLabel[0].setFont(placeNameFont);
-        placeNameLabel[0].setHorizontalAlignment(SwingConstants.CENTER);
-
-        place[0].add(placeNameLabel[0]);
 
         gameBoardGridPanel.add(place[0], gbc[0]);
 
@@ -174,6 +172,41 @@ public class GameBoard extends JPanel {
         place[9].setBackground(goldEggColor);
         place[15].setBackground(goldEggColor);
         place[21].setBackground(goldEggColor);
+
+        for(int i=0;i<24;i++){
+            place[i].setLayout(null);
+            placeNameLabel[i] = new JLabel(PlaceConstants.PLACE_NAME[i]);
+            placeNameLabel[i].setBounds(0,0,800/7,550/7);
+            placeNameLabel[i].setFont(placeNameFont);
+            placeNameLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
+
+            place[i].add(placeNameLabel[i]);
+        }
+
+        placeNameLabel[0].setForeground(Color.white);
+        placeNameLabel[6].setForeground(Color.white);
+        placeNameLabel[12].setForeground(Color.white);
+        placeNameLabel[18].setForeground(Color.white);
+
+        gameControllerPanel = new JPanel();
+        gameControllerPanel.setBackground(Color.white);
+        gameControllerPanel.setLayout(null);
+
+        gameControllerGbc = new GridBagConstraints();
+        gameControllerGbc.gridx = 1;
+        gameControllerGbc.gridy = 1;
+        gameControllerGbc.gridheight = 5;
+        gameControllerGbc.gridwidth = 5;
+        gameControllerGbc.fill = GridBagConstraints.BOTH;
+        gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
+
+        projectName = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
+        projectName.setBounds(165,100,220,200);
+        projectName.setVerticalAlignment(SwingConstants.CENTER);
+        projectName.setHorizontalAlignment(SwingConstants.CENTER);
+        projectName.setFont(new Font("RixVideoGame3D", Font.PLAIN, 50));
+        projectName.setForeground(new Color(52, 81, 138));
+        gameControllerPanel.add(projectName);
 
 
 

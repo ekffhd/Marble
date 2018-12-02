@@ -7,12 +7,12 @@ public class PlaceConstants {
             "학관식당",
             "제주몰빵",
             "지그재그",
-            "군자의 밥상",
-            "군자관\n복사실",
+            "<html><div style='text-align: center;'>군자의<BR>밥상</div></html>",
+            "<html><div style='text-align: center;'>군자관<BR>복사실</div></html>",
             "",
             "컴공과실",
             "LAB-D",
-            "광개토관 ATM",
+            "<html><div style='text-align: center;'>광개토<BR>ATM</div></html>",
             "진관키친",
             "카지노",
             "",
@@ -20,8 +20,8 @@ public class PlaceConstants {
             "창의토론라운지",
             "헬기장",
             "학실",
-            "헨델과\n그레텔",
+            "<html><div style='text-align: center;'>헨델과<BR>그레텔</div></html>",
             "",
             "율지",
-            "이노베이션센터"};
+            "<html><div style='text-align: center;'>이노베이션<BR>센터</div></html>"};
 }
