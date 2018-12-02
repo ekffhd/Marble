@@ -5,6 +5,8 @@ public class Main extends JPanel {
     private GameBoard gameBoard;
     private ScoreBoard scoreBoard;
     private StartPanel startPanel;
+    private Game game;
+    private StartController startController;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -22,7 +24,9 @@ public class Main extends JPanel {
         startPanel.setVisible(true);
         add(startPanel);
 
-        StartController startController = new StartController(startPanel, gameBoard, scoreBoard);
+        game = new Game();
+
+        startController = new StartController(startPanel, gameBoard, scoreBoard, game);
 
     }
 }
