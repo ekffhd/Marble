@@ -6,7 +6,8 @@ public class ScoreBoard extends JPanel {
     private JPanel scoreBoardMainPanel;
     private PlayerData[] playerDataArray;
     private JPanel[]  playerInformationPanel;
-    private JLabel[] playerNameLabel, playerCashLabel;
+    private JLabel[] playerNameLabel, playerCashLabel, playerIconLabel;
+    private ImageIcon[] playerIcon;
     private JLabel dummy;
     public ScoreBoard() {
         setBounds(0,550,800,200);
@@ -17,6 +18,8 @@ public class ScoreBoard extends JPanel {
         playerInformationPanel = new JPanel[4];
         playerNameLabel = new JLabel[4];
         playerCashLabel = new JLabel[4];
+        playerIconLabel = new JLabel[4];
+        playerIcon = new ImageIcon[4];
         playerDataArray = new PlayerData[4];
 
 
@@ -34,6 +37,11 @@ public class ScoreBoard extends JPanel {
             playerNameLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             playerNameLabel[i].setBounds(0,150,200,50);
             playerInformationPanel[i].add(playerNameLabel[i]);
+
+            playerIcon[i] = new ImageIcon(PlayerConstants.PLAYER_ICON[i]);
+            playerIconLabel[i] = new JLabel(playerIcon[i]);
+            playerIconLabel[i].setBounds(0,0,200,120);
+            playerInformationPanel[i].add(playerIconLabel[i]);
 
             playerCashLabel[i] = new JLabel("[CASH]  " + playerDataArray[i].getCash()+" $");
             playerCashLabel[i].setFont(new Font("drid herder solid",Font.PLAIN, 18));
