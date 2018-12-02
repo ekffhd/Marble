@@ -205,8 +205,5 @@ public class GameBoard extends JPanel {
         projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 50));
         projectName.setForeground(new Color(52, 81, 138));
         gameControllerPanel.add(projectName);
-
-
-
     }
 }

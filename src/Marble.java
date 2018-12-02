@@ -20,6 +20,7 @@ public class Marble {
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
 
         Main main = new Main();
         frame.getContentPane().add(main);
