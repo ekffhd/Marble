@@ -202,7 +202,7 @@ public class GameBoard extends JPanel {
         projectName.setBounds(165,100,220,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.PLAIN, 50));
+        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 50));
         projectName.setForeground(new Color(52, 81, 138));
         gameControllerPanel.add(projectName);
 
