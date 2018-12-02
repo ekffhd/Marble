@@ -1,8 +1,12 @@
+import java.awt.*;
+
 public class Player {
-    public Property player_property;
+    PlayerData playerData;
 
-    public Player(){
-        player_property = new Property();
-
+    public Player(int playerId){
+        playerData = new PlayerData(playerId);
+    }
+    public boolean getStatus(){
+        return this.playerData.getStatus();
     }
 }
