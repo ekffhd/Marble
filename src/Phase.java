@@ -3,8 +3,7 @@ import java.beans.PropertyChangeSupport;
 
 public class Phase {
     protected PropertyChangeSupport propertyChangeSupport;
-    private String phase;
-
+    private String phase, previousPhase;
     public Phase(){
         propertyChangeSupport = new PropertyChangeSupport(this);
     }
@@ -12,38 +11,42 @@ public class Phase {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
     public void start(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.START;
-        propertyChangeSupport.firePropertyChange("START", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("START", previousPhase, phase);
     }
     public void roll(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.ROLLING;
-        propertyChangeSupport.firePropertyChange("ROLL", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("ROLL", previousPhase, phase);
     }
     public void bill(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.BILLING;
-        propertyChangeSupport.firePropertyChange("BILL", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("BILL", previousPhase, phase);
     }
     public void acquire(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.ACQUIRING;
-        propertyChangeSupport.firePropertyChange("ACQUIRE", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("ACQUIRE", previousPhase, phase);
     }
     public void end(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.END;
-        propertyChangeSupport.firePropertyChange("END", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("END", previousPhase, phase);
     }
     public void restart(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.RESTART;
-        propertyChangeSupport.firePropertyChange("RESTART", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("RESTART", previousPhase, phase);
     }
     public void before_start(){
-        String previous_phase = this.phase;
+        this.previousPhase = this.phase;
         this.phase = PhaseConstants.BEFORE_START_PHASE;
-        propertyChangeSupport.firePropertyChange("BEFORE_START", previous_phase, phase);
+        propertyChangeSupport.firePropertyChange("BEFORE_START", previousPhase, phase);
+    }
+
+    public String getPreviousPhase() {
+        return previousPhase;
     }
 }
