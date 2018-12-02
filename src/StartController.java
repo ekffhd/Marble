@@ -7,11 +7,13 @@ public class StartController {
     private GameBoard gameBoard;
     private ScoreBoard scoreBoard;
     private StartButtonListener startButtonListener;
+    private Game game;
 
-    public StartController(StartPanel startPanel, GameBoard gameBoard, ScoreBoard scoreBoard){
+    public StartController(StartPanel startPanel, GameBoard gameBoard, ScoreBoard scoreBoard, Game game){
         this.startPanel = startPanel;
         this.gameBoard = gameBoard;
         this.scoreBoard = scoreBoard;
+        this.game = game;
 
         startButtonListener = new StartButtonListener();
 
@@ -26,8 +28,8 @@ public class StartController {
                 startPanel.setVisible(false);
                 gameBoard.setVisible(true);
                 scoreBoard.setVisible(true);
+                game.start();
             }
         }
     }
-
 }

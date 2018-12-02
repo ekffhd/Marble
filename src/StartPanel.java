@@ -10,8 +10,6 @@ public class StartPanel extends JPanel {
     public JButton startButton;
     public HoveringListener hoveringListener;
 
-
-
     public StartPanel(){
         mainColor = new Color(9,26,99);
         hoveringListener = new HoveringListener();
@@ -19,9 +17,6 @@ public class StartPanel extends JPanel {
         setBounds(0,0,800, 750);
         setBackground(mainColor);
         setLayout(null);
-
-
-
 
         projectTitle = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
         projectTitle.setBounds(200,200, 400, 200);
@@ -41,26 +36,6 @@ public class StartPanel extends JPanel {
         add(startButton);
 
     }//startPanel();
-
-    /*
-    private class HoveringListener implements MouseListener {
-        public void mouseClicked(MouseEvent event){}
-        public void mousePressed(MouseEvent event){}
-        public void mouseReleased(MouseEvent event){}
-        public void mouseEntered(MouseEvent event){
-            JButton obj = (JButton)event.getSource();
-
-            obj.setBackground(DrawConstants.MENU_ENTER[0]);
-            obj.setForeground(DrawConstants.MENU_ENTER[1]);
-        }
-        public void mouseExited(MouseEvent event){
-            JButton obj = (JButton)event.getSource();
-
-            obj.setBackground(DrawConstants.MENU_EXIT[0]);
-            obj.setForeground(DrawConstants.MENU_EXIT[1]);
-        }
-    }
-     */
 
     private class HoveringListener implements MouseListener {
         public void mouseClicked(MouseEvent event){}
