@@ -1,5 +1,6 @@
 public class PhaseConstants {
-    final public static String[] PHASE ={
+    final public static String[] PHASE = {
+            "BEFORE_START_PHASE",
             "START_PHASE",
             "ROLLING_PHASE",
             "BILLING_PHASE",
@@ -10,7 +11,8 @@ public class PhaseConstants {
     final public static String START = "START_PHASE";
     final public static String ROLLING = "ROLLING_PHASE";
     final public static String BILLING = "BILLING_PHASE";
-    final public static String ACQUIREING = "ACQUIRING_PHASE";
+    final public static String ACQUIRING = "ACQUIRING_PHASE";
     final public static String END = "END_PHASE";
     final public static String RESTART = "RESTART_PHASE";
+    final public static String BEFORE_START_PHASE = "BEFORE_START_PHASE";
 }
