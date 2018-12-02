@@ -9,6 +9,7 @@ public class Marble {
         Main main = new Main();
         frame.getContentPane().add(main);
 
+
         frame.pack();
         frame.setVisible(true);
     }
