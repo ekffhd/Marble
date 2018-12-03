@@ -29,17 +29,6 @@ public class Main extends JPanel {
         setPreferredSize(new Dimension(800, 750));
         setLayout(null);
 
-        gameBoard = new GameBoard();
-        gameBoard.setVisible(false);
-        add(gameBoard);
-
-        scoreBoard = new ScoreBoard();
-        scoreBoard.setVisible(false);
-        add(scoreBoard);
-
-        startPanel = new StartPanel();
-        startPanel.setVisible(true);
-        add(startPanel);
 
         phase = new Phase();
         player_turn = 0;
@@ -55,7 +44,19 @@ public class Main extends JPanel {
             player[i] = new Player(i);
         }
 
-        startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
 
+        gameBoard = new GameBoard(phase);
+        gameBoard.setVisible(false);
+        add(gameBoard);
+
+        scoreBoard = new ScoreBoard();
+        scoreBoard.setVisible(false);
+        add(scoreBoard);
+
+        startPanel = new StartPanel();
+        startPanel.setVisible(true);
+        add(startPanel);
+
+        startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
     }
 }

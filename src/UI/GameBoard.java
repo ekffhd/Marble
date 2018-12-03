@@ -1,24 +1,29 @@
 package UI;
 
+import Property.Place;
+import Property.PlaceConstants;
+import Util.Phase;
+
 import javax.swing.*;
 import java.awt.*;
 
-import Property.Place;
-import Property.PlaceConstants;
-
 public class GameBoard extends JPanel {
 
-    private JPanel                  gameBoardGridPanel, gameControllerPanel;
+    private JPanel                  gameBoardGridPanel;
+    private GameControllerPanel     gameControllerPanel;
     private Place[]                 place;
-    private JLabel                  projectName;
+
     private GridBagConstraints[]    gbc;
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
+    private Phase phase;
 
-    public GameBoard() {
+    public GameBoard(Phase phase) {
         setBounds(0,0,800,550);
         setBackground(Color.white);
         setLayout(null);
+
+        this.phase = phase;
 
         gameBoardGridPanel = new JPanel();
         gameBoardGridPanel.setBounds(0,0, 800, 550);
@@ -43,7 +48,6 @@ public class GameBoard extends JPanel {
         gbc[0].weighty = 1;
         gbc[0].fill = GridBagConstraints.BOTH;
 
-
         gameBoardGridPanel.add(place[0], gbc[0]);
 
         //South 0~5
@@ -61,6 +65,7 @@ public class GameBoard extends JPanel {
             gbc[i].fill = GridBagConstraints.BOTH;
             gameBoardGridPanel.add(place[i], gbc[i]);
         }
+
         place[5].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.black));
 
         //지그재그
@@ -176,7 +181,7 @@ public class GameBoard extends JPanel {
         place[12].setColor(Color.white);
         place[18].setColor(Color.white);
 
-        gameControllerPanel = new JPanel();
+        gameControllerPanel = new GameControllerPanel(phase);
         gameControllerPanel.setBackground(Color.white);
         gameControllerPanel.setLayout(null);
 
@@ -187,13 +192,5 @@ public class GameBoard extends JPanel {
         gameControllerGbc.gridwidth = 5;
         gameControllerGbc.fill = GridBagConstraints.BOTH;
         gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
-
-        projectName = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
-        projectName.setBounds(165,100,220,200);
-        projectName.setVerticalAlignment(SwingConstants.CENTER);
-        projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 50));
-        projectName.setForeground(new Color(52, 81, 138));
-        gameControllerPanel.add(projectName);
     }
 }
