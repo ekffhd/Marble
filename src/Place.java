@@ -15,11 +15,7 @@ public class Place extends JPanel {
         cityNameLabel.setFont(new Font("RixVideoGame3D",Font.PLAIN, 20));
         cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
         cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
-        /*
-        placeNameLabel[i].setBounds(0,0,800/7,550/7);
-            placeNameLabel[i].setFont(placeNameFont);
-            placeNameLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
-         */
+
         add(cityNameLabel);
     }
 
