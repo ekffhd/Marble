@@ -1,3 +1,7 @@
+package Property;
+
+import UI.Main;
+
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;

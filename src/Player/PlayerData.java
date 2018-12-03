@@ -1,3 +1,5 @@
+package Player;
+
 public class PlayerData {
     private int characterId;
     private int position;

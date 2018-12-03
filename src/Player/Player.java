@@ -1,4 +1,4 @@
-import java.awt.*;
+package Player;
 
 public class Player {
     PlayerData playerData;

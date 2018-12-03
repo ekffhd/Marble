@@ -1,3 +1,5 @@
+package Property;
+
 public class PlaceConstants {
     final public static String[] PLACE_NAME = {
             "START",

@@ -1,3 +1,5 @@
+package Util;
+
 public class Dice {
     private int dice_num;
 

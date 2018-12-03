@@ -1,3 +1,14 @@
+package UI;
+
+import Player.Player;
+import UI.GameBoard;
+import UI.ScoreBoard;
+import UI.StartController;
+import UI.StartPanel;
+import Util.Dice;
+import Util.Phase;
+import Util.PhaseListener;
+
 import javax.swing.*;
 import java.awt.*;
 

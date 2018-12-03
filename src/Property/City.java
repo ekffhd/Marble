@@ -1,4 +1,7 @@
-public class City implements IPlace{
+package Property;
+import Player.Player;
+
+public class City implements IPlace {
     private String name;
     private Building[] buildings;
     private int price;

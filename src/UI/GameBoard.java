@@ -1,5 +1,10 @@
+package UI;
+
 import javax.swing.*;
 import java.awt.*;
+
+import Property.Place;
+import Property.PlaceConstants;
 
 public class GameBoard extends JPanel {
 
@@ -165,17 +170,7 @@ public class GameBoard extends JPanel {
         place[9].setBackground(goldEggColor);
         place[15].setBackground(goldEggColor);
         place[21].setBackground(goldEggColor);
-/*
-        for(int i=0;i<24;i++){
-            place[i].setLayout(null);
-            placeNameLabel[i] = new JLabel(PlaceConstants.PLACE_NAME[i]);
-            placeNameLabel[i].setBounds(0,0,800/7,550/7);
-            placeNameLabel[i].setFont(placeNameFont);
-            placeNameLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
 
-            place[i].add(placeNameLabel[i]);
-        }
-*/
         place[0].setColor(Color.white);
         place[6].setColor(Color.white);
         place[12].setColor(Color.white);
