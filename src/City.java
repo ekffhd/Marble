@@ -24,6 +24,10 @@ public class City implements IPlace{
         }
     }
 
+    public void setName(String name){ //도시 이름 설정
+        this.name = name;
+    }
+
     public void onEnter(){
         if (owner == null){ // 주인이 없을 떄
 

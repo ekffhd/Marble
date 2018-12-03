@@ -4,10 +4,8 @@ import java.awt.*;
 public class GameBoard extends JPanel {
 
     private JPanel                  gameBoardGridPanel, gameControllerPanel;
-    private JPanel[]                place;
-    private JLabel[]                placeNameLabel;
+    private Place[]                 place;
     private JLabel                  projectName;
-    private Font                    placeNameFont;
     private GridBagConstraints[]    gbc;
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
@@ -17,8 +15,6 @@ public class GameBoard extends JPanel {
         setBackground(Color.white);
         setLayout(null);
 
-        placeNameFont = new Font("RixVideoGame3D",Font.PLAIN, 20);
-
         gameBoardGridPanel = new JPanel();
         gameBoardGridPanel.setBounds(0,0, 800, 550);
         gameBoardGridPanel.setBackground(Color.white);
@@ -26,11 +22,10 @@ public class GameBoard extends JPanel {
         add(gameBoardGridPanel);
 
         gbc = new GridBagConstraints[24];
-        place = new JPanel[24];
-        placeNameLabel = new JLabel[24];
+        place = new Place[24];
 
         //Start
-        place[0] = new JPanel();
+        place[0] = new Place(PlaceConstants.PLACE_NAME[0]);
         place[0].setPreferredSize(new Dimension(125, 125));
         place[0].setBackground(new Color(14, 46,64));
         place[0].setBorder(BorderFactory.createMatteBorder(3, 3, 0, 0, Color.black));
@@ -48,7 +43,7 @@ public class GameBoard extends JPanel {
 
         //South 0~5
         for(int i=1;i<6;i++){
-            place[i] = new JPanel();
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
             place[i].setPreferredSize(new Dimension(110, 125));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(3, 1, 0, 0, Color.black));
@@ -64,7 +59,7 @@ public class GameBoard extends JPanel {
         place[5].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.black));
 
         //지그재그
-        place[6] = new JPanel();
+        place[6] = new Place(PlaceConstants.PLACE_NAME[6]);
         place[6].setPreferredSize(new Dimension(125,125));
         place[6].setBackground(new Color(101,35,42));
         place[6].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 3, Color.black));
@@ -81,7 +76,7 @@ public class GameBoard extends JPanel {
 
         //West
         for(int i=7;i<12;i++){
-            place[i] = new JPanel();
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
             place[i].setPreferredSize(new Dimension(125, 100));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -98,7 +93,7 @@ public class GameBoard extends JPanel {
         place[11].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.black));
 
         //사회복지기금
-        place[12] = new JPanel();
+        place[12] = new Place(PlaceConstants.PLACE_NAME[12]);
         place[12].setPreferredSize(new Dimension(125,125));
         place[12].setBackground(new Color(14, 46,64));
         place[12].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -115,7 +110,7 @@ public class GameBoard extends JPanel {
 
         //North
         for(int i=13; i<18;i++){
-            place[i] = new JPanel();
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
             place[i].setPreferredSize(new Dimension(110,125));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 1, Color.black));
@@ -132,7 +127,7 @@ public class GameBoard extends JPanel {
         place[17].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.black));
 
         //헬기장
-        place[18] = new JPanel();
+        place[18] = new Place(PlaceConstants.PLACE_NAME[18]);
         place[18].setPreferredSize(new Dimension(125,125));
         place[18].setBackground(new Color(101,35,42));
         place[18].setBorder(BorderFactory.createMatteBorder(0, 3, 3, 0, Color.black));
@@ -148,7 +143,7 @@ public class GameBoard extends JPanel {
 
         //East
         for(int i=19;i<24;i++){
-            place[i] = new JPanel();
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
             place[i].setPreferredSize(new Dimension(125, 100));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(1, 3, 0, 0, Color.black));
@@ -170,7 +165,7 @@ public class GameBoard extends JPanel {
         place[9].setBackground(goldEggColor);
         place[15].setBackground(goldEggColor);
         place[21].setBackground(goldEggColor);
-
+/*
         for(int i=0;i<24;i++){
             place[i].setLayout(null);
             placeNameLabel[i] = new JLabel(PlaceConstants.PLACE_NAME[i]);
@@ -180,11 +175,11 @@ public class GameBoard extends JPanel {
 
             place[i].add(placeNameLabel[i]);
         }
-
-        placeNameLabel[0].setForeground(Color.white);
-        placeNameLabel[6].setForeground(Color.white);
-        placeNameLabel[12].setForeground(Color.white);
-        placeNameLabel[18].setForeground(Color.white);
+*/
+        place[0].setColor(Color.white);
+        place[6].setColor(Color.white);
+        place[12].setColor(Color.white);
+        place[18].setColor(Color.white);
 
         gameControllerPanel = new JPanel();
         gameControllerPanel.setBackground(Color.white);
