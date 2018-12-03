@@ -1,5 +1,3 @@
-package Property;
-
 import UI.Main;
 
 import javax.sound.sampled.AudioInputStream;
