@@ -1,3 +1,5 @@
+package Util;
+
 public class PhaseConstants {
     final public static String[] PHASE = {
             "BEFORE_START_PHASE",

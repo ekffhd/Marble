@@ -1,3 +1,5 @@
+package Property;
+
 import javax.swing.*;
 import java.awt.*;
 

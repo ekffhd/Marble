@@ -1,3 +1,8 @@
+package UI;
+
+import Player.PlayerConstants;
+import Player.PlayerData;
+
 import javax.swing.*;
 import java.awt.*;
 

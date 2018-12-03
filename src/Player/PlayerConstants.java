@@ -1,3 +1,5 @@
+package Player;
+
 import java.awt.*;
 
 public class PlayerConstants {

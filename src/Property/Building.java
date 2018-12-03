@@ -1,4 +1,6 @@
-public class Building implements IBuilding{
+package Property;
+
+public class Building implements IBuilding {
     public void purchase(){
 
     }
