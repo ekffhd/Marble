@@ -9,6 +9,7 @@ public class ScoreBoard extends JPanel {
     private JLabel[] playerNameLabel, playerCashLabel, playerIconLabel;
     private ImageIcon[] playerIcon;
     private JLabel dummy;
+
     public ScoreBoard() {
         setBounds(0,550,800,200);
         setLayout(null);

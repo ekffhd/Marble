@@ -5,8 +5,14 @@ public class Main extends JPanel {
     private GameBoard gameBoard;
     private ScoreBoard scoreBoard;
     private StartPanel startPanel;
-    private Game game;
     private StartController startController;
+
+    private Dice dice1, dice2;
+    private Player[] player;
+    private Phase phase;
+    private PhaseListener phaseListener;
+    private int player_turn;
+
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -24,9 +30,21 @@ public class Main extends JPanel {
         startPanel.setVisible(true);
         add(startPanel);
 
-        game = new Game();
+        phase = new Phase();
+        player_turn = 0;
+        phaseListener = new PhaseListener();
+        phase.addPropertyChangeListener(phaseListener);
+        phase.before_start();
 
-        startController = new StartController(startPanel, gameBoard, scoreBoard, game);
+        dice1 = new Dice();
+        dice2 = new Dice();
+
+        player = new Player[4];
+        for(int i=0; i<4; i++){
+            player[i] = new Player(i);
+        }
+
+        startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
 
     }
 }
