@@ -12,18 +12,6 @@ public class City implements IPlace{
         }
     }
 
-    private class Building implements IBuilding{
-        public void purchase(){
-
-        }
-        public void sell(){
-
-        }
-        public void acquire(){
-
-        }
-    }
-
     public void setName(String name){ //도시 이름 설정
         this.name = name;
     }
