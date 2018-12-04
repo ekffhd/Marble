@@ -14,13 +14,15 @@ public class PhaseListener implements PropertyChangeListener {
     private ScoreBoard scoreBoard;
     private GameBoard gameBoard;
     private Main main;
+    private Phase phase;
 
-    public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main){
+    public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main, Phase phase){
         this.dice1 = dice1;
         this.dice2 = dice2;
         this.scoreBoard = scoreBoard;
         this.gameBoard = gameBoard;
         this.main = main;
+        this.phase = phase;
 
     }
 
@@ -36,8 +38,11 @@ public class PhaseListener implements PropertyChangeListener {
             dice1.roll_dice();
             dice2.roll_dice();
             gameBoard.show_dice(dice1.get_dice(), dice2.get_dice());
-            main.next();
-
+            phase.purchase();
+        }
+        else if (event.getPropertyName().equals("PURCHASE")){
+            System.out.println("purchase");
+            gameBoard.show_purchase_panel();
         }
         else if (event.getPropertyName().equals("ACQUIRE")){
             System.out.println("acquire");

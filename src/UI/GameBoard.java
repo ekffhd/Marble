@@ -210,5 +210,5 @@ public class GameBoard extends JPanel {
     public void show_dice(int dice1, int dice2) {
         gameControllerPanel.show_dice(dice1, dice2);
     }
-
+    public void show_purchase_panel() { gameControllerPanel.show_purchase_panel(); }
 }
