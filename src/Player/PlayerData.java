@@ -3,7 +3,7 @@ package Player;
 public class PlayerData {
     private int characterId;
     protected int position;
-    private int cash;
+    protected int cash;
     private boolean is_active;
     //건물 클래스
 

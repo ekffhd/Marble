@@ -26,6 +26,7 @@ public class PlaceConstants {
             "",
             "율지",
             "<html><div style='text-align: center;'>이노베이션<BR>센터</div></html>"};
+
     final public static String[] PLACE_LINE_NAME = {
             "START",
             "교문",

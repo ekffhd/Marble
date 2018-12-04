@@ -63,6 +63,10 @@ public class PhaseListener implements PropertyChangeListener {
         else if (event.getPropertyName().equals("END")){
             System.out.println("end");
         }
+        else if (event.getPropertyName().equals("LAP")){
+            System.out.println("lap");
+            main.do_a_lap();
+        }
         else if (event.getPropertyName().equals("RESTART")){
             System.out.println("restart");
         }

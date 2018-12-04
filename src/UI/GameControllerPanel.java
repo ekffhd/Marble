@@ -11,13 +11,15 @@ import java.awt.event.MouseListener;
 
 public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
-    protected JButton                 rollButton, moveButton, purchaseButton;
+    private JLabel                  dice1Label, dice2Label;
+    private ImageIcon               dice1Image, dice2Image, eggImage;
+    protected JButton               rollButton, moveButton, purchaseButton, eggButton;
     private Color                   mainColor;
-    private PurchasePanel                purchasePanel;
+    private PurchasePanel           purchasePanel;
+    private GoldCardPanel           goldCardPanel;
+    private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
-    private ImageIcon               dice1Image, dice2Image;
-    private JLabel                  dice1Label, dice2Label;
 
     public GameControllerPanel(Phase phase){
         setBackground(Color.white);
@@ -26,9 +28,19 @@ public class GameControllerPanel extends JPanel {
         mainColor = new Color(52, 81, 138);
         this.phase = phase;
 
+        startCardPanel = new StartCardPanel(phase);
+        startCardPanel.setVisible(false);
+        add(startCardPanel);
+
         purchasePanel = new PurchasePanel(phase);
         purchasePanel.setVisible(false);
         add(purchasePanel);
+
+        goldCardPanel = new GoldCardPanel(phase);
+        goldCardPanel.setVisible(false);
+        add(goldCardPanel);
+
+
 
         dice1Image = new ImageIcon();
         dice2Image = new ImageIcon();
@@ -44,6 +56,15 @@ public class GameControllerPanel extends JPanel {
 
         add(dice2Label);
 
+        eggImage = new ImageIcon("./image/egg.gif");
+        eggButton = new JButton(eggImage);
+        eggButton.setBounds(135,0,300,300);
+        eggButton.setBackground(null);
+        eggButton.setBorder(null);
+        eggButton.setOpaque(true);
+        eggButton.setVisible(false);
+        eggButton.addMouseListener(buttonListener);
+        add(eggButton);
 
         projectName = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
         projectName.setBounds(175,100,230,200);
@@ -88,6 +109,8 @@ public class GameControllerPanel extends JPanel {
         purchaseButton.setVisible(false);
         add(purchaseButton);
 
+
+
     }//GameControllerPanel class
 
     public void show_dice(int dice1, int dice2){
@@ -109,38 +132,62 @@ public class GameControllerPanel extends JPanel {
                 dice2Label.setVisible(true);
                 rollButton.setVisible(false);
                 moveButton.setVisible(true);
+
             }
             if(object == moveButton){
                 phase.move();
                 moveButton.setVisible(false);
-                purchaseButton.setVisible(true);
+
                 dice1Label.setVisible(false);
                 dice2Label.setVisible(false);
+                if(Main.next_position < Main.origin_position){
+                    startCardPanel.setVisible(true);
+                }
+                else{
+                    if(Main.next_position == 3 || Main.next_position == 9 || Main.next_position == 15 || Main.next_position == 21){
+                        eggButton.setVisible(true);
+                    }
+                    else if (Main.next_position != 0 || Main.next_position != 6 || Main.next_position != 12 || Main.next_position != 18){
+                        purchaseButton.setVisible(true);
+                    }
+                }
+
             }
             if(object == purchaseButton){
                 phase.purchase();
                 purchaseButton.setVisible(false);
                 purchasePanel.set_panel_info();
                 purchasePanel.setVisible(true);
-
-
             }
-        }
+            if(object == eggButton){
+                System.out.println("eggButton");
+                eggButton.setVisible(false);
+                goldCardPanel.setVisible(true);
+            }
+        }//mouseClicked
         public void mousePressed(MouseEvent event){ }
         public void mouseReleased(MouseEvent event){ }
         public void mouseEntered(MouseEvent event) {
             JButton object = (JButton)event.getSource();
 
-            object.setBackground(mainColor);
-            object.setOpaque(true);
-            object.setForeground(Color.white);
+            if(object != eggButton){
+                object.setBackground(mainColor);
+                object.setOpaque(true);
+                object.setForeground(Color.white);
+            }
+
+
         }
         public void mouseExited(MouseEvent event){
             JButton object = (JButton)event.getSource();
 
-            object.setBackground(Color.white);
-            object.setOpaque(true);
-            object.setForeground(mainColor);
+
+            if(object != eggButton){
+                object.setBackground(Color.white);
+                object.setOpaque(true);
+                object.setForeground(mainColor);
+            }
+
         }
     }//ButtonListener class
 } // GameControllerPanel class

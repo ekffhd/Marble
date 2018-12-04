@@ -62,8 +62,14 @@ public class Phase {
         this.phase = PhaseConstants.BEFORE_START_PHASE;
         propertyChangeSupport.firePropertyChange("BEFORE_START", previousPhase, phase);
     }
+    public void lap(){
+        this.previousPhase = this.phase;
+        this.phase = PhaseConstants.BEFORE_START_PHASE;
+        propertyChangeSupport.firePropertyChange("LAP", previousPhase, phase);
+    }
 
     public String getPreviousPhase() {
         return previousPhase;
     }
+
 }
