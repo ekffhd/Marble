@@ -13,7 +13,7 @@ import java.awt.*;
 public class GameBoard extends JPanel {
 
     private JPanel                  gameBoardGridPanel;
-    private GameControllerPanel     gameControllerPanel;
+    protected GameControllerPanel     gameControllerPanel;
     private Place[]                 place;
 
     private GridBagConstraints[]    gbc;
@@ -210,5 +210,8 @@ public class GameBoard extends JPanel {
     public void show_dice(int dice1, int dice2) {
         gameControllerPanel.show_dice(dice1, dice2);
     }
-
+    public void show_hide_player(int playerId,int origin_position, int next_position){
+        place[origin_position].hide_player(playerId);
+        place[next_position].show_player(playerId);
+    }
 }

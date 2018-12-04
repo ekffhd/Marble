@@ -9,4 +9,10 @@ public class Player {
     public boolean getStatus(){
         return this.playerData.getStatus();
     }
+    public int get_position(){
+        return playerData.position;
+    }
+    public void set_positon(int position){
+        this.playerData.position = position;
+    }
 }

@@ -21,12 +21,15 @@ public class PhaseListener implements PropertyChangeListener {
         this.scoreBoard = scoreBoard;
         this.gameBoard = gameBoard;
         this.main = main;
-
     }
 
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals("START")){
             System.out.println("start");
+            gameBoard.show_hide_player(0,0,0);
+            gameBoard.show_hide_player(1,0,0);
+            gameBoard.show_hide_player(2,0,0);
+            gameBoard.show_hide_player(3,0,0);
         }
         else if (event.getPropertyName().equals("BEFORE_START")){
             System.out.println("before start");
@@ -36,8 +39,12 @@ public class PhaseListener implements PropertyChangeListener {
             dice1.roll_dice();
             dice2.roll_dice();
             gameBoard.show_dice(dice1.get_dice(), dice2.get_dice());
-            main.next();
 
+        }
+        else if (event.getPropertyName().equals("MOVE")){
+            System.out.println("move");
+            main.move_player(dice1.get_dice()+dice2.get_dice());
+            main.next();
         }
         else if (event.getPropertyName().equals("ACQUIRE")){
             System.out.println("acquire");

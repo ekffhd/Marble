@@ -2,7 +2,7 @@ package Player;
 
 public class PlayerData {
     private int characterId;
-    private int position;
+    protected int position;
     private int cash;
     private boolean is_active;
     //건물 클래스
@@ -13,6 +13,7 @@ public class PlayerData {
         this.cash = 0;
         this.is_active = true;
     }
+
     public boolean getStatus(){
         return this.is_active;
     }

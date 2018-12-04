@@ -11,10 +11,10 @@ import java.awt.event.MouseListener;
 
 public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
-    private JButton                 rollButton;
+    protected JButton                 rollButton, moveButton;
     private Color                   mainColor;
     private ButtonListener          buttonListener;
-    private Phase phase;
+    private Phase                   phase;
     private ImageIcon               dice1Image, dice2Image;
     private JLabel                  dice1Label, dice2Label;
 
@@ -47,7 +47,7 @@ public class GameControllerPanel extends JPanel {
         add(projectName);
 
         rollButton = new JButton("ROLL");
-        rollButton.setBounds(220, 300, 100, 50);
+        rollButton.setBounds(228, 300, 114, 50);
         rollButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
         rollButton.setBackground(Color.white);
         rollButton.setForeground(mainColor);
@@ -56,6 +56,19 @@ public class GameControllerPanel extends JPanel {
         rollButton.setHorizontalAlignment(SwingConstants.CENTER);
         rollButton.addMouseListener(buttonListener);
         add(rollButton);
+
+        moveButton = new JButton("MOVE");
+        moveButton.setBounds(228, 300, 114, 50);
+        moveButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
+        moveButton.setBackground(Color.white);
+        moveButton.setForeground(mainColor);
+        moveButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        moveButton.setVerticalAlignment(SwingConstants.CENTER);
+        moveButton.setHorizontalAlignment(SwingConstants.CENTER);
+        moveButton.addMouseListener(buttonListener);
+        moveButton.setVisible(false);
+        add(moveButton);
+
     }//GameControllerPanel class
 
     public void show_dice(int dice1, int dice2){
@@ -63,12 +76,22 @@ public class GameControllerPanel extends JPanel {
         dice1Label.setIcon(dice1Image);
         dice2Image = new ImageIcon(DiceConstants.DICE_IMAGE[dice2-1]);
         dice2Label.setIcon(dice2Image);
-        rollButton.setEnabled(false);
     }
 
     private class ButtonListener implements MouseListener {
         public void mouseClicked(MouseEvent event){
-            phase.roll();
+            Object object = event.getSource();
+
+            if(object == rollButton){
+                phase.roll();
+                rollButton.setVisible(false);
+                moveButton.setVisible(true);
+            }
+            if(object == moveButton){
+                phase.move();
+                moveButton.setVisible(false);
+
+            }
         }
         public void mousePressed(MouseEvent event){ }
         public void mouseReleased(MouseEvent event){ }
@@ -78,7 +101,6 @@ public class GameControllerPanel extends JPanel {
             object.setBackground(mainColor);
             object.setOpaque(true);
             object.setForeground(Color.white);
-
         }
         public void mouseExited(MouseEvent event){
             JButton object = (JButton)event.getSource();

@@ -23,6 +23,7 @@ public class Main extends JPanel {
     private Phase phase;
     private PhaseListener phaseListener;
     private int player_turn;
+    private int origin_position;
 
 
     public Main() {
@@ -31,6 +32,7 @@ public class Main extends JPanel {
 
         phase = new Phase();
         player_turn = 0;
+        origin_position = 0;
 
         dice1 = new Dice();
         dice2 = new Dice();
@@ -62,6 +64,13 @@ public class Main extends JPanel {
     public void next(){
         this.player_turn++;
         scoreBoard.setBorder(this.player_turn);
+        gameBoard.gameControllerPanel.rollButton.setVisible(true);
+    }
 
+    public void move_player(int position){
+        origin_position = player[player_turn%4].get_position();
+        gameBoard.show_hide_player(player_turn%4, origin_position, (origin_position+position)%24);
+        player[player_turn%4].set_positon((origin_position+position)%24);
+        System.out.println("main"+position);
     }
 }

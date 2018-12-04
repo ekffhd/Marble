@@ -22,6 +22,11 @@ public class Phase {
         this.phase = PhaseConstants.ROLLING;
         propertyChangeSupport.firePropertyChange("ROLL", previousPhase, phase);
     }
+    public void move(){
+        this.previousPhase = this.phase;
+        this.phase = PhaseConstants.MOVING;
+        propertyChangeSupport.firePropertyChange("MOVE", previousPhase, phase);
+    }
     public void bill(){
         this.previousPhase = this.phase;
         this.phase = PhaseConstants.BILLING;

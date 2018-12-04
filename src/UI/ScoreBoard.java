@@ -12,7 +12,7 @@ public class ScoreBoard extends JPanel {
     private JPanel scoreBoardMainPanel;
     private PlayerData[] playerDataArray;
     private JPanel[]  playerInformationPanel;
-    private JLabel[] playerNameLabel, playerCashLabel, playerIconLabel;
+    public JLabel[] playerNameLabel, playerCashLabel, playerIconLabel;
     private ImageIcon[] playerIcon;
     private JLabel dummy;
 
