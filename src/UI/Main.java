@@ -56,7 +56,7 @@ public class Main extends JPanel {
 
         startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
 
-        phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard, this);
+        phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard, this, phase);
         phase.addPropertyChangeListener(phaseListener);
         phase.before_start();
     }
