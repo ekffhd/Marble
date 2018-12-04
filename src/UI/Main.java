@@ -63,5 +63,5 @@ public class Main extends JPanel {
         this.player_turn++;
         gameBoard.hide_purchase_panel();
         scoreBoard.setBorder(this.player_turn);
-    }
+    } // next()
 }

@@ -83,7 +83,7 @@ public class PurchasePanel extends JPanel {
         landMarkCheckbox.addActionListener(checkBoxListener);
         checkboxPanel.add(landMarkCheckbox);
 
-        purchaseButton = new JButton("BUY");
+        purchaseButton = new JButton("BUY"); // 구매 버튼
         purchaseButton.setBounds(40, 250, (800/7*5-210)/2, 40);
         purchaseButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
         purchaseButton.setBackground(Color.white);
@@ -94,7 +94,7 @@ public class PurchasePanel extends JPanel {
         purchaseButton.addMouseListener(buttonListener);
         add(purchaseButton);
 
-        cancelButton = new JButton("CANCEL");
+        cancelButton = new JButton("CANCEL"); // 구매 취소 버튼
         cancelButton.setBounds(90+(800/7*5-210)/2, 250, (800/7*5-210)/2, 40);
         cancelButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
         cancelButton.setBackground(Color.white);
@@ -120,14 +120,16 @@ public class PurchasePanel extends JPanel {
             } else if (checkbox == landMarkCheckbox) {
 
             } // if ~ else if
-        }
-    }
+        } // actionPerformed()
+    } // CheckBoxListener class
 
     private class ButtonListener implements MouseListener {
         public void mouseClicked(MouseEvent event){}
+
         public void mousePressed(MouseEvent event){
             main.next();
-        }
+        } // mousePressed()
+
         public void mouseReleased(MouseEvent event){}
 
         public void mouseEntered(MouseEvent event){
@@ -141,6 +143,6 @@ public class PurchasePanel extends JPanel {
             object.setBackground(Color.white);
             object.setForeground(mainColor);
         } // mouseExited()
-    }
+    } // ButtonListener class
 
 } // PurchasePanel class

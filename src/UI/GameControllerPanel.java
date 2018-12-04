@@ -71,23 +71,26 @@ public class GameControllerPanel extends JPanel {
         dice2Image = new ImageIcon(DiceConstants.DICE_IMAGE[dice2-1]);
         dice2Label.setIcon(dice2Image);
         rollButton.setEnabled(false);
-    }
+    } // show_dice()
 
     public void show_purchase_panel() {
         purchasePanel.setVisible(true);
         rollButton.setVisible(false);
-    }
+    } // show_purchase_panel()
     public void hide_purchase_panel() {
         purchasePanel.setVisible(false);
         rollButton.setVisible(true);
-    }
+    } // hide_purchase_panel()
 
     private class ButtonListener implements MouseListener {
+
         public void mouseClicked(MouseEvent event){
             phase.roll();
-        }
+        } // mouseClicked()
+
         public void mousePressed(MouseEvent event){ }
         public void mouseReleased(MouseEvent event){ }
+
         public void mouseEntered(MouseEvent event) {
             JButton object = (JButton)event.getSource();
 
@@ -95,13 +98,15 @@ public class GameControllerPanel extends JPanel {
             object.setOpaque(true);
             object.setForeground(Color.white);
 
-        }
+        } // mouseEntered ()
+
         public void mouseExited(MouseEvent event){
             JButton object = (JButton)event.getSource();
 
             object.setBackground(Color.white);
             object.setOpaque(true);
             object.setForeground(mainColor);
-        }
+        } // mouseExited()
+
     }//ButtonListener class
 } // GameControllerPanel class
