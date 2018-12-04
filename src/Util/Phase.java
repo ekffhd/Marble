@@ -42,6 +42,11 @@ public class Phase {
         this.phase = PhaseConstants.ACQUIRING;
         propertyChangeSupport.firePropertyChange("ACQUIRE", previousPhase, phase);
     }
+    public void next(){
+        this.previousPhase = this.phase;
+        this.phase = PhaseConstants.ACQUIRING;
+        propertyChangeSupport.firePropertyChange("NEXT", previousPhase, phase);
+    }
     public void end(){
         this.previousPhase = this.phase;
         this.phase = PhaseConstants.END;

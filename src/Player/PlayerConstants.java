@@ -15,6 +15,12 @@ public class PlayerConstants {
             "./image/player2.png",
             "./image/player3.png",
             "./image/player4.png",
+    };
 
+    final public static String[] PLAYER_UNIT = {
+            "./image/player1_30.png",
+            "./image/player2_30.png",
+            "./image/player3_30.png",
+            "./image/player4_30.png",
     };
 }

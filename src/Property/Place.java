@@ -29,7 +29,7 @@ public class Place extends JPanel {
         playerIconLabel = new JLabel[4];
 
         for (int i = 0; i < 4; i++) {
-            playerIcon[i] = new ImageIcon("./image/player1_30.png");
+            playerIcon[i] = new ImageIcon(PlayerConstants.PLAYER_UNIT[i]);
             playerIconLabel[i] = new JLabel(playerIcon[i]);
             playerIconLabel[i].setBounds(27 * i+3, 3, 27, 26);
             add(playerIconLabel[i]);

@@ -11,9 +11,9 @@ import java.awt.event.MouseListener;
 
 public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
-    protected JButton                 rollButton, moveButton;
+    protected JButton                 rollButton, moveButton, purchaseButton;
     private Color                   mainColor;
-    private JPanel                  purchasePanel;
+    private PurchasePanel                purchasePanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
     private ImageIcon               dice1Image, dice2Image;
@@ -26,7 +26,7 @@ public class GameControllerPanel extends JPanel {
         mainColor = new Color(52, 81, 138);
         this.phase = phase;
 
-        purchasePanel = new PurchasePanel();
+        purchasePanel = new PurchasePanel(phase);
         purchasePanel.setVisible(false);
         add(purchasePanel);
 
@@ -35,12 +35,14 @@ public class GameControllerPanel extends JPanel {
 
         dice1Label = new JLabel();
         dice1Label.setBounds(210, 50, 60, 60);
+        dice1Label.setVisible(false);
         add(dice1Label);
 
         dice2Label = new JLabel();
         dice2Label.setBounds(300, 50, 60, 60);
-        add(dice2Label);
+        dice2Label.setVisible(false);
 
+        add(dice2Label);
 
 
         projectName = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
@@ -74,6 +76,18 @@ public class GameControllerPanel extends JPanel {
         moveButton.setVisible(false);
         add(moveButton);
 
+        purchaseButton = new JButton("PURCHASE");
+        purchaseButton.setBounds(228, 300, 114, 50);
+        purchaseButton.setFont(new Font("drid herder solid", Font.PLAIN, 17));
+        purchaseButton.setBackground(Color.white);
+        purchaseButton.setForeground(mainColor);
+        purchaseButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        purchaseButton.setVerticalAlignment(SwingConstants.CENTER);
+        purchaseButton.setHorizontalAlignment(SwingConstants.CENTER);
+        purchaseButton.addMouseListener(buttonListener);
+        purchaseButton.setVisible(false);
+        add(purchaseButton);
+
     }//GameControllerPanel class
 
     public void show_dice(int dice1, int dice2){
@@ -83,10 +97,7 @@ public class GameControllerPanel extends JPanel {
         dice2Label.setIcon(dice2Image);
     }
 
-    public void show_purchase_panel() {
-        purchasePanel.setVisible(true);
-        rollButton.setVisible(false);
-    }
+
 
     private class ButtonListener implements MouseListener {
         public void mouseClicked(MouseEvent event){
@@ -94,12 +105,24 @@ public class GameControllerPanel extends JPanel {
 
             if(object == rollButton){
                 phase.roll();
+                dice1Label.setVisible(true);
+                dice2Label.setVisible(true);
                 rollButton.setVisible(false);
                 moveButton.setVisible(true);
             }
             if(object == moveButton){
                 phase.move();
                 moveButton.setVisible(false);
+                purchaseButton.setVisible(true);
+                dice1Label.setVisible(false);
+                dice2Label.setVisible(false);
+            }
+            if(object == purchaseButton){
+                phase.purchase();
+                purchaseButton.setVisible(false);
+                purchasePanel.set_panel_info();
+                purchasePanel.setVisible(true);
+
 
             }
         }
