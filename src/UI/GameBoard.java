@@ -4,6 +4,7 @@ import Property.PlaceConstants;
 
 import Property.Place;
 import Property.PlaceConstants;
+import Util.Dice;
 import Util.Phase;
 
 import javax.swing.*;
@@ -19,6 +20,8 @@ public class GameBoard extends JPanel {
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
     private Phase phase;
+
+    private JLabel                  dice1Num, dice2Num;
 
     public GameBoard(Phase phase) {
         setBounds(0,0,800,550);
@@ -194,8 +197,6 @@ public class GameBoard extends JPanel {
         place[18].setColor(Color.white);
 
         gameControllerPanel = new GameControllerPanel(phase);
-        gameControllerPanel.setBackground(Color.white);
-        gameControllerPanel.setLayout(null);
 
         gameControllerGbc = new GridBagConstraints();
         gameControllerGbc.gridx = 1;
@@ -204,5 +205,10 @@ public class GameBoard extends JPanel {
         gameControllerGbc.gridwidth = 5;
         gameControllerGbc.fill = GridBagConstraints.BOTH;
         gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
+    }//GameBoard()
+
+    public void show_dice(int dice1, int dice2) {
+        gameControllerPanel.show_dice(dice1, dice2);
     }
+
 }

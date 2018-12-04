@@ -1,5 +1,7 @@
 package UI;
 
+import Util.Dice;
+import Util.DiceConstants;
 import Util.Phase;
 
 import javax.swing.*;
@@ -13,6 +15,9 @@ public class GameControllerPanel extends JPanel {
     private Color                   mainColor;
     private ButtonListener          buttonListener;
     private Phase phase;
+    private ImageIcon               dice1Image, dice2Image;
+    private JLabel                  dice1Label, dice2Label;
+
     public GameControllerPanel(Phase phase){
         setBackground(Color.white);
         setLayout(null);
@@ -20,11 +25,24 @@ public class GameControllerPanel extends JPanel {
         mainColor = new Color(52, 81, 138);
         this.phase = phase;
 
+        dice1Image = new ImageIcon();
+        dice2Image = new ImageIcon();
+
+        dice1Label = new JLabel();
+        dice1Label.setBounds(210, 50, 60, 60);
+        add(dice1Label);
+
+        dice2Label = new JLabel();
+        dice2Label.setBounds(300, 50, 60, 60);
+        add(dice2Label);
+
+
+
         projectName = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
-        projectName.setBounds(165,100,220,200);
+        projectName.setBounds(175,100,230,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 50));
+        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
@@ -40,8 +58,18 @@ public class GameControllerPanel extends JPanel {
         add(rollButton);
     }//GameControllerPanel class
 
+    public void show_dice(int dice1, int dice2){
+        dice1Image = new ImageIcon(DiceConstants.DICE_IMAGE[dice1-1]);
+        dice1Label.setIcon(dice1Image);
+        dice2Image = new ImageIcon(DiceConstants.DICE_IMAGE[dice2-1]);
+        dice2Label.setIcon(dice2Image);
+        rollButton.setEnabled(false);
+    }
+
     private class ButtonListener implements MouseListener {
-        public void mouseClicked(MouseEvent event){phase.roll();}
+        public void mouseClicked(MouseEvent event){
+            phase.roll();
+        }
         public void mousePressed(MouseEvent event){ }
         public void mouseReleased(MouseEvent event){ }
         public void mouseEntered(MouseEvent event) {
@@ -59,6 +87,5 @@ public class GameControllerPanel extends JPanel {
             object.setOpaque(true);
             object.setForeground(mainColor);
         }
-
-    }
+    }//ButtonListener class
 }

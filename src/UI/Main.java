@@ -29,12 +29,8 @@ public class Main extends JPanel {
         setPreferredSize(new Dimension(800, 750));
         setLayout(null);
 
-
         phase = new Phase();
         player_turn = 0;
-        phaseListener = new PhaseListener();
-        phase.addPropertyChangeListener(phaseListener);
-        phase.before_start();
 
         dice1 = new Dice();
         dice2 = new Dice();
@@ -58,5 +54,9 @@ public class Main extends JPanel {
         add(startPanel);
 
         startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
+
+        phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard);
+        phase.addPropertyChangeListener(phaseListener);
+        phase.before_start();
     }
 }

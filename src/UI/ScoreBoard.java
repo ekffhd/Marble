@@ -4,6 +4,7 @@ import Player.PlayerConstants;
 import Player.PlayerData;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 
@@ -55,5 +56,10 @@ public class ScoreBoard extends JPanel {
             playerCashLabel[i].setBounds(0,120, 200, 30);
             playerInformationPanel[i].add(playerCashLabel[i]);
         }
+    }//ScoreBoard()
+
+    public void setBorder(int player_turn){
+        playerInformationPanel[player_turn%4].setBorder(BorderFactory.createLineBorder(Color.magenta, 10));
     }
-}
+
+}//ScoreBoard class

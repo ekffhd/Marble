@@ -32,6 +32,7 @@ public class StartController {
                 startPanel.setVisible(false);
                 gameBoard.setVisible(true);
                 scoreBoard.setVisible(true);
+                scoreBoard.setBorder(0);
                 phase.start();
             }
         }
