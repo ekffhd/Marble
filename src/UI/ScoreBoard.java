@@ -59,6 +59,9 @@ public class ScoreBoard extends JPanel {
     }//ScoreBoard()
 
     public void setBorder(int player_turn){
+        if(player_turn != 0){
+            playerInformationPanel[(player_turn-1)%4].setBorder(null);
+        }
         playerInformationPanel[player_turn%4].setBorder(BorderFactory.createLineBorder(Color.magenta, 10));
     }
 

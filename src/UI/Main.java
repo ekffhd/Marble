@@ -40,7 +40,6 @@ public class Main extends JPanel {
             player[i] = new Player(i);
         }
 
-
         gameBoard = new GameBoard(phase);
         gameBoard.setVisible(false);
         add(gameBoard);
@@ -55,8 +54,14 @@ public class Main extends JPanel {
 
         startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
 
-        phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard);
+        phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard, this);
         phase.addPropertyChangeListener(phaseListener);
         phase.before_start();
+    }
+
+    public void next(){
+        this.player_turn++;
+        scoreBoard.setBorder(this.player_turn);
+
     }
 }

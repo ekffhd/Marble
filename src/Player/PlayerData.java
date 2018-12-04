@@ -7,7 +7,6 @@ public class PlayerData {
     private boolean is_active;
     //건물 클래스
 
-
     public PlayerData(int characterId){
         this.characterId = characterId;
         this.position = 0;

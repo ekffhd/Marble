@@ -1,11 +1,11 @@
 package Util;
 
 import UI.GameBoard;
+import UI.Main;
 import UI.ScoreBoard;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
 
 
 public class PhaseListener implements PropertyChangeListener {
@@ -13,12 +13,15 @@ public class PhaseListener implements PropertyChangeListener {
     private Dice dice1, dice2;
     private ScoreBoard scoreBoard;
     private GameBoard gameBoard;
+    private Main main;
 
-    public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard){
+    public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main){
         this.dice1 = dice1;
         this.dice2 = dice2;
         this.scoreBoard = scoreBoard;
         this.gameBoard = gameBoard;
+        this.main = main;
+
     }
 
     public void propertyChange(PropertyChangeEvent event) {
@@ -33,6 +36,8 @@ public class PhaseListener implements PropertyChangeListener {
             dice1.roll_dice();
             dice2.roll_dice();
             gameBoard.show_dice(dice1.get_dice(), dice2.get_dice());
+            main.next();
+
         }
         else if (event.getPropertyName().equals("ACQUIRE")){
             System.out.println("acquire");
