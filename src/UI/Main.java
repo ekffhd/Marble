@@ -40,7 +40,7 @@ public class Main extends JPanel {
             player[i] = new Player(i);
         }
 
-        gameBoard = new GameBoard(phase);
+        gameBoard = new GameBoard(phase, this);
         gameBoard.setVisible(false);
         add(gameBoard);
 
@@ -61,7 +61,7 @@ public class Main extends JPanel {
 
     public void next(){
         this.player_turn++;
+        gameBoard.hide_purchase_panel();
         scoreBoard.setBorder(this.player_turn);
-
     }
 }

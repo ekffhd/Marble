@@ -5,24 +5,32 @@ import Util.Phase;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class PurchasePanel extends JPanel {
 
-    private Color          mainBackgroundColor, mainColor;
-    private JLabel         placeLabel;
-    private JPanel         checkboxPanel;
-    private JCheckBox      landCheckbox, houseCheckbox, buildingCheckbox, hotelCheckbox, landMarkCheckbox;
-    private JButton        purchaseButton, cancelButton;
-    private Phase          phase;
+    private Color            mainBackgroundColor, mainColor;
+    private JLabel           placeLabel;
+    private JPanel           checkboxPanel;
+    private JCheckBox        landCheckbox, houseCheckbox, buildingCheckbox, hotelCheckbox, landMarkCheckbox;
+    private JButton          purchaseButton, cancelButton;
+    private Phase            phase;
+    private Main             main;
 
-    private ButtonListener buttonListener;
+    private CheckBoxListener checkBoxListener;
+    private ButtonListener   buttonListener;
 
-    public PurchasePanel(Phase phase){
+    public PurchasePanel(Phase phase, Main main){
         mainBackgroundColor = Color.white;
         mainColor = new Color(52, 81, 138);
+        checkBoxListener = new CheckBoxListener();
         buttonListener = new ButtonListener();
+
+        this.phase = phase;
+        this.main = main;
 
         setBackground(mainBackgroundColor);
         setBounds(40, 40, 800/7*5-80, 550/7*5-80);
@@ -43,30 +51,36 @@ public class PurchasePanel extends JPanel {
         checkboxPanel.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
         add(checkboxPanel);
 
-        landCheckbox = new JCheckBox("부지", true);
+        landCheckbox = new JCheckBox("부지");
+        landCheckbox.setSelected(true);
         landCheckbox.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
         landCheckbox.setBackground(mainBackgroundColor);
+        landCheckbox.addActionListener(checkBoxListener);
         checkboxPanel.add(landCheckbox);
 
         houseCheckbox = new JCheckBox("집", false);
         houseCheckbox.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
         houseCheckbox.setBackground(mainBackgroundColor);
+        houseCheckbox.addActionListener(checkBoxListener);
         checkboxPanel.add(houseCheckbox);
 
         buildingCheckbox = new JCheckBox("빌딩", false);
         buildingCheckbox.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
         buildingCheckbox.setBackground(mainBackgroundColor);
+        buildingCheckbox.addActionListener(checkBoxListener);
         checkboxPanel.add(buildingCheckbox);
 
         hotelCheckbox = new JCheckBox("호텔", false);
         hotelCheckbox.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
         hotelCheckbox.setBackground(mainBackgroundColor);
+        hotelCheckbox.addActionListener(checkBoxListener);
         checkboxPanel.add(hotelCheckbox);
 
         landMarkCheckbox = new JCheckBox("랜드마크", false);
         landMarkCheckbox.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
         landMarkCheckbox.setBackground(mainBackgroundColor);
         landMarkCheckbox.setEnabled(false);
+        landMarkCheckbox.addActionListener(checkBoxListener);
         checkboxPanel.add(landMarkCheckbox);
 
         purchaseButton = new JButton("BUY");
@@ -92,10 +106,29 @@ public class PurchasePanel extends JPanel {
         add(cancelButton);
     } // PurchasePanel()
 
+    private class CheckBoxListener implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            JCheckBox checkbox = (JCheckBox) event.getSource();
+            if (checkbox == landCheckbox){
+                landCheckbox.setSelected(true);
+            } else if (checkbox == houseCheckbox) {
+
+            } else if (checkbox == buildingCheckbox) {
+
+            } else if (checkbox == hotelCheckbox) {
+
+            } else if (checkbox == landMarkCheckbox) {
+
+            } // if ~ else if
+        }
+    }
+
     private class ButtonListener implements MouseListener {
-        public void mouseClicked(MouseEvent event){ }
-        public void mousePressed(MouseEvent event){ }
-        public void mouseReleased(MouseEvent event){ }
+        public void mouseClicked(MouseEvent event){}
+        public void mousePressed(MouseEvent event){
+            main.next();
+        }
+        public void mouseReleased(MouseEvent event){}
 
         public void mouseEntered(MouseEvent event){
             JButton object = (JButton)event.getSource();

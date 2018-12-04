@@ -27,4 +27,30 @@ public class PlaceConstants {
             "율지",
             "<html><div style='text-align: center;'>이노베이션<BR>센터</div></html>"
     };
+    final public static int[] PRICE = { // 부지 가격
+            20, // 월급
+            5,
+            8,
+            0,
+            10,
+            12,
+            0,
+            14,
+            14,
+            0,
+            15,
+            18,
+            0,
+            22,
+            22,
+            0,
+            25,
+            28,
+            0,
+            30,
+            32,
+            0,
+            35,
+            100,
+    };
 }

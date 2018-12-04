@@ -20,15 +20,17 @@ public class GameBoard extends JPanel {
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
     private Phase phase;
+    private Main                    main;
 
     private JLabel                  dice1Num, dice2Num;
 
-    public GameBoard(Phase phase) {
+    public GameBoard(Phase phase, Main main) {
         setBounds(0,0,800,550);
         setBackground(Color.white);
         setLayout(null);
 
         this.phase = phase;
+        this.main = main;
 
         gameBoardGridPanel = new JPanel();
         gameBoardGridPanel.setBounds(0,0, 800, 550);
@@ -196,7 +198,7 @@ public class GameBoard extends JPanel {
         place[12].setColor(Color.white);
         place[18].setColor(Color.white);
 
-        gameControllerPanel = new GameControllerPanel(phase);
+        gameControllerPanel = new GameControllerPanel(phase, main);
 
         gameControllerGbc = new GridBagConstraints();
         gameControllerGbc.gridx = 1;
@@ -211,4 +213,5 @@ public class GameBoard extends JPanel {
         gameControllerPanel.show_dice(dice1, dice2);
     }
     public void show_purchase_panel() { gameControllerPanel.show_purchase_panel(); }
+    public void hide_purchase_panel() { gameControllerPanel.hide_purchase_panel(); }
 }

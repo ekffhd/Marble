@@ -16,17 +16,19 @@ public class GameControllerPanel extends JPanel {
     private JPanel                  purchasePanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
+    private Main                    main;
     private ImageIcon               dice1Image, dice2Image;
     private JLabel                  dice1Label, dice2Label;
 
-    public GameControllerPanel(Phase phase){
+    public GameControllerPanel(Phase phase, Main main){
         setBackground(Color.white);
         setLayout(null);
         buttonListener = new ButtonListener();
         mainColor = new Color(52, 81, 138);
         this.phase = phase;
+        this.main = main;
 
-        purchasePanel = new PurchasePanel(phase);
+        purchasePanel = new PurchasePanel(phase, main);
         purchasePanel.setVisible(false);
         add(purchasePanel);
 
@@ -52,7 +54,7 @@ public class GameControllerPanel extends JPanel {
         add(projectName);
 
         rollButton = new JButton("ROLL");
-        rollButton.setBounds(220, 300, 100, 50);
+        rollButton.setBounds((800/7*5-100)/2, 300, 100, 50);
         rollButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
         rollButton.setBackground(Color.white);
         rollButton.setForeground(mainColor);
@@ -74,6 +76,10 @@ public class GameControllerPanel extends JPanel {
     public void show_purchase_panel() {
         purchasePanel.setVisible(true);
         rollButton.setVisible(false);
+    }
+    public void hide_purchase_panel() {
+        purchasePanel.setVisible(false);
+        rollButton.setVisible(true);
     }
 
     private class ButtonListener implements MouseListener {
