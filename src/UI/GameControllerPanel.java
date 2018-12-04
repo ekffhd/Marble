@@ -15,7 +15,7 @@ public class GameControllerPanel extends JPanel {
     private Color                   mainColor;
     private JPanel                  purchasePanel;
     private ButtonListener          buttonListener;
-    private Phase phase;
+    private Phase                   phase;
     private ImageIcon               dice1Image, dice2Image;
     private JLabel                  dice1Label, dice2Label;
 
@@ -26,7 +26,7 @@ public class GameControllerPanel extends JPanel {
         mainColor = new Color(52, 81, 138);
         this.phase = phase;
 
-        purchasePanel = new PurchasePanel();
+        purchasePanel = new PurchasePanel(phase);
         purchasePanel.setVisible(false);
         add(purchasePanel);
 

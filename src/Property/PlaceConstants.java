@@ -25,5 +25,6 @@ public class PlaceConstants {
             "<html><div style='text-align: center;'>헨델과<BR>그레텔</div></html>",
             "",
             "율지",
-            "<html><div style='text-align: center;'>이노베이션<BR>센터</div></html>"};
+            "<html><div style='text-align: center;'>이노베이션<BR>센터</div></html>"
+    };
 }
