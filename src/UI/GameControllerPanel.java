@@ -39,7 +39,7 @@ public class GameControllerPanel extends JPanel {
 
         tollPanel = new TollPanel(phase);
         tollPanel.setVisible(false);
-        add(purchasePanel);
+        add(tollPanel);
 
         goldCardPanel = new GoldCardPanel(phase);
         goldCardPanel.setVisible(false);
@@ -181,11 +181,12 @@ public class GameControllerPanel extends JPanel {
             if(object == purchaseButton){
                 //phase.purchase();
                 purchaseButton.setVisible(false);
-                purchasePanel.set_panel_info();
+                purchasePanel.set_purchase_panel_info();
                 purchasePanel.setVisible(true);
             }
             if(object == payButton) {
                 payButton.setVisible(false);
+                tollPanel.set_toll_panel_info();
                 tollPanel.setVisible(true);
             }
             if(object == eggButton){

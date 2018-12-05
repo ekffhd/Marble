@@ -45,7 +45,7 @@ public class PurchasePanel extends JPanel {
         setBorder(BorderFactory.createLineBorder(mainColor, 6));
         setLayout(null);
 
-        placeLabel = new JLabel(); // placeNameConstants.placeName_NAME[1]
+        placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
         placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
         //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
@@ -132,7 +132,7 @@ public class PurchasePanel extends JPanel {
         add(cancelButton);
     } // PurchasePanel()
 
-    public void set_panel_info(){
+    public void set_purchase_panel_info(){
         position = Main.next_position;
         expense = 0;
         this.cash = Main.player[Main.player_turn%4].get_cash();
