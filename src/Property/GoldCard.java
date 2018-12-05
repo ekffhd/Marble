@@ -7,11 +7,6 @@ public class GoldCard {
     protected int cardId;
 
     public GoldCard(){
-
-    }
-    public GoldCard(int cardId){
-        this.cardId = cardId;
-
     }
 
     public int set_card_id(){

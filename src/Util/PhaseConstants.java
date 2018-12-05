@@ -14,6 +14,7 @@ public class PhaseConstants {
             "END_PHASE",
             "LAP_PHASE",
             "RESTART_PHASE",
+            "SPECIAL_PHASE",
     };
     final public static String START = "START_PHASE";
     final public static String ROLLING = "ROLLING_PHASE";
@@ -27,4 +28,5 @@ public class PhaseConstants {
     final public static String LAP = "LAP_PHASE";
     final public static String RESTART = "RESTART_PHASE";
     final public static String BEFORE_START_PHASE = "BEFORE_START_PHASE";
+    final public static String SPECIAL_PHASE = "SPECIAL_PHASE";
 }

@@ -84,8 +84,12 @@ public class Main extends JPanel {
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
             gameBoard.gameControllerPanel.eggButton.setVisible(true);
         }
-        else if(nextPosition == 0 || nextPosition == 6 || nextPosition == 12 || nextPosition == 18){
+        else if(nextPosition == 0 || nextPosition == 12 || nextPosition == 18){
             next();
+        }
+        else if(nextPosition == 6){
+            player[playerTurn%4].set_island_count();
+            gameBoard.gameControllerPanel.islandPanel.setVisible(true);
         }
         else{
             gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
@@ -111,36 +115,46 @@ public class Main extends JPanel {
                 System.out.println("fire");
                 goldCard.donate(30000, gameBoard.place[12], player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 1:
                 goldCard.donate(50000, gameBoard.place[12], player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 2:
                 goldCard.donate(80000, gameBoard.place[12], player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 3:
+                phase.next();
                 break;
             case 4:
+                phase.next();
                 break;
             case 5:
+                phase.next();
                 break;
             case 6:
                 goldCard.lotto(30000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 7:
                 goldCard.lotto(50000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 8:
                 goldCard.lotto(80000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 9:
                 goldCard.lotto(100000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 10:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[23],23, player[playerTurn%4]);
@@ -197,13 +211,14 @@ public class Main extends JPanel {
             case 24:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[18],18, player[playerTurn%4]);
                 break;
-
-
-
-
-
-
         }
         phase.next();
+    }// fire_gold_card_effect()
+
+    public void special_event(){
+        if(nextPosition == 6){
+            player[playerTurn%4].set_island_count();
+            System.out.println("Island");
+        }
     }
 }

@@ -67,6 +67,11 @@ public class Phase {
         this.phase = PhaseConstants.BEFORE_START_PHASE;
         propertyChangeSupport.firePropertyChange("BEFORE_START", previousPhase, phase);
     }
+    public void special(){
+        this.previousPhase = this.phase;
+        this.phase = PhaseConstants.SPECIAL_PHASE;
+        propertyChangeSupport.firePropertyChange("SPECIAL", previousPhase, phase);
+    }
     public void lap(){
         this.previousPhase = this.phase;
         this.phase = PhaseConstants.BEFORE_START_PHASE;

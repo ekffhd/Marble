@@ -17,6 +17,7 @@ public class GameControllerPanel extends JPanel {
     private Color                   mainColor;
     private PurchasePanel           purchasePanel;
     protected GoldCardPanel         goldCardPanel;
+    protected IslandPanel           islandPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
@@ -40,6 +41,9 @@ public class GameControllerPanel extends JPanel {
         goldCardPanel.setVisible(false);
         add(goldCardPanel);
 
+        islandPanel = new IslandPanel(phase);
+        islandPanel.setVisible(false);
+        add(islandPanel);
 
 
         dice1Image = new ImageIcon();
@@ -134,7 +138,6 @@ public class GameControllerPanel extends JPanel {
             if(object == moveButton){
                 phase.move();
                 moveButton.setVisible(false);
-
                 dice1Label.setVisible(false);
                 dice2Label.setVisible(false);
                 if(Main.nextPosition < Main.originPosition){
@@ -144,7 +147,11 @@ public class GameControllerPanel extends JPanel {
                     if(Main.nextPosition == 3 || Main.nextPosition == 9 || Main.nextPosition == 15 || Main.nextPosition == 21){
                         eggButton.setVisible(true);
                     }
-                    else if (Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
+                    else if(Main.nextPosition == 6){
+                        phase.special();
+                        islandPanel.setVisible(true);
+                    }
+                    else if (Main.nextPosition != 0 ||  Main.nextPosition != 12 || Main.nextPosition != 18){
                         purchaseButton.setVisible(true);
                     }
                 }

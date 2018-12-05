@@ -74,5 +74,10 @@ public class PhaseListener implements PropertyChangeListener {
         else if (event.getPropertyName().equals("RESTART")){
             System.out.println("restart");
         }
+        else if (event.getPropertyName().equals("SPECIAL")){
+            System.out.println("special");
+            main.special_event();
+        }
+
     }
 }

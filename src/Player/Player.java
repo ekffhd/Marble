@@ -32,4 +32,7 @@ public class Player {
     public void set_positon(int position){
         this.playerData.position = position;
     }
+    public void set_island_count(){
+        this.playerData.island_count = 2;
+    }
 }
