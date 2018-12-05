@@ -24,7 +24,7 @@ public class GoldCard {
     }
 
     public void move_player(Place originPlace, Place nextPlace,int placeId, Player player){
-        player.set_positon(placeId);
+        player.set_position(placeId);
         originPlace.hide_player(player.get_player_id());
         nextPlace.show_player(player.get_player_id());
     }

@@ -211,7 +211,7 @@ public class GameBoard extends JPanel {
         place[12].setColor(Color.white);
         place[18].setColor(Color.white);
 
-        gameControllerPanel = new GameControllerPanel(phase);
+        gameControllerPanel = new GameControllerPanel(phase, place);
 
         gameControllerGbc = new GridBagConstraints();
         gameControllerGbc.gridx = 1;

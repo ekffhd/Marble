@@ -30,7 +30,10 @@ public class Main extends JPanel {
     protected static int nextPosition;
     protected static int cardId;
     protected int afterPosition;
-    protected static Building[] buildings;
+
+
+    private  int expense, land, house, building, hotel, landmark; // 선택 여부
+
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -47,13 +50,8 @@ public class Main extends JPanel {
         player = new Player[4];
         for(int i=0; i<4; i++){
             player[i] = new Player(i);
-            player[i].set_positon(0);
+            player[i].set_position(0);
             player[i].add_cash(2000000);
-        }
-
-        buildings = new Building[24];
-        for (int i=0; i<24; i++){
-            buildings[i] = new Building();
         }
 
         gameBoard = new GameBoard(phase);
@@ -101,27 +99,60 @@ public class Main extends JPanel {
         }
     }// do_a_lap()
 
-    public void purchase_property(int expense, int land, int house, int building, int hotel, int landmark) {
+    public void purchase_property() {
         player[playerTurn%4].sub_cash(expense);
         scoreBoard.playerCashLabel[playerTurn%4].setText(player[playerTurn%4].get_cash()+"  won"); // 돈
-        if (land == 1) buildings[nextPosition].set_land_owner(playerTurn%4);
-        if (house == 1) { buildings[nextPosition].purchase_house(); }
+        expense = gameBoard.gameControllerPanel.purchasePanel.get_expense();
+        land = gameBoard.gameControllerPanel.purchasePanel.get_land();
+        house = gameBoard.gameControllerPanel.purchasePanel.get_house();
+        building = gameBoard.gameControllerPanel.purchasePanel.get_building();
+        hotel = gameBoard.gameControllerPanel.purchasePanel.get_hotel();
+        landmark = gameBoard.gameControllerPanel.purchasePanel.get_landmark();
+        this.expense = expense*10000;
+        if (land == 1) {gameBoard.place[nextPosition].set_building_status(player[playerTurn%4], house, building, hotel, landmark);}
+        /*if (house == 1) { buildings[nextPosition].purchase_house(); }
         if (building == 1) { buildings[nextPosition].purchase_building(); }
         if (hotel == 1) { buildings[nextPosition].purchase_hotel(); }
-        if (landmark == 1) { buildings[nextPosition].purchase_landmark(); }
-
+        if (landmark == 1) { buildings[nextPosition].purchase_landmark(); }*/
+        phase.next();
     }
 
     public void move_player(int position){
         originPosition = player[playerTurn%4].get_position();
         nextPosition = (originPosition + position)%24;
         gameBoard.show_hide_player(playerTurn%4, originPosition, nextPosition);
-        player[playerTurn%4].set_positon(nextPosition);
+        player[playerTurn%4].set_position(nextPosition);
 
-        if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
-            cardId = goldCard.set_card_id();
-            gameBoard.gameControllerPanel.goldCardPanel.set_card_information(cardId);
+        if(nextPosition > originPosition){
+            if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
+                cardId = goldCard.set_card_id();
+                gameBoard.gameControllerPanel.goldCardPanel.set_card_information(cardId);
+            }
+            else if(nextPosition == 0){}
+            else if(nextPosition == 6){}
+            else if(nextPosition == 12){
+                phase.next();
+            }
+            else if(nextPosition == 18){
+                phase.next();
+            }
+            else {
+                if (gameBoard.place[nextPosition].get_land_owner() == -1) { // 소유자 X
+                    gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
+                }
+                else if (gameBoard.place[nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
+                    if (gameBoard.place[nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
+                        gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
+                    } else { // 모든 건물을 삼
+                        phase.next();
+                    }
+                } else { // 소유자 != 현재 턴
+                    gameBoard.gameControllerPanel.payButton.setVisible(true);
+                }
+            }
+
         }
+
         System.out.println("main"+position);
     }// move_player()
 
@@ -240,7 +271,10 @@ public class Main extends JPanel {
 
 
     public void bill(int bill){
+        player[gameBoard.place[nextPosition].get_land_owner()].add_cash(bill);
+        scoreBoard.set_player_cash_label(gameBoard.place[nextPosition].get_land_owner());
+
         player[playerTurn%4].sub_cash(bill);
-        scoreBoard.playerCashLabel[playerTurn%4].setText(player[playerTurn%4].get_cash()+"  won"); // 돈
+        scoreBoard.set_player_cash_label(playerTurn%4);
     }
 }

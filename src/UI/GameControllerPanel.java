@@ -1,5 +1,6 @@
 package UI;
 
+import Property.Place;
 import Util.Dice;
 import Util.DiceConstants;
 import Util.Phase;
@@ -15,20 +16,22 @@ public class GameControllerPanel extends JPanel {
     private ImageIcon               dice1Image, dice2Image, eggImage;
     protected JButton               rollButton, moveButton, purchaseButton, eggButton, payButton;
     private Color                   mainColor;
-    public PurchasePanel            purchasePanel;
+    protected PurchasePanel         purchasePanel;
     public TollPanel                tollPanel;
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
+    protected Place[]               place;
 
-    public GameControllerPanel(Phase phase){
+    public GameControllerPanel(Phase phase, Place place[]){
         setBackground(Color.white);
         setLayout(null);
         buttonListener = new ButtonListener();
         mainColor = new Color(52, 81, 138);
         this.phase = phase;
+        this.place = place;
 
         startCardPanel = new StartCardPanel(phase);
         startCardPanel.setVisible(false);
@@ -167,32 +170,18 @@ public class GameControllerPanel extends JPanel {
                         phase.special();
                         islandPanel.setVisible(true);
                     }
-                    else if (Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
-                        //purchaseButton.setVisible(true);
-                        if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
-                            purchaseButton.setVisible(true);
-                        } else if (Main.buildings[Main.nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
-                            if (Main.buildings[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
-                                purchaseButton.setVisible(true);
-                            } else { // 모든 건물을 삼
-                                phase.next();
-                            }
-                        } else { // 소유자 != 현재 턴
-                            payButton.setVisible(true);
-                        }
-                    }
                 }
-
             }
             if(object == purchaseButton){
-                //phase.purchase();
-                purchaseButton.setVisible(false);
-                purchasePanel.set_purchase_panel_info();
-                purchasePanel.setVisible(true);
+                if(Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
+                    purchaseButton.setVisible(false);
+                    purchasePanel.set_purchase_panel_info(place[Main.nextPosition]);
+                    purchasePanel.setVisible(true);
+                }
             }
             if(object == payButton) {
                 payButton.setVisible(false);
-                tollPanel.set_toll_panel_info();
+                tollPanel.set_toll_panel_info(place[Main.nextPosition]);
                 tollPanel.setVisible(true);
             }
             if(object == eggButton){

@@ -243,4 +243,9 @@ public class PlaceConstants { // 부지 데이터
             66,
             200
     };
+
+    final public static String[] BUILDING_URL={
+            "./image/building/house",
+            "./image/building/building",
+            "./image/building/hotel"};
 }

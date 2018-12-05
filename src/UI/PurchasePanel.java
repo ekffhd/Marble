@@ -1,5 +1,6 @@
 package UI;
 
+import Property.Place;
 import Property.PlaceConstants;
 import Util.Phase;
 
@@ -45,8 +46,8 @@ public class PurchasePanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);
@@ -77,7 +78,8 @@ public class PurchasePanel extends JPanel {
             menuLabel[i].setBounds(0,0,95,60);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             menuLabel[i].setVerticalAlignment(SwingConstants.CENTER);
-            menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
+            //menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
+            menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
             menuPanel[i].add(menuLabel[i]);
         }
 
@@ -128,9 +130,8 @@ public class PurchasePanel extends JPanel {
         add(cancelButton);
     } // PurchasePanel()
 
-    public void set_purchase_panel_info(){
+    public void set_purchase_panel_info(Place place){
         reset_checkbox();
-        position = Main.nextPosition;
         expense = 0;
         this.cash = Main.player[Main.playerTurn%4].get_cash();
 
@@ -141,22 +142,22 @@ public class PurchasePanel extends JPanel {
         priceLabel[3].setText(PlaceConstants.HOTEL_PRICE[Main.nextPosition]+" $"); // 호텔
         priceLabel[4] .setText(PlaceConstants.LANDMARK_PRICE[Main.nextPosition]+" $"); // 랜드마크
 
-        if (Main.buildings[position].get_land_owner() != -1) { // 부지 소유
+        if (place.get_land_owner() != -1) { // 부지 소유
             menuCheckBox[0].setEnabled(false);
         }
-        if (Main.buildings[position].get_house_ownership() == 1) { // 집 소유
+        if (place.get_house_ownership() == 1) { // 집 소유
             menuCheckBox[1].setEnabled(false);
         }
-        if (Main.buildings[position].get_building_ownership() == 1) { // 빌딩 소유
+        if (place.get_building_ownership() == 1) { // 빌딩 소유
             menuCheckBox[2].setEnabled(false);
         }
-        if (Main.buildings[position].get_hotel_ownership() == 1) { // 호텔 소유
+        if (place.get_hotel_ownership() == 1) { // 호텔 소유
             menuCheckBox[3].setEnabled(false);
         }
-        if (Main.buildings[position].get_land_owner() != -1  // 랜드마크만 남은 상황
-                && Main.buildings[position].get_house_ownership() == 1
-                && Main.buildings[position].get_building_ownership() == 1
-                && Main.buildings[position].get_hotel_ownership() == 1){
+        if (place.get_land_owner() != -1  // 랜드마크만 남은 상황
+                && place.get_house_ownership() == 1
+                && place.get_building_ownership() == 1
+                && place.get_hotel_ownership() == 1){
             menuCheckBox[4].setEnabled(true);
         }
     }

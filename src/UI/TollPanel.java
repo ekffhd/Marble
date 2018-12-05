@@ -1,6 +1,7 @@
 package UI;
 
 import Player.PlayerConstants;
+import Property.Place;
 import Property.PlaceConstants;
 import Util.Phase;
 
@@ -35,16 +36,16 @@ public class TollPanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
-        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
+        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(placeLabel);
 
         noticeLabel = new JLabel("통행료를 지불하세요!!!");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
-        noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        placeLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(noticeLabel);
@@ -69,31 +70,31 @@ public class TollPanel extends JPanel {
         add(payButton);
     }
 
-    public void set_toll_panel_info() {
+    public void set_toll_panel_info(Place place) {
         position = Main.nextPosition;
-        owner = Main.buildings[position].get_land_owner();
+        owner = place.get_land_owner();
         placeColor = PlayerConstants.PLAYER_COLOR[owner];
         bill = 0;
 
         placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
         placeLabel.setForeground(placeColor);
 
-        if (Main.buildings[position].get_land_owner() != -1) { // 부지 소유
+        if (place.get_land_owner() != -1) { // 부지 소유
             bill += PlaceConstants.LAND_TOLL[position]; // 부지 통행료
         }
-        if (Main.buildings[position].get_house_ownership() == 1) { // 집 소유
+        if (place.get_house_ownership() == 1) { // 집 소유
             if (position == 23) { bill += 5; }
             else { bill += 3; }
         }
-        if (Main.buildings[position].get_building_ownership() == 1) { // 빌딩 소유
+        if (place.get_building_ownership() == 1) { // 빌딩 소유
             if (position == 23) { bill += 10; }
             else { bill += 4; }
         }
-        if (Main.buildings[position].get_hotel_ownership() == 1) { // 호텔 소유
+        if (place.get_hotel_ownership() == 1) { // 호텔 소유
             if (position == 23) { bill += 15; }
             else { bill += 5; }
         }
-        if (Main.buildings[position].get_landmark_ownership() == 1) { // 랜드마크 소유
+        if (place.get_landmark_ownership() == 1) { // 랜드마크 소유
             bill += PlaceConstants.LANDMARK_TOLL[position]; // 랜드마크 통행료
         }
         billLabel.setText("-"+(bill*10000)+" won");

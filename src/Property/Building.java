@@ -22,10 +22,10 @@ public class Building {
     public int get_landmark_ownership() { return landmark; }
 
     public void set_land_owner(int owner) { land = owner; }
-    public void purchase_house() { house = 1; }
-    public void purchase_building() { building = 1; }
-    public void purchase_hotel() { hotel = 1; }
-    public void purchase_landmark() { landmark = 1; }
+    public void purchase_house(int house) { this.house = house; }
+    public void purchase_building(int building) { this.building = building; }
+    public void purchase_hotel(int hotel) { this.hotel = hotel; }
+    public void purchase_landmark(int landmark) { this.landmark = landmark; }
 
     public void sell_property() {
         land = -1;
