@@ -171,7 +171,7 @@ public class PurchasePanel extends JPanel {
             menuCheckBox[i].setSelected(false);
         }
         menuCheckBox[0].setSelected(true);
-        menuCheckBox[i].setEnabled(false);
+        menuCheckBox[4].setEnabled(false);
     }
 
     public int get_expense() { return expense; }
