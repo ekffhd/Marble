@@ -45,7 +45,7 @@ public class Main extends JPanel {
             player[i].add_cash(2000000);
         }
 
-        gameBoard = new GameBoard(phase, this);
+        gameBoard = new GameBoard(phase);
         gameBoard.setVisible(false);
         add(gameBoard);
 

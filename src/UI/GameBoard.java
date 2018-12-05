@@ -13,7 +13,7 @@ import java.awt.*;
 public class GameBoard extends JPanel {
 
     private JPanel                  gameBoardGridPanel;
-    private GameControllerPanel     gameControllerPanel;
+    protected GameControllerPanel   gameControllerPanel;
     private Place[]                 place;
 
     private GridBagConstraints[]    gbc;
