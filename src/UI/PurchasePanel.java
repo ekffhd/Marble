@@ -57,7 +57,6 @@ public class PurchasePanel extends JPanel {
         checkboxPanel = new JPanel();
         checkboxPanel.setBounds(6, 80, 800/7*5-80-12, 150);
         checkboxPanel.setBackground(mainBackgroundColor);
-        checkboxPanel.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
         checkboxPanel.setLayout(null);
         add(checkboxPanel);
 
@@ -66,7 +65,6 @@ public class PurchasePanel extends JPanel {
             menuPanel[i] = new JPanel();
             menuPanel[i].setBackground(mainBackgroundColor);
             menuPanel[i].setBounds((800/7*5-567)/2+95*i, 0, 95, 150);
-            menuPanel[i].setBorder(BorderFactory.createLineBorder(Color.blue, 1));
             menuPanel[i].setLayout(null);
             checkboxPanel.add(menuPanel[i]);
         }
