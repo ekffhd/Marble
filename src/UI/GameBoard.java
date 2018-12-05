@@ -22,7 +22,7 @@ public class GameBoard extends JPanel {
     private Phase phase;
 
     private ImageIcon               eggImageIcon;
-    private JLabel[]                  eggLabel;
+    private JLabel[]                eggLabel;
 
     public GameBoard(Phase phase) {
         setBounds(0,0,800,550);
@@ -220,8 +220,6 @@ public class GameBoard extends JPanel {
         gameControllerGbc.gridwidth = 5;
         gameControllerGbc.fill = GridBagConstraints.BOTH;
         gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
-
-
     }//GameBoard()
 
     public void show_dice(int dice1, int dice2) {

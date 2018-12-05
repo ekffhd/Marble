@@ -17,14 +17,15 @@ public class Place extends JPanel {
         city = new City();
         city.setName(cityName);
 
-            cityNameLabel = new JLabel(cityName);
-            cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
-            cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
-            cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
-            cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
+        cityNameLabel = new JLabel(cityName);
+        cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
+        cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
+        //cityNameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
 
-            add(cityNameLabel);
+        cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
+        cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
 
+        add(cityNameLabel);
 
         playerIcon = new ImageIcon[4];
         playerIconLabel = new JLabel[4];

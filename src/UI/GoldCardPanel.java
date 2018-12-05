@@ -21,7 +21,6 @@ public class GoldCardPanel extends JPanel {
         goldColor = new Color(248, 206, 88);
         this.phase = phase;
 
-
         setBackground(goldColor);
         setBounds(40, 40, 800/7*5-80, 550/7*5-80); //491 310
         setLayout(null);

@@ -2,6 +2,7 @@ package UI;
 
 import Player.Player;
 import Property.GoldCard;
+import Property.Building;
 import UI.GameBoard;
 import UI.ScoreBoard;
 import UI.StartController;
@@ -29,6 +30,7 @@ public class Main extends JPanel {
     protected static int nextPosition;
     protected static int cardId;
     protected int afterPosition;
+    protected static Building[] buildings;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -49,6 +51,11 @@ public class Main extends JPanel {
             player[i].add_cash(2000000);
         }
 
+        buildings = new Building[24];
+        for (int i=0; i<24; i++){
+            buildings[i] = new Building();
+        }
+
         gameBoard = new GameBoard(phase);
         gameBoard.setVisible(false);
         add(gameBoard);
@@ -60,8 +67,6 @@ public class Main extends JPanel {
         startPanel = new StartPanel();
         startPanel.setVisible(true);
         add(startPanel);
-
-
 
         startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
 
@@ -95,6 +100,17 @@ public class Main extends JPanel {
             gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
         }
     }// do_a_lap()
+
+    public void purchase_property(int expense, int land, int house, int building, int hotel, int landmark) {
+        player[playerTurn%4].sub_cash(expense);
+        scoreBoard.playerCashLabel[playerTurn%4].setText(player[playerTurn%4].get_cash()+"  won"); // 돈
+        if (land == 1) buildings[nextPosition].set_land_owner(playerTurn%4);
+        if (house == 1) { buildings[nextPosition].purchase_house(); }
+        if (building == 1) { buildings[nextPosition].purchase_building(); }
+        if (hotel == 1) { buildings[nextPosition].purchase_hotel(); }
+        if (landmark == 1) { buildings[nextPosition].purchase_landmark(); }
+
+    }
 
     public void move_player(int position){
         originPosition = player[playerTurn%4].get_position();
@@ -220,5 +236,11 @@ public class Main extends JPanel {
             player[playerTurn%4].set_island_count();
             System.out.println("Island");
         }
+    }
+
+
+    public void bill(int bill){
+        player[playerTurn%4].sub_cash(bill);
+        scoreBoard.playerCashLabel[playerTurn%4].setText(player[playerTurn%4].get_cash()+"  won"); // 돈
     }
 }

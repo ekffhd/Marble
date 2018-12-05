@@ -1,6 +1,6 @@
 package Property;
 
-public class PlaceConstants {
+public class PlaceConstants { // 부지 데이터
     final public static String[] PLACE_NAME = {
             "START",
             "교문",
@@ -52,7 +52,8 @@ public class PlaceConstants {
             "",
             "율지",
             "이노베이션 센터"};
-    final public static int[] PRICE = { // 부지 가격
+
+    final public static int[] LAND_PRICE = { // 부지 가격
             20, // 월급
             5,
             8,
@@ -76,6 +77,170 @@ public class PlaceConstants {
             32,
             0,
             35,
-            100,
+            100
+    };
+
+    final public static int[] LAND_TOLL = { // 부지 통행료
+            0,
+            3,
+            5,
+            0,
+            7,
+            10,
+            0,
+            12,
+            12,
+            0,
+            13,
+            16,
+            0,
+            20,
+            20,
+            0,
+            23,
+            26,
+            0,
+            28,
+            30,
+            0,
+            33,
+            50,
+    };
+    // 매각 = (부지 가격) - 2
+
+    final public static int[] HOUSE_PRICE = { // 집 가격
+            0,
+            3,
+            3,
+            0,
+            3,
+            3,
+            0,
+            5,
+            5,
+            0,
+            5,
+            5,
+            0,
+            7,
+            7,
+            0,
+            7,
+            7,
+            0,
+            9,
+            9,
+            0,
+            9,
+            12
+    };
+    // 통행료 : +3 , 이.센 통행료: +5
+
+    final public static int[] BUILDING_PRICE = {
+            0,
+            8,
+            8,
+            0,
+            8,
+            8,
+            0,
+            10,
+            10,
+            0,
+            10,
+            10,
+            0,
+            12,
+            12,
+            0,
+            12,
+            12,
+            0,
+            14,
+            14,
+            0,
+            14,
+            20
+    };
+
+    final public static int[] HOTEL_PRICE = {
+            0,
+            12,
+            12,
+            0,
+            12,
+            12,
+            0,
+            15,
+            15,
+            0,
+            15,
+            15,
+            0,
+            18,
+            18,
+            0,
+            18,
+            18,
+            0,
+            21,
+            21,
+            0,
+            21,
+            30,
+    };
+
+    final public static int[] LANDMARK_PRICE ={
+            0,
+            20,
+            21,
+            0,
+            22,
+            23,
+            0,
+            24,
+            25,
+            0,
+            26,
+            27,
+            0,
+            28,
+            29,
+            0,
+            30,
+            31,
+            0,
+            32,
+            33,
+            0,
+            34,
+            50
+    };
+
+    final public static int[] LANDMARK_TOLL = { // 랜드마크 통행료
+            0,
+            30,
+            33,
+            0,
+            36,
+            39,
+            0,
+            40,
+            43,
+            0,
+            46,
+            49,
+            0,
+            50,
+            53,
+            0,
+            56,
+            59,
+            0,
+            60,
+            63,
+            0,
+            66,
+            200
     };
 }

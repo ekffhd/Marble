@@ -15,6 +15,8 @@ public class PhaseListener implements PropertyChangeListener {
     private GameBoard gameBoard;
     private Main main;
     private Phase phase;
+    private int expense, bill;
+    private  int land, house, building, hotel, landmark; // 선택 여부
 
     public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main, Phase phase){
         this.dice1 = dice1;
@@ -53,12 +55,25 @@ public class PhaseListener implements PropertyChangeListener {
         }
         else if (event.getPropertyName().equals("PURCHASE")){
             System.out.println("purchase");
+            expense = gameBoard.gameControllerPanel.purchasePanel.get_expense();
+            land = gameBoard.gameControllerPanel.purchasePanel.get_land();
+            house = gameBoard.gameControllerPanel.purchasePanel.get_house();
+            building = gameBoard.gameControllerPanel.purchasePanel.get_building();
+            hotel = gameBoard.gameControllerPanel.purchasePanel.get_hotel();
+            landmark = gameBoard.gameControllerPanel.purchasePanel.get_landmark();
+            expense = expense*10000;
+
+            main.purchase_property(expense, land, house, building, hotel, landmark);
+            phase.next();
         }
         else if (event.getPropertyName().equals("ACQUIRE")){
             System.out.println("acquire");
         }
         else if (event.getPropertyName().equals("BILL")){
             System.out.println("bill");
+            this.bill = gameBoard.gameControllerPanel.tollPanel.get_bill();
+            bill = bill*10000;
+            main.bill(bill);
         }
         else if (event.getPropertyName().equals("NEXT")){
             System.out.println("next");

@@ -13,9 +13,10 @@ public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
     private JLabel                  dice1Label, dice2Label;
     private ImageIcon               dice1Image, dice2Image, eggImage;
-    protected JButton               rollButton, moveButton, purchaseButton, eggButton;
+    protected JButton               rollButton, moveButton, purchaseButton, eggButton, payButton;
     private Color                   mainColor;
-    private PurchasePanel           purchasePanel;
+    protected PurchasePanel           purchasePanel;
+    public TollPanel               tollPanel;
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
     private StartCardPanel          startCardPanel;
@@ -36,6 +37,10 @@ public class GameControllerPanel extends JPanel {
         purchasePanel = new PurchasePanel(phase);
         purchasePanel.setVisible(false);
         add(purchasePanel);
+
+        tollPanel = new TollPanel(phase);
+        tollPanel.setVisible(false);
+        add(tollPanel);
 
         goldCardPanel = new GoldCardPanel(phase);
         goldCardPanel.setVisible(false);
@@ -75,6 +80,7 @@ public class GameControllerPanel extends JPanel {
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
         projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
+        //projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
@@ -113,7 +119,17 @@ public class GameControllerPanel extends JPanel {
         purchaseButton.setVisible(false);
         add(purchaseButton);
 
-
+        payButton = new JButton("PAY");
+        payButton.setBounds(228, 300, 114, 50);
+        payButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
+        payButton.setBackground(Color.white);
+        payButton.setForeground(mainColor);
+        payButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        payButton.setVerticalAlignment(SwingConstants.CENTER);
+        payButton.setHorizontalAlignment(SwingConstants.CENTER);
+        payButton.addMouseListener(buttonListener);
+        payButton.setVisible(false);
+        add(payButton);
 
     }//GameControllerPanel class
 
@@ -151,17 +167,33 @@ public class GameControllerPanel extends JPanel {
                         phase.special();
                         islandPanel.setVisible(true);
                     }
-                    else if (Main.nextPosition != 0 ||  Main.nextPosition != 12 || Main.nextPosition != 18){
-                        purchaseButton.setVisible(true);
+                    else if (Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
+                        //purchaseButton.setVisible(true);
+                        if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
+                            purchaseButton.setVisible(true);
+                        } else if (Main.buildings[Main.nextPosition].get_land_owner() == (Main.player_turn)%4) { // 소유자 = 현재 턴
+                            if (Main.buildings[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
+                                purchaseButton.setVisible(true);
+                            } else { // 모든 건물을 삼
+                                phase.next();
+                            }
+                        } else { // 소유자 != 현재 턴
+                            payButton.setVisible(true);
+                        }
                     }
                 }
 
             }
             if(object == purchaseButton){
-                phase.purchase();
+                //phase.purchase();
                 purchaseButton.setVisible(false);
-                purchasePanel.set_panel_info();
+                purchasePanel.set_purchase_panel_info();
                 purchasePanel.setVisible(true);
+            }
+            if(object == payButton) {
+                payButton.setVisible(false);
+                tollPanel.set_toll_panel_info();
+                tollPanel.setVisible(true);
             }
             if(object == eggButton){
                 System.out.println("eggButton");
