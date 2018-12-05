@@ -27,9 +27,8 @@ public class Player {
     }
     public int sub_cash(int cash) {
         playerData.cash -= cash;
-        return playerData.cash;
+        return  playerData.cash -= cash;
     }
-    public void sub_cash(int cash) { this.playerData.cash -= cash;}
     public void set_positon(int position){
         this.playerData.position = position;
     }

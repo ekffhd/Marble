@@ -70,12 +70,12 @@ public class TollPanel extends JPanel {
     }
 
     public void set_toll_panel_info() {
-        position = Main.next_position;
+        position = Main.nextPosition;
         owner = Main.buildings[position].get_land_owner();
         placeColor = PlayerConstants.PLAYER_COLOR[owner];
         bill = 0;
 
-        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.next_position]);
+        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
         placeLabel.setForeground(placeColor);
 
         if (Main.buildings[position].get_land_owner() != -1) { // 부지 소유

@@ -15,8 +15,8 @@ public class GameControllerPanel extends JPanel {
     private ImageIcon               dice1Image, dice2Image, eggImage;
     protected JButton               rollButton, moveButton, purchaseButton, eggButton, payButton;
     private Color                   mainColor;
-    protected PurchasePanel           purchasePanel;
-    public TollPanel               tollPanel;
+    public PurchasePanel            purchasePanel;
+    public TollPanel                tollPanel;
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
     private StartCardPanel          startCardPanel;
@@ -171,7 +171,7 @@ public class GameControllerPanel extends JPanel {
                         //purchaseButton.setVisible(true);
                         if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
                             purchaseButton.setVisible(true);
-                        } else if (Main.buildings[Main.nextPosition].get_land_owner() == (Main.player_turn)%4) { // 소유자 = 현재 턴
+                        } else if (Main.buildings[Main.nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
                             if (Main.buildings[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
                                 purchaseButton.setVisible(true);
                             } else { // 모든 건물을 삼
