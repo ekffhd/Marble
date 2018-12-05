@@ -15,7 +15,7 @@ public class GoldCard {
     }
 
     public int set_card_id(){
-        cardId = (int)(Math.random() * 9);
+        cardId = (int)(Math.random() * 24);
         return cardId;
     }
 
@@ -26,6 +26,16 @@ public class GoldCard {
 
     public int lotto(int cash, Player player){
         return player.add_cash(cash);
+    }
+
+    public void move_player(Place originPlace, Place nextPlace,int placeId, Player player){
+        player.set_positon(placeId);
+        originPlace.hide_player(player.get_player_id());
+        nextPlace.show_player(player.get_player_id());
+    }
+
+    public int pay_taxes(int cash, Player player){
+        return player.sub_cash(cash);
     }
 
 

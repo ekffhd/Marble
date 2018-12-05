@@ -137,14 +137,14 @@ public class GameControllerPanel extends JPanel {
 
                 dice1Label.setVisible(false);
                 dice2Label.setVisible(false);
-                if(Main.next_position < Main.originPosition){
+                if(Main.nextPosition < Main.originPosition){
                     startCardPanel.setVisible(true);
                 }
                 else{
-                    if(Main.next_position == 3 || Main.next_position == 9 || Main.next_position == 15 || Main.next_position == 21){
+                    if(Main.nextPosition == 3 || Main.nextPosition == 9 || Main.nextPosition == 15 || Main.nextPosition == 21){
                         eggButton.setVisible(true);
                     }
-                    else if (Main.next_position != 0 || Main.next_position != 6 || Main.next_position != 12 || Main.next_position != 18){
+                    else if (Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
                         purchaseButton.setVisible(true);
                     }
                 }

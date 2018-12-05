@@ -227,8 +227,8 @@ public class GameBoard extends JPanel {
     public void show_dice(int dice1, int dice2) {
         gameControllerPanel.show_dice(dice1, dice2);
     }
-    public void show_hide_player(int playerId,int originPosition, int next_position){
+    public void show_hide_player(int playerId,int originPosition, int nextPosition){
         place[originPosition].hide_player(playerId);
-        place[next_position].show_player(playerId);
+        place[nextPosition].show_player(playerId);
     }
 }

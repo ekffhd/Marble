@@ -26,8 +26,9 @@ public class Main extends JPanel {
     private PhaseListener phaseListener;
     protected static int playerTurn;
     protected static int originPosition;
-    protected static int next_position;
+    protected static int nextPosition;
     protected static int cardId;
+    protected int afterPosition;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -80,10 +81,10 @@ public class Main extends JPanel {
         player[playerTurn%4].add_cash(200000);
         scoreBoard.set_player_cash_label(playerTurn%4);
 
-        if(next_position == 3 || next_position == 9 || next_position == 15 || next_position == 21){
+        if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
             gameBoard.gameControllerPanel.eggButton.setVisible(true);
         }
-        else if(next_position == 0 || next_position == 6 || next_position == 12 || next_position == 18){
+        else if(nextPosition == 0 || nextPosition == 6 || nextPosition == 12 || nextPosition == 18){
             next();
         }
         else{
@@ -93,11 +94,11 @@ public class Main extends JPanel {
 
     public void move_player(int position){
         originPosition = player[playerTurn%4].get_position();
-        next_position = (originPosition + position)%24;
-        gameBoard.show_hide_player(playerTurn%4, originPosition, next_position);
-        player[playerTurn%4].set_positon(next_position);
+        nextPosition = (originPosition + position)%24;
+        gameBoard.show_hide_player(playerTurn%4, originPosition, nextPosition);
+        player[playerTurn%4].set_positon(nextPosition);
 
-        if(next_position == 3 || next_position == 9 || next_position == 15 || next_position == 21){
+        if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
             cardId = goldCard.set_card_id();
             gameBoard.gameControllerPanel.goldCardPanel.set_card_information(cardId);
         }
@@ -141,6 +142,64 @@ public class Main extends JPanel {
                 goldCard.lotto(100000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
                 break;
+            case 10:
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[23],23, player[playerTurn%4]);
+                break;
+            case 11:
+                goldCard.pay_taxes(30000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 12:
+                goldCard.pay_taxes(50000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 13:
+                goldCard.pay_taxes(100000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 17:
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                break;
+            case 18:
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                break;
+            case 19:
+                afterPosition = nextPosition-1;
+                if(afterPosition<0){
+                    afterPosition+=24;
+                }
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                break;
+            case 20:
+                afterPosition = nextPosition-3;
+                if(afterPosition<0){
+                    afterPosition+=24;
+                }
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                break;
+            case 21:
+                afterPosition = nextPosition+2;
+                if(afterPosition>23){
+                    afterPosition%=24;
+                }
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                break;
+            case 22:
+                afterPosition = nextPosition+3;
+                if(afterPosition>23){
+                    afterPosition%=24;
+                }
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                break;
+            case 23:
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[18],18, player[playerTurn%4]);
+                break;
+            case 24:
+                goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[18],18, player[playerTurn%4]);
+                break;
+
+
+
 
 
 

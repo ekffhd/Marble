@@ -133,7 +133,7 @@ public class PurchasePanel extends JPanel {
 
 
     public void set_panel_info(){
-        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.next_position]);
+        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
     }
 
     private class ButtonListener implements MouseListener {

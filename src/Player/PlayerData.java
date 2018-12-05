@@ -1,7 +1,7 @@
 package Player;
 
 public class PlayerData {
-    private int characterId;
+    protected int characterId;
     protected int position;
     protected int cash;
     private boolean is_active;

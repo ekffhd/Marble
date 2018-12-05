@@ -6,6 +6,11 @@ public class Player {
     public Player(int playerId){
         playerData = new PlayerData(playerId);
     }
+
+
+    public int get_player_id(){
+        return playerData.characterId;
+    }
     public boolean get_status(){
         return this.playerData.getStatus();
     }
