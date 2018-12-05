@@ -16,7 +16,7 @@ public class GameControllerPanel extends JPanel {
     protected JButton               rollButton, moveButton, purchaseButton, eggButton, payButton;
     private Color                   mainColor;
     public PurchasePanel            purchasePanel;
-    private TollPanel               tollPanel;
+    public TollPanel               tollPanel;
     private GoldCardPanel           goldCardPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;

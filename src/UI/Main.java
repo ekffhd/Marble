@@ -112,4 +112,9 @@ public class Main extends JPanel {
         player[player_turn%4].set_positon(next_position);
         System.out.println("main"+position);
     }// next()
+
+    public void bill(int bill){
+        player[player_turn%4].sub_cash(bill);
+        scoreBoard.playerCashLabel[player_turn%4].setText(player[player_turn%4].get_cash()+"  won"); // 돈
+    }
 }
