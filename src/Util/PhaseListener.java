@@ -74,6 +74,7 @@ public class PhaseListener implements PropertyChangeListener {
             this.bill = gameBoard.gameControllerPanel.tollPanel.get_bill();
             bill = bill*10000;
             main.bill(bill);
+            main.next();
         }
         else if (event.getPropertyName().equals("NEXT")){
             System.out.println("next");
