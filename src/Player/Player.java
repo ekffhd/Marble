@@ -18,6 +18,7 @@ public class Player {
     public void add_cash(int cash){
         this.playerData.cash += cash;
     }
+    public void sub_cash(int cash) { this.playerData.cash -= cash;}
     public void set_positon(int position){
         this.playerData.position = position;
     }

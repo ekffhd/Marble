@@ -13,9 +13,10 @@ public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
     private JLabel                  dice1Label, dice2Label;
     private ImageIcon               dice1Image, dice2Image, eggImage;
-    protected JButton               rollButton, moveButton, purchaseButton, eggButton;
+    protected JButton               rollButton, moveButton, purchaseButton, eggButton, payButton;
     private Color                   mainColor;
-    public PurchasePanel           purchasePanel;
+    public PurchasePanel            purchasePanel;
+    private TollPanel               tollPanel;
     private GoldCardPanel           goldCardPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
@@ -110,7 +111,17 @@ public class GameControllerPanel extends JPanel {
         purchaseButton.setVisible(false);
         add(purchaseButton);
 
-
+        payButton = new JButton("PAY");
+        payButton.setBounds(228, 300, 114, 50);
+        payButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
+        payButton.setBackground(Color.white);
+        payButton.setForeground(mainColor);
+        payButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        payButton.setVerticalAlignment(SwingConstants.CENTER);
+        payButton.setHorizontalAlignment(SwingConstants.CENTER);
+        payButton.addMouseListener(buttonListener);
+        payButton.setVisible(false);
+        add(payButton);
 
     }//GameControllerPanel class
 
@@ -147,7 +158,18 @@ public class GameControllerPanel extends JPanel {
                         eggButton.setVisible(true);
                     }
                     else if (Main.next_position != 0 || Main.next_position != 6 || Main.next_position != 12 || Main.next_position != 18){
-                        purchaseButton.setVisible(true);
+                        //purchaseButton.setVisible(true);
+                        if (Main.buildings[Main.next_position].get_land_owner() == -1) { // 소유자 X
+                            purchaseButton.setVisible(true);
+                        } else if (Main.buildings[Main.next_position].get_land_owner() == Main.player_turn%4) { // 소유자 = 현재 턴
+                            if (Main.buildings[Main.next_position].get_landmark_ownership() == 0) { // 살 건물이 남아있음
+                                purchaseButton.setVisible(true);
+                            } else { // 모든 건물을 삼
+                                phase.next();
+                            }
+                        } else { // 소유자 != 현재 턴
+                            payButton.setVisible(true);
+                        }
                     }
                 }
 
@@ -157,6 +179,10 @@ public class GameControllerPanel extends JPanel {
                 purchaseButton.setVisible(false);
                 purchasePanel.set_panel_info();
                 purchasePanel.setVisible(true);
+            }
+            if(object == payButton) {
+                payButton.setVisible(false);
+                payButton.setVisible(true);
             }
             if(object == eggButton){
                 System.out.println("eggButton");

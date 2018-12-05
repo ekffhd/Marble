@@ -1,6 +1,6 @@
 package Property;
 
-public class PlaceConstants {
+public class PlaceConstants { // 부지 데이터
     final public static String[] PLACE_NAME = {
             "START",
             "교문",
@@ -80,7 +80,35 @@ public class PlaceConstants {
             100
     };
 
-    final public static int[] HOUSE_PRICE = {
+    final public static int[] LAND_TOLL = { // 부지 통행료
+            0,
+            3,
+            5,
+            0,
+            7,
+            10,
+            0,
+            12,
+            12,
+            0,
+            13,
+            16,
+            0,
+            20,
+            20,
+            0,
+            23,
+            26,
+            0,
+            28,
+            30,
+            0,
+            33,
+            50,
+    };
+    // 매각 = (부지 가격) - 2
+
+    final public static int[] HOUSE_PRICE = { // 집 가격
             0,
             3,
             3,
@@ -106,7 +134,9 @@ public class PlaceConstants {
             9,
             12
     };
-    final public static int[] BUIDING_PRICE = {
+    // 통행료 : +3 , 이.센 통행료: +5
+
+    final public static int[] BUILDING_PRICE = {
             0,
             8,
             8,
@@ -132,6 +162,7 @@ public class PlaceConstants {
             14,
             20
     };
+
     final public static int[] HOTEL_PRICE = {
             0,
             12,
@@ -158,6 +189,7 @@ public class PlaceConstants {
             21,
             30,
     };
+
     final public static int[] LANDMARK_PRICE ={
             0,
             20,

@@ -1,6 +1,7 @@
 package UI;
 
 import Player.Player;
+import Property.Building;
 import UI.GameBoard;
 import UI.ScoreBoard;
 import UI.StartController;
@@ -26,6 +27,7 @@ public class Main extends JPanel {
     protected static int origin_position;
     protected static int next_position;
 
+    protected static Building[] buildings;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -43,6 +45,11 @@ public class Main extends JPanel {
             player[i] = new Player(i);
             player[i].set_positon(0);
             player[i].add_cash(2000000);
+        }
+
+        buildings = new Building[24];
+        for (int i=0; i<24; i++){
+            buildings[i] = new Building();
         }
 
         gameBoard = new GameBoard(phase);
@@ -84,6 +91,17 @@ public class Main extends JPanel {
         else{
             gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
         }
+
+    }
+
+    public void purchase_property(int expense, int land, int house, int building, int hotel, int landmark) {
+        player[player_turn%4].sub_cash(expense);
+        scoreBoard.playerCashLabel[player_turn%4].setText(player[player_turn%4].get_cash()+"  won"); // 돈
+        buildings[next_position].set_land_owner(player_turn%4);
+        if (house == 1) { buildings[next_position].purchase_house(); }
+        if (building == 1) { buildings[next_position].purchase_building(); }
+        if (hotel == 1) { buildings[next_position].purchase_hotel(); }
+        if (landmark == 1) { buildings[next_position].purchase_landmark(); }
 
     }
 
