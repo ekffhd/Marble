@@ -45,8 +45,8 @@ public class PurchasePanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);
@@ -55,7 +55,6 @@ public class PurchasePanel extends JPanel {
         checkboxPanel = new JPanel();
         checkboxPanel.setBounds(6, 80, 800/7*5-80-12, 150);
         checkboxPanel.setBackground(mainBackgroundColor);
-        checkboxPanel.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
         checkboxPanel.setLayout(null);
         add(checkboxPanel);
 
@@ -64,7 +63,6 @@ public class PurchasePanel extends JPanel {
             menuPanel[i] = new JPanel();
             menuPanel[i].setBackground(mainBackgroundColor);
             menuPanel[i].setBounds((800/7*5-567)/2+95*i, 0, 95, 150);
-            menuPanel[i].setBorder(BorderFactory.createLineBorder(Color.blue, 1));
             menuPanel[i].setLayout(null);
             checkboxPanel.add(menuPanel[i]);
         }
@@ -131,6 +129,7 @@ public class PurchasePanel extends JPanel {
     } // PurchasePanel()
 
     public void set_purchase_panel_info(){
+        reset_checkbox();
         position = Main.nextPosition;
         expense = 0;
         this.cash = Main.player[Main.playerTurn%4].get_cash();
@@ -160,6 +159,15 @@ public class PurchasePanel extends JPanel {
                 && Main.buildings[position].get_hotel_ownership() == 1){
             menuCheckBox[4].setEnabled(true);
         }
+    }
+
+    private void reset_checkbox() {
+        for (int i=0; i<5; i++) {
+            menuCheckBox[i].setEnabled(true);
+            menuCheckBox[i].setSelected(false);
+        }
+        menuCheckBox[0].setSelected(true);
+        menuCheckBox[4].setEnabled(false);
     }
 
     public int get_expense() { return expense; }
