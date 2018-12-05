@@ -20,6 +20,7 @@ public class GameControllerPanel extends JPanel {
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
     protected WelfareFacilityPanel  welfareFacilityPanel;
+    protected HelicopterPanel       helicopterPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
@@ -54,6 +55,10 @@ public class GameControllerPanel extends JPanel {
         welfareFacilityPanel = new WelfareFacilityPanel(phase);
         welfareFacilityPanel.setVisible(false);
         add(welfareFacilityPanel);
+
+        helicopterPanel = new HelicopterPanel(phase);
+        helicopterPanel.setVisible(false);
+        add(helicopterPanel);
 
         dice1Image = new ImageIcon();
         dice2Image = new ImageIcon();
@@ -174,7 +179,9 @@ public class GameControllerPanel extends JPanel {
                         welfareFacilityPanel.setVisible(true);
                         welfareFacilityPanel.set_price_info();
                     } else if (Main.nextPosition == 18) { // 헬기
-
+                        phase.special();
+                        helicopterPanel.setVisible(true);
+                        //helicopterPanel.get_destination();
                     } else {
                         //purchaseButton.setVisible(true);
                         if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X

@@ -24,7 +24,6 @@ public class WelfareFacilityPanel extends JPanel { // ATM
         buttonListener = new ButtonListener();
 
         this.phase = phase;
-        price = 0;
 
         setBackground(moneyColor);
         setBounds(40, 40, 800/7*5-80, 550/7*5-80);
