@@ -97,7 +97,7 @@ public class Main extends JPanel {
     public void purchase_property(int expense, int land, int house, int building, int hotel, int landmark) {
         player[player_turn%4].sub_cash(expense);
         scoreBoard.playerCashLabel[player_turn%4].setText(player[player_turn%4].get_cash()+"  won"); // 돈
-        buildings[next_position].set_land_owner(player_turn%4);
+        if (land == 1) buildings[next_position].set_land_owner(player_turn%4);
         if (house == 1) { buildings[next_position].purchase_house(); }
         if (building == 1) { buildings[next_position].purchase_building(); }
         if (hotel == 1) { buildings[next_position].purchase_hotel(); }

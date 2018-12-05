@@ -37,6 +37,10 @@ public class GameControllerPanel extends JPanel {
         purchasePanel.setVisible(false);
         add(purchasePanel);
 
+        tollPanel = new TollPanel(phase);
+        tollPanel.setVisible(false);
+        add(purchasePanel);
+
         goldCardPanel = new GoldCardPanel(phase);
         goldCardPanel.setVisible(false);
         add(goldCardPanel);
@@ -161,7 +165,7 @@ public class GameControllerPanel extends JPanel {
                         //purchaseButton.setVisible(true);
                         if (Main.buildings[Main.next_position].get_land_owner() == -1) { // 소유자 X
                             purchaseButton.setVisible(true);
-                        } else if (Main.buildings[Main.next_position].get_land_owner() == Main.player_turn%4) { // 소유자 = 현재 턴
+                        } else if (Main.buildings[Main.next_position].get_land_owner() == (Main.player_turn)%4) { // 소유자 = 현재 턴
                             if (Main.buildings[Main.next_position].get_landmark_ownership() == 0) { // 살 건물이 남아있음
                                 purchaseButton.setVisible(true);
                             } else { // 모든 건물을 삼
@@ -182,7 +186,7 @@ public class GameControllerPanel extends JPanel {
             }
             if(object == payButton) {
                 payButton.setVisible(false);
-                payButton.setVisible(true);
+                tollPanel.setVisible(true);
             }
             if(object == eggButton){
                 System.out.println("eggButton");
