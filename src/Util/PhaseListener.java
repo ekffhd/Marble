@@ -15,6 +15,7 @@ public class PhaseListener implements PropertyChangeListener {
     private GameBoard gameBoard;
     private Main main;
     private Phase phase;
+    private int expense;
 
     public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main, Phase phase){
         this.dice1 = dice1;
@@ -49,6 +50,10 @@ public class PhaseListener implements PropertyChangeListener {
         }
         else if (event.getPropertyName().equals("PURCHASE")){
             System.out.println("purchase");
+            expense = gameBoard.gameControllerPanel.purchasePanel.get_expense();
+            expense = expense*10000;
+            main.purchase_property(expense);
+            phase.next();
         }
         else if (event.getPropertyName().equals("ACQUIRE")){
             System.out.println("acquire");
