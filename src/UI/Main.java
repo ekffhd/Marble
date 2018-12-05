@@ -3,6 +3,7 @@ package UI;
 import Player.Player;
 import Property.GoldCard;
 import Property.Building;
+
 import UI.GameBoard;
 import UI.ScoreBoard;
 import UI.StartController;
@@ -15,7 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main extends JPanel {
-    private GameBoard gameBoard;
+    protected static GameBoard gameBoard;
     private ScoreBoard scoreBoard;
     private StartPanel startPanel;
     private StartController startController;
@@ -30,6 +31,7 @@ public class Main extends JPanel {
     protected static int nextPosition;
     protected static int cardId;
     protected int afterPosition;
+    protected int price;
     protected static Building[] buildings;
 
     public Main() {
@@ -47,7 +49,7 @@ public class Main extends JPanel {
         player = new Player[4];
         for(int i=0; i<4; i++){
             player[i] = new Player(i);
-            player[i].set_positon(0);
+            player[i].set_position(0);
             player[i].add_cash(2000000);
         }
 
@@ -116,7 +118,7 @@ public class Main extends JPanel {
         originPosition = player[playerTurn%4].get_position();
         nextPosition = (originPosition + position)%24;
         gameBoard.show_hide_player(playerTurn%4, originPosition, nextPosition);
-        player[playerTurn%4].set_positon(nextPosition);
+        player[playerTurn%4].set_position(nextPosition);
 
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
             cardId = goldCard.set_card_id();
@@ -232,12 +234,17 @@ public class Main extends JPanel {
     }// fire_gold_card_effect()
 
     public void special_event(){
-        if(nextPosition == 6){
+        if(nextPosition == 6){ // 직잭
             player[playerTurn%4].set_island_count();
             System.out.println("Island");
-        }
-    }
+        } else if (nextPosition == 12) { // ATM
+            price = gameBoard.place[12].get_price();
+            player[playerTurn%4].add_cash(gameBoard.place[12].get_price());
+            System.out.println("ATM");
+        } else if (nextPosition == 18) { //  헬기
 
+        } // if ~ else if
+    }
 
     public void bill(int bill){
         player[playerTurn%4].sub_cash(bill);

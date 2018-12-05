@@ -19,8 +19,8 @@ public class Place extends JPanel {
 
         cityNameLabel = new JLabel(cityName);
         cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
-        cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
-        //cityNameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        //cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
+        cityNameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
 
         cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
         cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
@@ -43,6 +43,8 @@ public class Place extends JPanel {
     public void setColor(Color color){
         this.cityNameLabel.setForeground(color);
     }
+
+    public int get_price() { return this.city.price; }
 
     public void show_player(int playerId) {
         this.playerIconLabel[playerId].setVisible(true);

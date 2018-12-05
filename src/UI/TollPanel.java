@@ -44,7 +44,7 @@ public class TollPanel extends JPanel {
         noticeLabel = new JLabel("통행료를 지불하세요!!!");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
         noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //noticeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(noticeLabel);

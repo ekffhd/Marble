@@ -143,6 +143,7 @@ public class PurchasePanel extends JPanel {
 
         if (Main.buildings[position].get_land_owner() != -1) { // 부지 소유
             menuCheckBox[0].setEnabled(false);
+            menuCheckBox[0].setSelected(false);
         }
         if (Main.buildings[position].get_house_ownership() == 1) { // 집 소유
             menuCheckBox[1].setEnabled(false);

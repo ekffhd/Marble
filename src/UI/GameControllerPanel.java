@@ -19,6 +19,7 @@ public class GameControllerPanel extends JPanel {
     public TollPanel                tollPanel;
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
+    protected WelfareFacilityPanel  welfareFacilityPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
@@ -50,6 +51,9 @@ public class GameControllerPanel extends JPanel {
         islandPanel.setVisible(false);
         add(islandPanel);
 
+        welfareFacilityPanel = new WelfareFacilityPanel(phase);
+        welfareFacilityPanel.setVisible(false);
+        add(welfareFacilityPanel);
 
         dice1Image = new ImageIcon();
         dice2Image = new ImageIcon();
@@ -79,8 +83,8 @@ public class GameControllerPanel extends JPanel {
         projectName.setBounds(175,100,230,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
-        //projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
+        //projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
+        projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
@@ -160,14 +164,18 @@ public class GameControllerPanel extends JPanel {
                     startCardPanel.setVisible(true);
                 }
                 else{
-                    if(Main.nextPosition == 3 || Main.nextPosition == 9 || Main.nextPosition == 15 || Main.nextPosition == 21){
+                    if (Main.nextPosition == 3 || Main.nextPosition == 9 || Main.nextPosition == 15 || Main.nextPosition == 21){
                         eggButton.setVisible(true);
-                    }
-                    else if(Main.nextPosition == 6){
+                    } else if (Main.nextPosition == 6){ // 직잭
                         phase.special();
                         islandPanel.setVisible(true);
-                    }
-                    else if (Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
+                    } else if (Main.nextPosition == 12) { // ATM
+                        phase.special();
+                        welfareFacilityPanel.setVisible(true);
+                        welfareFacilityPanel.set_price_info();
+                    } else if (Main.nextPosition == 18) { // 헬기
+
+                    } else {
                         //purchaseButton.setVisible(true);
                         if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
                             purchaseButton.setVisible(true);
