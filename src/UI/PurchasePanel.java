@@ -133,6 +133,7 @@ public class PurchasePanel extends JPanel {
     } // PurchasePanel()
 
     public void set_purchase_panel_info(){
+        reset_checkbox();
         position = Main.next_position;
         expense = 0;
         this.cash = Main.player[Main.player_turn%4].get_cash();
@@ -162,6 +163,15 @@ public class PurchasePanel extends JPanel {
                 && Main.buildings[position].get_hotel_ownership() == 1){
             menuCheckBox[4].setEnabled(true);
         }
+    }
+
+    private void reset_checkbox() {
+        for (int i=0; i<5; i++) {
+            menuCheckBox[i].setEnabled(true);
+            menuCheckBox[i].setSelected(false);
+        }
+        menuCheckBox[0].setSelected(true);
+        menuCheckBox[i].setEnabled(false);
     }
 
     public int get_expense() { return expense; }
