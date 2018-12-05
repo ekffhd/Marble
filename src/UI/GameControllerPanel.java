@@ -120,7 +120,14 @@ public class GameControllerPanel extends JPanel {
         dice2Label.setIcon(dice2Image);
     }
 
-
+    public void show_purchase_panel() {
+        purchasePanel.setVisible(true);
+        rollButton.setVisible(false);
+    } // show_purchase_panel()
+    public void hide_purchase_panel() {
+        purchasePanel.setVisible(false);
+        rollButton.setVisible(true);
+    } // hide_purchase_panel()
 
     private class ButtonListener implements MouseListener {
         public void mouseClicked(MouseEvent event){
@@ -177,7 +184,8 @@ public class GameControllerPanel extends JPanel {
             }
 
 
-        }
+        } // mouseEntered ()
+
         public void mouseExited(MouseEvent event){
             JButton object = (JButton)event.getSource();
 

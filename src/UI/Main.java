@@ -45,7 +45,7 @@ public class Main extends JPanel {
             player[i].add_cash(2000000);
         }
 
-        gameBoard = new GameBoard(phase);
+        gameBoard = new GameBoard(phase, this);
         gameBoard.setVisible(false);
         add(gameBoard);
 
@@ -63,7 +63,6 @@ public class Main extends JPanel {
         phase.addPropertyChangeListener(phaseListener);
         phase.before_start();
     }
-
 
     public void next(){
         this.player_turn++;
@@ -94,5 +93,5 @@ public class Main extends JPanel {
         gameBoard.show_hide_player(player_turn%4, origin_position, next_position);
         player[player_turn%4].set_positon(next_position);
         System.out.println("main"+position);
-    }
+    }// next()
 }
