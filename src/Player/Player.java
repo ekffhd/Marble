@@ -15,8 +15,14 @@ public class Player {
     public int get_cash(){
         return playerData.cash;
     }
-    public void add_cash(int cash){
-        this.playerData.cash += cash;
+
+    public int add_cash(int cash){
+        playerData.cash += cash;
+        return playerData.cash;
+    }
+    public int sub_cash(int cash) {
+        playerData.cash -= cash;
+        return playerData.cash;
     }
     public void set_positon(int position){
         this.playerData.position = position;

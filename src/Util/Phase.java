@@ -27,6 +27,11 @@ public class Phase {
         this.phase = PhaseConstants.MOVING;
         propertyChangeSupport.firePropertyChange("MOVE", previousPhase, phase);
     }
+    public void gold_card(){
+        this.previousPhase = this.phase;
+        this.phase = PhaseConstants.GOLD_CARD;
+        propertyChangeSupport.firePropertyChange("GOLD_CARD", previousPhase, phase);
+    }
     public void purchase(){
         this.previousPhase = this.phase;
         this.phase = PhaseConstants.PURCHASE;

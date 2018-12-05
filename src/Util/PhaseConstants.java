@@ -6,6 +6,7 @@ public class PhaseConstants {
             "START_PHASE",
             "ROLLING_PHASE",
             "MOVING_PHASE",
+            "GOLD_CARD_PHASE",
             "PURCHASE_PHASE",
             "BILLING_PHASE",
             "ACQUIRING_PHASE",
@@ -19,6 +20,7 @@ public class PhaseConstants {
     final public static String PURCHASE = "PURCHASE_PHASE";
     final public static String BILLING = "BILLING_PHASE";
     final public static String MOVING = "MOVING_PHASE";
+    final public static String GOLD_CARD = "GOLD_CARD_PHASE";
     final public static String ACQUIRING = "ACQUIRING_PHASE";
     final public static String NEXT = "NEXT_PHASE";
     final public static String END = "END_PHASE";

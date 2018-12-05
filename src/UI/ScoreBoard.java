@@ -67,4 +67,8 @@ public class ScoreBoard extends JPanel {
         playerInformationPanel[player_turn%4].setBorder(BorderFactory.createLineBorder(Color.magenta, 10));
     }
 
+    public void set_player_cash_label(int playerId){
+        playerCashLabel[playerId].setText(player[playerId].get_cash()+" won");
+    }
+
 }//ScoreBoard class

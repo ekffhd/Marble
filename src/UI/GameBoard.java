@@ -14,14 +14,15 @@ public class GameBoard extends JPanel {
 
     private JPanel                  gameBoardGridPanel;
     protected GameControllerPanel   gameControllerPanel;
-    private Place[]                 place;
+    protected Place[]               place;
 
     private GridBagConstraints[]    gbc;
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
     private Phase phase;
 
-    private JLabel                  dice1Num, dice2Num;
+    private ImageIcon               eggImageIcon;
+    private JLabel[]                  eggLabel;
 
     public GameBoard(Phase phase) {
         setBounds(0,0,800,550);
@@ -175,11 +176,25 @@ public class GameBoard extends JPanel {
         place[19].setBorder(BorderFactory.createMatteBorder(0, 3, 0, 0, Color.black));
 
         //황금오리
+        eggImageIcon = new ImageIcon("./image/egg_small.png");
+        eggLabel = new JLabel[4];
+        for(int i=0;i<4;i++){
+            eggLabel[i] = new JLabel(eggImageIcon);
+            eggLabel[i].setBounds(0,0,120,80);
+        }
+
         goldEggColor = new Color(245, 182, 73);
         place[3].setBackground(goldEggColor);
+        place[3].add(eggLabel[0]);
         place[9].setBackground(goldEggColor);
+        place[9].add(eggLabel[1]);
         place[15].setBackground(goldEggColor);
+        place[15].add(eggLabel[2]);
         place[21].setBackground(goldEggColor);
+        place[21].add(eggLabel[3]);
+
+
+
 /*
         for(int i=0;i<24;i++){
             place[i].setLayout(null);
@@ -205,13 +220,15 @@ public class GameBoard extends JPanel {
         gameControllerGbc.gridwidth = 5;
         gameControllerGbc.fill = GridBagConstraints.BOTH;
         gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
+
+
     }//GameBoard()
 
     public void show_dice(int dice1, int dice2) {
         gameControllerPanel.show_dice(dice1, dice2);
     }
-    public void show_hide_player(int playerId,int origin_position, int next_position){
-        place[origin_position].hide_player(playerId);
+    public void show_hide_player(int playerId,int originPosition, int next_position){
+        place[originPosition].hide_player(playerId);
         place[next_position].show_player(playerId);
     }
 }

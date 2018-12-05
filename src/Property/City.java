@@ -4,7 +4,7 @@ import Player.Player;
 public class City implements IPlace {
     private String name;
     private Building[] buildings;
-    private int price;
+    protected int price;
     private Player owner;
 
     public City(){

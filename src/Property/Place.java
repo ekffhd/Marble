@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Place extends JPanel {
-    private City city;
+    protected City city;
     private JLabel cityNameLabel;
 
     protected ImageIcon[] playerIcon;
@@ -17,13 +17,14 @@ public class Place extends JPanel {
         city = new City();
         city.setName(cityName);
 
-        cityNameLabel = new JLabel(cityName);
-        cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
-        cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
-        cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
-        cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
+            cityNameLabel = new JLabel(cityName);
+            cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
+            cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
+            cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
+            cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
 
-        add(cityNameLabel);
+            add(cityNameLabel);
+
 
         playerIcon = new ImageIcon[4];
         playerIconLabel = new JLabel[4];
@@ -41,7 +42,6 @@ public class Place extends JPanel {
     public void setColor(Color color){
         this.cityNameLabel.setForeground(color);
     }
-
 
     public void show_player(int playerId) {
         this.playerIconLabel[playerId].setVisible(true);

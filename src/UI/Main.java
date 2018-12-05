@@ -1,6 +1,7 @@
 package UI;
 
 import Player.Player;
+import Property.GoldCard;
 import UI.GameBoard;
 import UI.ScoreBoard;
 import UI.StartController;
@@ -17,26 +18,28 @@ public class Main extends JPanel {
     private ScoreBoard scoreBoard;
     private StartPanel startPanel;
     private StartController startController;
+    private GoldCard goldCard;
 
     private Dice dice1, dice2;
     protected static Player[] player;
     private Phase phase;
     private PhaseListener phaseListener;
-    protected static int player_turn;
-    protected static int origin_position;
+    protected static int playerTurn;
+    protected static int originPosition;
     protected static int next_position;
-
+    protected static int cardId;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
         setLayout(null);
 
         phase = new Phase();
-        player_turn = 0;
-        origin_position = 0;
+        playerTurn = 0;
+        originPosition = 0;
 
         dice1 = new Dice();
         dice2 = new Dice();
+        goldCard = new GoldCard();
 
         player = new Player[4];
         for(int i=0; i<4; i++){
@@ -57,6 +60,8 @@ public class Main extends JPanel {
         startPanel.setVisible(true);
         add(startPanel);
 
+
+
         startController = new StartController(startPanel, gameBoard, scoreBoard, phase);
 
         phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard, this, phase);
@@ -65,15 +70,15 @@ public class Main extends JPanel {
     }
 
     public void next(){
-        this.player_turn++;
-        scoreBoard.setBorder(this.player_turn);
+        this.playerTurn++;
+        scoreBoard.setBorder(this.playerTurn);
         gameBoard.gameControllerPanel.rollButton.setVisible(true);
-        scoreBoard.playerCashLabel[player_turn%4].setText(""+player[player_turn%4].get_cash()+" won");
-    }
+        scoreBoard.playerCashLabel[playerTurn%4].setText(""+player[playerTurn%4].get_cash()+" won");
+    }// next()
 
     public void do_a_lap(){
-        player[player_turn%4].add_cash(200000);
-        scoreBoard.playerCashLabel[player_turn%4].setText(player[player_turn%4].get_cash()+"  won");
+        player[playerTurn%4].add_cash(200000);
+        scoreBoard.set_player_cash_label(playerTurn%4);
 
         if(next_position == 3 || next_position == 9 || next_position == 15 || next_position == 21){
             gameBoard.gameControllerPanel.eggButton.setVisible(true);
@@ -84,14 +89,62 @@ public class Main extends JPanel {
         else{
             gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
         }
-
-    }
+    }// do_a_lap()
 
     public void move_player(int position){
-        origin_position = player[player_turn%4].get_position();
-        next_position = (origin_position + position)%24;
-        gameBoard.show_hide_player(player_turn%4, origin_position, next_position);
-        player[player_turn%4].set_positon(next_position);
+        originPosition = player[playerTurn%4].get_position();
+        next_position = (originPosition + position)%24;
+        gameBoard.show_hide_player(playerTurn%4, originPosition, next_position);
+        player[playerTurn%4].set_positon(next_position);
+
+        if(next_position == 3 || next_position == 9 || next_position == 15 || next_position == 21){
+            cardId = goldCard.set_card_id();
+            gameBoard.gameControllerPanel.goldCardPanel.set_card_information(cardId);
+        }
         System.out.println("main"+position);
-    }// next()
+    }// move_player()
+
+    public void fire_gold_card_effect(){
+        switch(cardId){
+            case 0:
+                System.out.println("fire");
+                goldCard.donate(30000, gameBoard.place[12], player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 1:
+                goldCard.donate(50000, gameBoard.place[12], player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 2:
+                goldCard.donate(80000, gameBoard.place[12], player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                goldCard.lotto(30000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 7:
+                goldCard.lotto(50000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 8:
+                goldCard.lotto(80000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+            case 9:
+                goldCard.lotto(100000, player[playerTurn%4]);
+                scoreBoard.set_player_cash_label(playerTurn%4);
+                break;
+
+
+
+        }
+        phase.next();
+    }
 }

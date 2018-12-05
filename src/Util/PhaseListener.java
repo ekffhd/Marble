@@ -47,6 +47,10 @@ public class PhaseListener implements PropertyChangeListener {
             System.out.println("move");
             main.move_player(dice1.get_dice()+dice2.get_dice());
         }
+        else if (event.getPropertyName().equals("GOLD_CARD")){
+            System.out.println("gold card");
+            main.fire_gold_card_effect();
+        }
         else if (event.getPropertyName().equals("PURCHASE")){
             System.out.println("purchase");
         }
