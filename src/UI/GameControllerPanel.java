@@ -187,10 +187,10 @@ public class GameControllerPanel extends JPanel {
                         //helicopterPanel.get_destination();
                     } else {
                         //purchaseButton.setVisible(true);
-                        if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
+                        if (place[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
                             purchaseButton.setVisible(true);
-                        } else if (Main.buildings[Main.nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
-                            if (Main.buildings[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
+                        } else if (place[Main.nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
+                            if (place[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
                                 purchaseButton.setVisible(true);
                             } else { // 모든 건물을 삼
                                 phase.next();
