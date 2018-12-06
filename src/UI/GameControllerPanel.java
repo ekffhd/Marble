@@ -180,11 +180,10 @@ public class GameControllerPanel extends JPanel {
                     } else if (Main.nextPosition == 12) { // ATM
                         welfareFacilityPanel.set_price_info();
                         welfareFacilityPanel.setVisible(true);
-
                     } else if (Main.nextPosition == 18) { // 헬기
-                        phase.next();
-                        //phase.special();
-                        //helicopterPanel.setVisible(true);
+                        //phase.next();
+                        helicopterPanel.reset_helicopter_panel();
+                        helicopterPanel.setVisible(true);
                         //helicopterPanel.get_destination();
                     } else {
                         //purchaseButton.setVisible(true);

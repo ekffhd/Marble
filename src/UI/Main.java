@@ -30,6 +30,7 @@ public class Main extends JPanel {
     protected static int nextPosition;
     protected static int cardId;
     protected int afterPosition;
+    private int destination;
 
 
     private  int expense, land, house, building, hotel, landmark; // 선택 여부
@@ -132,9 +133,7 @@ public class Main extends JPanel {
             else if(nextPosition == 0){}
             else if(nextPosition == 6){}
             else if(nextPosition == 12){}
-            else if(nextPosition == 18){
-                phase.next();
-            }
+            else if(nextPosition == 18){}
             else {
                 if (gameBoard.place[nextPosition].get_land_owner() == -1) { // 소유자 X
                     gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
@@ -271,7 +270,9 @@ public class Main extends JPanel {
             phase.next();
             System.out.println("ATM");
         } else if (nextPosition == 18) { //  헬기
-
+            destination = gameBoard.gameControllerPanel.helicopterPanel.get_destination();
+            gameBoard.show_hide_player(playerTurn%4, 18, destination);
+            player[playerTurn%4].set_position(destination);
         } // if ~ else if
     }
 
