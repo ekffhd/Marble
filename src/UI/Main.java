@@ -15,7 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main extends JPanel {
-    private GameBoard gameBoard;
+    protected static GameBoard gameBoard;
     private ScoreBoard scoreBoard;
     private StartPanel startPanel;
     private StartController startController;
@@ -33,7 +33,7 @@ public class Main extends JPanel {
 
 
     private  int expense, land, house, building, hotel, landmark; // 선택 여부
-
+    protected int price;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -152,7 +152,6 @@ public class Main extends JPanel {
             }
 
         }
-
         System.out.println("main"+position);
     }// move_player()
 
@@ -263,12 +262,17 @@ public class Main extends JPanel {
     }// fire_gold_card_effect()
 
     public void special_event(){
-        if(nextPosition == 6){
+        if(nextPosition == 6){ // 직잭
             player[playerTurn%4].set_island_count();
             System.out.println("Island");
-        }
-    }
+        } else if (nextPosition == 12) { // ATM
+            price = gameBoard.place[12].get_price();
+            player[playerTurn%4].add_cash(gameBoard.place[12].get_price());
+            System.out.println("ATM");
+        } else if (nextPosition == 18) { //  헬기
 
+        } // if ~ else if
+    }
 
     public void bill(int bill){
         player[gameBoard.place[nextPosition].get_land_owner()].add_cash(bill);

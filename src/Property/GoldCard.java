@@ -1,6 +1,5 @@
 package Property;
 
-
 import Player.Player;
 
 public class GoldCard {
@@ -32,6 +31,5 @@ public class GoldCard {
     public int pay_taxes(int cash, Player player){
         return player.sub_cash(cash);
     }
-
 
 }

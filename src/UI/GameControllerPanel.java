@@ -20,6 +20,8 @@ public class GameControllerPanel extends JPanel {
     public TollPanel                tollPanel;
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
+    protected WelfareFacilityPanel  welfareFacilityPanel;
+    protected HelicopterPanel       helicopterPanel;
     private StartCardPanel          startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
@@ -53,6 +55,13 @@ public class GameControllerPanel extends JPanel {
         islandPanel.setVisible(false);
         add(islandPanel);
 
+        welfareFacilityPanel = new WelfareFacilityPanel(phase);
+        welfareFacilityPanel.setVisible(false);
+        add(welfareFacilityPanel);
+
+        helicopterPanel = new HelicopterPanel(phase);
+        helicopterPanel.setVisible(false);
+        add(helicopterPanel);
 
         dice1Image = new ImageIcon();
         dice2Image = new ImageIcon();
@@ -165,10 +174,30 @@ public class GameControllerPanel extends JPanel {
                 else{
                     if(Main.nextPosition == 3 || Main.nextPosition == 9 || Main.nextPosition == 15 || Main.nextPosition == 21){
                         eggButton.setVisible(true);
-                    }
-                    else if(Main.nextPosition == 6){
+                    } else if (Main.nextPosition == 6){ // 직잭
                         phase.special();
                         islandPanel.setVisible(true);
+                    } else if (Main.nextPosition == 12) { // ATM
+                        phase.special();
+                        welfareFacilityPanel.setVisible(true);
+                        welfareFacilityPanel.set_price_info();
+                    } else if (Main.nextPosition == 18) { // 헬기
+                        phase.special();
+                        helicopterPanel.setVisible(true);
+                        //helicopterPanel.get_destination();
+                    } else {
+                        //purchaseButton.setVisible(true);
+                        if (Main.buildings[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
+                            purchaseButton.setVisible(true);
+                        } else if (Main.buildings[Main.nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
+                            if (Main.buildings[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
+                                purchaseButton.setVisible(true);
+                            } else { // 모든 건물을 삼
+                                phase.next();
+                            }
+                        } else { // 소유자 != 현재 턴
+                            payButton.setVisible(true);
+                        }
                     }
                 }
             }

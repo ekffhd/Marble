@@ -29,4 +29,5 @@ public class City implements IPlace {
         else { // 주인이 있을 때
         }
     }
+
 }

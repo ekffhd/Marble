@@ -30,8 +30,8 @@ public class GoldCardPanel extends JPanel {
 
         nameLabel = new JLabel();
         nameLabel.setBounds(0,0,800/7*5-80, 60);
-        nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
-        //nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
         nameLabel.setForeground(goldColor);
@@ -56,7 +56,8 @@ public class GoldCardPanel extends JPanel {
         add(contentsPanel);
 
         contentsLabel = new JLabel();
-        contentsLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 30));
+        //contentsLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 30));
+        contentsLabel.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 30));
         contentsLabel.setBounds(0,105,470,30);
         contentsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         contentsLabel.setVerticalAlignment(SwingConstants.CENTER);
