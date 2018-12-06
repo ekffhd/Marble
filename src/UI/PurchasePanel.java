@@ -46,8 +46,8 @@ public class PurchasePanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);
@@ -78,8 +78,8 @@ public class PurchasePanel extends JPanel {
             menuLabel[i].setBounds(0,0,95,60);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             menuLabel[i].setVerticalAlignment(SwingConstants.CENTER);
-            //menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
-            menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
+            menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
+            //menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
             menuPanel[i].add(menuLabel[i]);
         }
 
@@ -136,11 +136,11 @@ public class PurchasePanel extends JPanel {
         this.cash = Main.player[Main.playerTurn%4].get_cash();
 
         placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
-        priceLabel[0].setText(PlaceConstants.LAND_PRICE[Main.nextPosition]+" $"); // 부지
-        priceLabel[1].setText(PlaceConstants.HOUSE_PRICE[Main.nextPosition]+" $"); // 집
-        priceLabel[2].setText(PlaceConstants.BUILDING_PRICE[Main.nextPosition]+" $"); // 빌딩
-        priceLabel[3].setText(PlaceConstants.HOTEL_PRICE[Main.nextPosition]+" $"); // 호텔
-        priceLabel[4] .setText(PlaceConstants.LANDMARK_PRICE[Main.nextPosition]+" $"); // 랜드마크
+        priceLabel[0].setText(PlaceConstants.LAND_PRICE[Main.nextPosition]+""); // 부지
+        priceLabel[1].setText(PlaceConstants.HOUSE_PRICE[Main.nextPosition]+""); // 집
+        priceLabel[2].setText(PlaceConstants.BUILDING_PRICE[Main.nextPosition]+""); // 빌딩
+        priceLabel[3].setText(PlaceConstants.HOTEL_PRICE[Main.nextPosition]+""); // 호텔
+        priceLabel[4] .setText(PlaceConstants.LANDMARK_PRICE[Main.nextPosition]+""); // 랜드마크
 
         if (place.get_land_owner() != -1) { // 부지 소유
             menuCheckBox[0].setEnabled(false);

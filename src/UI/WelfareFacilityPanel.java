@@ -41,14 +41,14 @@ public class WelfareFacilityPanel extends JPanel { // ATM
         noticeLabel = new JLabel("누가 돈을..?");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
         noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        //noticeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //noticeLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(noticeLabel);
 
         priceLabel = new JLabel();
         priceLabel.setBounds(0, 110, 800/7*5-80, 120);
-        priceLabel.setFont(new Font("Drid Herder Solid", Font.PLAIN, 35));
+        priceLabel.setFont(new Font("drid Herder Solid", Font.PLAIN, 35));
         priceLabel.setHorizontalAlignment(SwingConstants.CENTER);
         priceLabel.setVerticalAlignment(SwingConstants.CENTER);
         priceLabel.setForeground(Color.black);
@@ -68,8 +68,6 @@ public class WelfareFacilityPanel extends JPanel { // ATM
 
     public void set_price_info() {
         price = Main.gameBoard.place[12].get_price();
-        price = price * 10000;
-
         priceLabel.setText(price + " won");
     }
 
@@ -77,8 +75,9 @@ public class WelfareFacilityPanel extends JPanel { // ATM
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
             if (object == recieveButton) {
+                phase.special();
                 setVisible(false);
-                phase.next();
+
             }
         } // mouseClicked()
 

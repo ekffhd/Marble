@@ -91,8 +91,8 @@ public class GameControllerPanel extends JPanel {
         projectName.setBounds(175,100,230,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
-        //projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
+        //projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
+        projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
@@ -178,12 +178,13 @@ public class GameControllerPanel extends JPanel {
                         phase.special();
                         islandPanel.setVisible(true);
                     } else if (Main.nextPosition == 12) { // ATM
-                        phase.special();
-                        welfareFacilityPanel.setVisible(true);
                         welfareFacilityPanel.set_price_info();
+                        welfareFacilityPanel.setVisible(true);
+
                     } else if (Main.nextPosition == 18) { // 헬기
-                        phase.special();
-                        helicopterPanel.setVisible(true);
+                        phase.next();
+                        //phase.special();
+                        //helicopterPanel.setVisible(true);
                         //helicopterPanel.get_destination();
                     } else {
                         //purchaseButton.setVisible(true);
@@ -229,8 +230,6 @@ public class GameControllerPanel extends JPanel {
                 object.setOpaque(true);
                 object.setForeground(Color.white);
             }
-
-
         } // mouseEntered ()
 
         public void mouseExited(MouseEvent event){

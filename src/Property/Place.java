@@ -59,6 +59,10 @@ public class Place extends JPanel {
     }
 
     public int get_price() { return this.city.price; }
+    public int set_price(int cash) {
+        this.city.price = cash;
+        return this.city.price;
+    }
 
     public void show_player(int playerId) {
         this.playerIconLabel[playerId].setVisible(true);

@@ -108,6 +108,7 @@ public class Main extends JPanel {
         building = gameBoard.gameControllerPanel.purchasePanel.get_building();
         hotel = gameBoard.gameControllerPanel.purchasePanel.get_hotel();
         landmark = gameBoard.gameControllerPanel.purchasePanel.get_landmark();
+
         this.expense = expense*10000;
         if (land == 1) {gameBoard.place[nextPosition].set_building_status(player[playerTurn%4], house, building, hotel, landmark);}
         /*if (house == 1) { buildings[nextPosition].purchase_house(); }
@@ -130,9 +131,7 @@ public class Main extends JPanel {
             }
             else if(nextPosition == 0){}
             else if(nextPosition == 6){}
-            else if(nextPosition == 12){
-                phase.next();
-            }
+            else if(nextPosition == 12){}
             else if(nextPosition == 18){
                 phase.next();
             }
@@ -150,7 +149,6 @@ public class Main extends JPanel {
                     gameBoard.gameControllerPanel.payButton.setVisible(true);
                 }
             }
-
         }
         System.out.println("main"+position);
     }// move_player()
@@ -267,7 +265,10 @@ public class Main extends JPanel {
             System.out.println("Island");
         } else if (nextPosition == 12) { // ATM
             price = gameBoard.place[12].get_price();
-            player[playerTurn%4].add_cash(gameBoard.place[12].get_price());
+            player[playerTurn%4].add_cash(price);
+            gameBoard.place[12].set_price(0);
+            scoreBoard.set_player_cash_label(playerTurn%4);
+            phase.next();
             System.out.println("ATM");
         } else if (nextPosition == 18) { //  헬기
 

@@ -9,7 +9,7 @@ public class GoldCard {
     }
 
     public int set_card_id(){
-        cardId = (int)(Math.random() * 24);
+        cardId = (int)(Math.random() * 3);
         return cardId;
     }
 
