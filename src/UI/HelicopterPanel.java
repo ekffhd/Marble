@@ -74,7 +74,8 @@ public class HelicopterPanel extends JPanel {
 
         errorLabel = new JLabel("0~23사이의 숫자를 입력해주세요!!");
         errorLabel.setBounds(0, 150, 800/7*5-80, 30);
-        errorLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        //errorLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        errorLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
         errorLabel.setForeground(Color.red);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         errorLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -82,8 +83,8 @@ public class HelicopterPanel extends JPanel {
 
         confirmLabel = new JLabel(); // ~ 이동 합니다
         confirmLabel.setBounds(0 , 120, 800/7*5-80, 60);
-        confirmLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 60));
-        //confirmLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //confirmLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 60));
+        confirmLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         confirmLabel.setHorizontalAlignment(SwingConstants.CENTER);
         confirmLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(confirmLabel);
@@ -173,7 +174,6 @@ public class HelicopterPanel extends JPanel {
                 setVisible(false);
                 Main.gameBoard.hide_city_number();
                 phase.special();
-                phase.next();
             }
         }
     }

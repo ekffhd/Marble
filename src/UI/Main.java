@@ -386,9 +386,12 @@ public class Main extends JPanel {
             phase.next();
             System.out.println("ATM");
         } else if (nextPosition == 18) { //  헬기
+            originPosition = 18;
             destination = gameBoard.gameControllerPanel.helicopterPanel.get_destination();
+            nextPosition = destination;
             gameBoard.show_hide_player(playerTurn%4, 18, destination);
             player[playerTurn%4].set_position(destination);
+            show_panel();
         } // if ~ else if
     }
 
@@ -416,8 +419,7 @@ public class Main extends JPanel {
             gameBoard.gameControllerPanel.welfareFacilityPanel.setVisible(true);
         }
         else if(nextPosition == 18){// 헬리콥터
-            //gameBoard.gameControllerPanel.helicopterPanel
-            phase.next();
+            gameBoard.gameControllerPanel.helicopterPanel.setVisible(true);
         }
         else{
             if(gameBoard.place[nextPosition].get_land_owner() == -1){//소유자 x

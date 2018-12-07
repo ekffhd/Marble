@@ -22,19 +22,19 @@ public class City implements IPlace {
     public void set_city_price(){
         price = 0;
 
-        price += BuildingConstants.LAND_TOLL[place.placeId];
+        price += BuildingConstants.LAND_TOLL[place.cityNumber];
 
         if(buildings.house == 1){
-            price += BuildingConstants.LAND_TOLL[place.placeId]+3;
+            price += BuildingConstants.LAND_TOLL[place.cityNumber]+3;
         }
         if(buildings.building == 1){
-            price += BuildingConstants.LAND_TOLL[place.placeId]+7;
+            price += BuildingConstants.LAND_TOLL[place.cityNumber]+7;
         }
         if(buildings.hotel == 1){
-            price += BuildingConstants.LAND_TOLL[place.placeId]+12;
+            price += BuildingConstants.LAND_TOLL[place.cityNumber]+12;
         }
         if(buildings.landmark == 1){
-            price = BuildingConstants.LANDMARK_TOLL[place.placeId];
+            price = BuildingConstants.LANDMARK_TOLL[place.cityNumber];
         }
     }
 

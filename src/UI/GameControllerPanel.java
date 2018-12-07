@@ -178,39 +178,6 @@ public class GameControllerPanel extends JPanel {
                 moveButton.setVisible(false);
                 dice1Label.setVisible(false);
                 dice2Label.setVisible(false);
-                /*
-                if(Main.nextPosition < Main.originPosition){
-                    startCardPanel.setVisible(true);
-                }
-                else{
-                    if(Main.nextPosition == 3 || Main.nextPosition == 9 || Main.nextPosition == 15 || Main.nextPosition == 21){
-                        eggButton.setVisible(true);
-                    } else if (Main.nextPosition == 6){ // 직잭
-                        phase.special();
-                        islandPanel.setVisible(true);
-                    } else if (Main.nextPosition == 12) { // ATM
-                        welfareFacilityPanel.set_price_info();
-                        welfareFacilityPanel.setVisible(true);
-                    } else if (Main.nextPosition == 18) { // 헬기
-                        Main.gameBoard.show_city_number();
-                        helicopterPanel.reset_helicopter_panel();
-                        helicopterPanel.setVisible(true);
-                        //helicopterPanel.get_destination();
-                    } else {
-                        //purchaseButton.setVisible(true);
-                        if (place[Main.nextPosition].get_land_owner() == -1) { // 소유자 X
-                            purchaseButton.setVisible(true);
-                        } else if (place[Main.nextPosition].get_land_owner() == (Main.playerTurn)%4) { // 소유자 = 현재 턴
-                            if (place[Main.nextPosition].get_landmark_ownership() == 0) { // 살 건물이 남아있음
-                                purchaseButton.setVisible(true);
-                            } else { // 모든 건물을 삼
-                                phase.next();
-                            }
-                        } else { // 소유자 != 현재 턴
-                            payButton.setVisible(true);
-                        }
-                    }
-                }*/
             }else if(object == purchaseButton){
                 purchaseButton.setVisible(false);
                 purchasePanel.set_purchase_panel_info(place[Main.nextPosition]);

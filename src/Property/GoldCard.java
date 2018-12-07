@@ -9,7 +9,7 @@ public class GoldCard {
     }
 
     public int set_card_id(){
-        cardId = 4;
+        cardId = 0;
         return cardId;
     }
 
@@ -22,8 +22,8 @@ public class GoldCard {
         return player.add_cash(cash);
     }
 
-    public void move_player(Place originPlace, Place nextPlace,int placeId, Player player){
-        player.set_position(placeId);
+    public void move_player(Place originPlace, Place nextPlace,int cityNumber, Player player){
+        player.set_position(cityNumber);
         originPlace.hide_player(player.get_player_id());
         nextPlace.show_player(player.get_player_id());
     }
