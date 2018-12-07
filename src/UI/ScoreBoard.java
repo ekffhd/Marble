@@ -13,8 +13,10 @@ public class ScoreBoard extends JPanel {
     private JPanel scoreBoardMainPanel;
     private Player[] player;
     private JPanel[]  playerInformationPanel;
-    protected JLabel[] playerNameLabel, playerCashLabel, playerIconLabel;
-    private ImageIcon[] playerIcon;
+    protected JLabel[] playerNameLabel, playerCashLabel, playerIconLabel, islandCountIconLabel;
+    protected  JLabel tollFreeIconLabel;
+    private ImageIcon[] playerIcon, islandCountIcon;
+    private ImageIcon tollFreeIcon;
     private JLabel dummy;
 
     public ScoreBoard(Player player[]) {
@@ -28,6 +30,9 @@ public class ScoreBoard extends JPanel {
         playerCashLabel = new JLabel[4];
         playerIconLabel = new JLabel[4];
         playerIcon = new ImageIcon[4];
+
+        islandCountIconLabel = new JLabel[3];
+        islandCountIcon = new ImageIcon[3];
 
         this.player = new Player[4];
 
@@ -57,7 +62,22 @@ public class ScoreBoard extends JPanel {
             playerCashLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             playerCashLabel[i].setBounds(0,120, 200, 30);
             playerInformationPanel[i].add(playerCashLabel[i]);
+
+            for (int j=0; j<3; j++) {
+                islandCountIcon[j] = new ImageIcon("./image/island_count"+(j+1)+".png");
+                islandCountIconLabel[j] = new JLabel(islandCountIcon[j]);
+                islandCountIconLabel[j].setBounds(8, 25*j+5, 27, 25);
+                islandCountIconLabel[j].setVisible(false);
+                playerInformationPanel[i].add(islandCountIconLabel[j]);
+            }
+
+            tollFreeIcon = new ImageIcon("./image/free.png");
+            tollFreeIconLabel = new JLabel(tollFreeIcon);
+            tollFreeIconLabel.setBounds(162, 10, 27,25);
+            tollFreeIconLabel.setVisible(false);
+            playerInformationPanel[i].add(tollFreeIconLabel);
         }
+
     }//ScoreBoard()
 
     public void setBorder(int player_turn){
