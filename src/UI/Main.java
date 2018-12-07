@@ -32,6 +32,7 @@ public class Main extends JPanel {
     protected static int nextPosition;
     protected static int cardId;
     protected int afterPosition;
+    private int destination;
 
 
     private  int expense, land, house, building, hotel, landmark; // 선택 여부
@@ -309,10 +310,6 @@ public class Main extends JPanel {
                 break;
             case 18:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
-                player[playerTurn%4].set_position(6);
-                originPosition = nextPosition;
-                nextPosition = 6;
-                show_panel();
                 break;
             case 19:
                 afterPosition = nextPosition-1;
@@ -387,9 +384,11 @@ public class Main extends JPanel {
             gameBoard.place[12].set_price(0);
             scoreBoard.set_player_cash_label(playerTurn%4);
             phase.next();
-        }
-        else if (nextPosition == 18) { //  헬기
-
+            System.out.println("ATM");
+        } else if (nextPosition == 18) { //  헬기
+            destination = gameBoard.gameControllerPanel.helicopterPanel.get_destination();
+            gameBoard.show_hide_player(playerTurn%4, 18, destination);
+            player[playerTurn%4].set_position(destination);
         } // if ~ else if
     }
 

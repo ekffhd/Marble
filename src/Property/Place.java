@@ -7,34 +7,42 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Place extends JPanel {
-    protected City city;
-    private JLabel cityNameLabel;
+    protected City        city;
+    private JLabel        cityNameLabel;
+    protected JLabel      cityNumberLabel;
 
     protected ImageIcon[] playerIcon;
-    protected JLabel[] playerIconLabel;
+    protected JLabel[]    playerIconLabel;
 
     protected ImageIcon[] buildingIcon;
-    protected JLabel[] buildingIconLabel;
+    protected JLabel[]    buildingIconLabel;
 
-    protected int placeId;
+    protected int cityNumber;
 
 
 
-    public Place(String cityName, int placeId) {
+    public Place(String cityName, int cityNumber) {
         setLayout(null);
         city = new City(this);
         city.setName(cityName);
-        this.placeId = placeId;
+        this.cityNumber = cityNumber;
 
         cityNameLabel = new JLabel(cityName);
         cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
         cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
         //cityNameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
 
-        cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
+        cityNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
 
         add(cityNameLabel);
+
+        cityNumberLabel = new JLabel(cityNumber+".");
+        cityNumberLabel.setBounds(800/7-22, 550/7-20, 22, 20);
+        cityNumberLabel.setFont(new Font("Drid Herder Solid", Font.PLAIN, 11));
+        cityNumberLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        cityNumberLabel.setVerticalAlignment(SwingConstants.CENTER);
+        add(cityNumberLabel);
 
         playerIcon = new ImageIcon[4];
         playerIconLabel = new JLabel[4];
@@ -62,6 +70,7 @@ public class Place extends JPanel {
     public void setColor(Color color){
         this.cityNameLabel.setForeground(color);
     }
+    public void set_city_number_color(Color color) { this.cityNumberLabel.setForeground(color); }
 
     public int get_price() { return this.city.price; }
     public int set_price(int cash) {
@@ -109,6 +118,8 @@ public class Place extends JPanel {
 
 
 
+    public void show_city_number() { this.cityNumberLabel.setVisible(true); }
+    public void hide_city_number() { this.cityNumberLabel.setVisible(false);}
     public void show_player(int playerId) {
         this.playerIconLabel[playerId].setVisible(true);
     }

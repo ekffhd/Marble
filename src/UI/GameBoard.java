@@ -9,8 +9,6 @@ import Property.BuildingConstants;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class GameBoard extends JPanel {
 
@@ -21,14 +19,10 @@ public class GameBoard extends JPanel {
     private GridBagConstraints[]    gbc;
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
-    private Phase phase;
-    private Point                   pt, zeropt;
-    protected Point                 savept;
+    private Phase                   phase;
 
     private ImageIcon               eggImageIcon;
     private JLabel[]                eggLabel;
-
-    private CoordinateListener coordinateListener;
 
     public GameBoard(Phase phase) {
         setBounds(0,0,800,550);
@@ -36,9 +30,6 @@ public class GameBoard extends JPanel {
         setLayout(null);
 
         this.phase = phase;
-        pt = new Point();
-        savept = new Point();
-        zeropt = new Point();
 
         gameBoardGridPanel = new JPanel();
         gameBoardGridPanel.setBounds(0,0, 800, 550);
@@ -50,7 +41,7 @@ public class GameBoard extends JPanel {
         place = new Place[24];
 
         //Start
-        place[0] = new Place(PlaceConstants.PLACE_NAME[0],0);
+        place[0] = new Place(PlaceConstants.PLACE_NAME[0], 0);
         place[0].setPreferredSize(new Dimension(125, 125));
         place[0].setBackground(new Color(14, 46,64));
         place[0].setBorder(BorderFactory.createMatteBorder(3, 3, 0, 0, Color.black));
@@ -210,9 +201,13 @@ public class GameBoard extends JPanel {
         }
 
         place[0].setColor(Color.white);
+        place[0].set_city_number_color(Color.white);
         place[6].setColor(Color.white);
+        place[6].set_city_number_color(Color.white);
         place[12].setColor(Color.white);
+        place[12].set_city_number_color(Color.white);
         place[18].setColor(Color.white);
+        place[18].set_city_number_color(Color.white);
 
         gameControllerPanel = new GameControllerPanel(phase, place);
 
@@ -224,36 +219,26 @@ public class GameBoard extends JPanel {
         gameControllerGbc.fill = GridBagConstraints.BOTH;
         gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
 
-        coordinateListener = new CoordinateListener();
-        this.addMouseListener(coordinateListener);
+        hide_city_number();
+
     }//GameBoard()
 
     public void show_dice(int dice1, int dice2) {
         gameControllerPanel.show_dice(dice1, dice2);
+    }
+    public void show_city_number() {
+        for (int i=0; i< 24; i++) {
+            place[i].show_city_number();
+        }
+    }
+    public void hide_city_number() {
+        for (int i=0; i<24; i++) {
+            place[i].hide_city_number();
+        }
     }
     public void show_hide_player(int playerId,int originPosition, int nextPosition){
         place[originPosition].hide_player(playerId);
         place[nextPosition].show_player(playerId);
     }
 
-    public Point get_pt() {
-        if (savept.x == 0 && savept.y == 0) return zeropt;
-        else return savept;
-    }
-    public void reset_pt() { savept = new Point(); };
-
-    private class CoordinateListener implements MouseListener {
-        public void mouseClicked(MouseEvent event) {
-            pt = event.getPoint();
-            if (pt.x > 800/7 && pt.x < 800/7*6 && pt.y > 550/7 && pt.y < 550/7*6) {
-            } else {
-                savept = pt;
-                //System.out.println("x: "+pt.x+"   y: "+pt.y);
-            }
-        }
-        public void mousePressed(MouseEvent event) {}
-        public void mouseReleased(MouseEvent event) {}
-        public void mouseEntered(MouseEvent event) {}
-        public void mouseExited(MouseEvent event) {}
-    } // CoordinateListener class
 }
