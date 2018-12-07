@@ -4,20 +4,24 @@ public class PlayerData {
     protected int characterId;
     protected int position;
     protected int cash;
-    protected int island_count;
-    private boolean is_active;
-    //건물 클래스
+    private boolean isActive;
+
+    protected int islandCount;
+    protected int diceCount;
+    protected int exemption;
 
     public PlayerData(int characterId){
         this.characterId = characterId;
         this.position = 0;
         this.cash = 0;
-        this.is_active = true;
-        this.island_count = 0;
+        this.isActive = true;
+        this.islandCount = 0;
+        this.diceCount = 0;
+        this.exemption = 0;
     }
 
     public boolean getStatus(){
-        return this.is_active;
+        return this.isActive;
     }
     public int getCharacterIdI(){
         return this.characterId;
@@ -28,4 +32,5 @@ public class PlayerData {
     public  int getCash(){
         return this.cash;
     }
+
 }

@@ -23,6 +23,7 @@ public class Main extends JPanel {
     private GoldCard goldCard;
 
     private Dice dice1, dice2;
+    private int dice1Num, dice2Num;
     protected static Player[] player;
     private Phase phase;
     private PhaseListener phaseListener;
@@ -80,13 +81,27 @@ public class Main extends JPanel {
         phase.before_start();
     }
 
+    public int get_origin_position(){
+        return originPosition;
+    }
+    public Player get_active_player(){
+        return player[playerTurn%4];
+    }
     public void next(){
-        this.playerTurn++;
-        scoreBoard.setBorder(this.playerTurn);
-        gameBoard.gameControllerPanel.rollButton.setVisible(true);
-        scoreBoard.playerCashLabel[playerTurn%4].setText(""+player[playerTurn%4].get_cash()+" won");
-    }// next()
+        System.out.println("넘어가라 얍");
+        int isLandCount = player[playerTurn%4].get_island_count();
+        if(dice1Num == dice2Num && isLandCount == 0){
+            gameBoard.gameControllerPanel.doubleButton.setVisible(true);
+        }
+        else{
+            player[playerTurn%4].init_dice_count();
+            this.playerTurn++;
+            scoreBoard.setBorder(this.playerTurn);
+            gameBoard.gameControllerPanel.rollButton.setVisible(true);
+        }
 
+    }// next()
+/*
     public void do_a_lap(){
         player[playerTurn%4].add_cash(200000);
         scoreBoard.set_player_cash_label(playerTurn%4);
@@ -104,12 +119,70 @@ public class Main extends JPanel {
         else{
             gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
         }
-    }// do_a_lap()
+    }// do_a_lap()*/
 
     public void get_salary(){
         player[playerTurn%4].add_cash(200000);
         scoreBoard.set_player_cash_label(playerTurn%4);
         gameBoard.gameControllerPanel.startCardPanel.setVisible(true);
+    }
+
+    public void roll_dice(){
+        gameBoard.gameControllerPanel.rollButton.setVisible(false);
+        dice1.roll_dice();
+        dice2.roll_dice();
+        dice1Num = dice1.get_dice();
+        dice2Num = dice2.get_dice();
+        player[playerTurn%4].add_dice_count();
+        gameBoard.show_dice(dice1Num, dice2Num);
+        int isLandCount = player[playerTurn%4].get_island_count();
+        System.out.println("island count:"+isLandCount);
+        if(isLandCount!=0){ // 무인도
+            System.out.println("무인도"+player[playerTurn%4].get_island_count());
+            if(dice1Num == dice2Num){ // 더블
+                System.out.println("탈출");
+
+                player[playerTurn%4].escape_island();
+                //고쳐야함
+                gameBoard.gameControllerPanel.moveButton.setVisible(true);
+            }
+            else{
+                player[playerTurn%4].sub_island_count();
+                phase.next();
+            }
+        }
+        else{
+            if((dice1.get_dice() == dice2.get_dice())&&player[playerTurn%4].get_dice_count() > 2){
+                player[playerTurn%4].init_dice_count();
+                gameBoard.gameControllerPanel.doubleButton.setVisible(false);
+                player[playerTurn%4].add_island_count();
+                move_player(6);
+            }
+            else{
+                gameBoard.gameControllerPanel.moveButton.setVisible(true);
+            }
+            /*
+            if(dice1.get_dice() == dice2.get_dice()){
+
+                player[playerTurn%4].add_dice_count();
+                System.out.println(player[playerTurn%4].get_dice_count());
+                if(player[playerTurn%4].get_dice_count() == 2){
+                    player[playerTurn%4].init_dice_count();
+                    gameBoard.gameControllerPanel.doubleButton.setVisible(false);
+                    move_player(6);
+                }
+                else{
+                    gameBoard.gameControllerPanel.rollButton.setVisible(false);
+                    gameBoard.gameControllerPanel.doubleButton.setVisible(true);
+                }
+            }
+            else{
+                gameBoard.gameControllerPanel.rollButton.setVisible(false);
+                gameBoard.gameControllerPanel.doubleButton.setVisible(false);
+                gameBoard.gameControllerPanel.moveButton.setVisible(true);
+            }
+            */
+        }
     }
 
     public void purchase_property() {
@@ -135,9 +208,9 @@ public class Main extends JPanel {
         phase.next();
     }
 
-    public void move_player(int position){
+    public void move_player(int afterPosition){
         originPosition = player[playerTurn%4].get_position();
-        nextPosition = (originPosition + position)%24;
+        nextPosition = (afterPosition)%24;
         gameBoard.show_hide_player(playerTurn%4, originPosition, nextPosition);
         player[playerTurn%4].set_position(nextPosition);
 
@@ -147,7 +220,6 @@ public class Main extends JPanel {
         else{
             show_panel();
         }
-        System.out.println("main"+position);
     }// move_player()
 
     public void fire_gold_card_effect(){
@@ -169,6 +241,7 @@ public class Main extends JPanel {
                 phase.next();
                 break;
             case 3:
+                player[playerTurn%4].set_exemption();
                 phase.next();
                 break;
             case 4:
@@ -219,22 +292,24 @@ public class Main extends JPanel {
                 phase.next();
                 break;
             case 14:
-                phase.next();
+                gameBoard.gameControllerPanel.rollButton.setVisible(true);
                 break;
             case 15:
-                phase.next();
+                gameBoard.gameControllerPanel.rollButton.setVisible(true);
                 break;
             case 16:
-                phase.next();
+                gameBoard.gameControllerPanel.rollButton.setVisible(true);
                 break;
             case 17:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                player[playerTurn%4].set_position(6);
                 originPosition = nextPosition;
                 nextPosition = 6;
                 show_panel();
                 break;
             case 18:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                player[playerTurn%4].set_position(6);
                 originPosition = nextPosition;
                 nextPosition = 6;
                 show_panel();
@@ -295,21 +370,25 @@ public class Main extends JPanel {
     }// fire_gold_card_effect()
 
     public void special_event(){
+        System.out.println("nextPosition"+nextPosition);
+
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){ //황금오리
             this.cardId = gameBoard.gameControllerPanel.goldCardPanel.cardId;
             fire_gold_card_effect();
         }
         else if(nextPosition == 6){ // 직잭
-            player[playerTurn%4].set_island_count();
-            System.out.println("Island");
-        } else if (nextPosition == 12) { // ATM
+            System.out.println("special 직잭");
+            player[playerTurn%4].add_island_count();
+            phase.next();
+        }
+        else if (nextPosition == 12) { // ATM
             price = gameBoard.place[12].get_price();
             player[playerTurn%4].add_cash(price);
             gameBoard.place[12].set_price(0);
             scoreBoard.set_player_cash_label(playerTurn%4);
             phase.next();
-            System.out.println("ATM");
-        } else if (nextPosition == 18) { //  헬기
+        }
+        else if (nextPosition == 18) { //  헬기
 
         } // if ~ else if
     }
@@ -356,16 +435,21 @@ public class Main extends JPanel {
 
                 }
                 else{//타인의 땅
-                    if(gameBoard.place[nextPosition].get_landmark_ownership() == -1) { // 매입 가능
-                        //매입버튼.setVisible(true);
+                    if(player[playerTurn%4].get_exemption() == 1){ //면제권
+                        //TODO 면제 패널
+                        player[playerTurn%4].init_exemption();
+                        phase.next();
                     }
                     else{
-                        //매입버튼.setVisible(false);
+                        if(gameBoard.place[nextPosition].get_landmark_ownership() == -1) { // 매입 가능
+                            //매입버튼.setVisible(true);
+                        }
+                        else{
+                            //매입버튼.setVisible(false);
+                        }
+                        gameBoard.gameControllerPanel.payButton.setVisible(true);
                     }
-                    gameBoard.gameControllerPanel.payButton.setVisible(true);
-
                 }
-
             }
         }
     }

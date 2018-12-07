@@ -1,5 +1,6 @@
 package Util;
 
+import Player.Player;
 import UI.GameBoard;
 import UI.Main;
 import UI.ScoreBoard;
@@ -15,6 +16,7 @@ public class PhaseListener implements PropertyChangeListener {
     private GameBoard gameBoard;
     private Main main;
     private Phase phase;
+    private Player player;
     private int  bill;
 
     public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main, Phase phase){
@@ -24,6 +26,7 @@ public class PhaseListener implements PropertyChangeListener {
         this.gameBoard = gameBoard;
         this.main = main;
         this.phase = phase;
+        this.player = new Player(-1);
 
     }
 
@@ -40,17 +43,15 @@ public class PhaseListener implements PropertyChangeListener {
         }
         else if (event.getPropertyName().equals("ROLL")){
             System.out.println("roll");
-            dice1.roll_dice();
-            dice2.roll_dice();
-            gameBoard.show_dice(dice1.get_dice(), dice2.get_dice());
+            main.roll_dice();
         }
         else if (event.getPropertyName().equals("MOVE")){
             System.out.println("move");
-            main.move_player(dice1.get_dice()+dice2.get_dice());
+            player = main.get_active_player();
+            main.move_player( player.get_position()+ dice1.get_dice() + dice2.get_dice());
         }
-        else if (event.getPropertyName().equals("GOLD_CARD")){
-            System.out.println("gold card");
-            main.fire_gold_card_effect();
+        else if (event.getPropertyName().equals("GAP")){
+            System.out.println("GAP");
         }
         else if (event.getPropertyName().equals("PURCHASE")){
             System.out.println("purchase");

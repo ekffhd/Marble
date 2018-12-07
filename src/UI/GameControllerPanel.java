@@ -14,7 +14,7 @@ public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
     private JLabel                  dice1Label, dice2Label;
     private ImageIcon               dice1Image, dice2Image, eggImage;
-    protected JButton               rollButton, moveButton, purchaseButton, eggButton, payButton;
+    protected JButton               rollButton, doubleButton, moveButton, purchaseButton, eggButton, payButton;
     private Color                   mainColor;
     protected PurchasePanel         purchasePanel;
     public TollPanel                tollPanel;
@@ -107,6 +107,18 @@ public class GameControllerPanel extends JPanel {
         rollButton.addMouseListener(buttonListener);
         add(rollButton);
 
+        doubleButton = new JButton("AGAIN");
+        doubleButton.setBounds(228, 300, 114, 50);
+        doubleButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
+        doubleButton.setBackground(Color.white);
+        doubleButton.setForeground(mainColor);
+        doubleButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        doubleButton.setVerticalAlignment(SwingConstants.CENTER);
+        doubleButton.setHorizontalAlignment(SwingConstants.CENTER);
+        doubleButton.addMouseListener(buttonListener);
+        doubleButton.setVisible(false);
+        add(doubleButton);
+
         moveButton = new JButton("MOVE");
         moveButton.setBounds(228, 300, 114, 50);
         moveButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
@@ -156,12 +168,11 @@ public class GameControllerPanel extends JPanel {
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
 
-            if(object == rollButton){
+            if(object == rollButton || object == doubleButton){
                 phase.roll();
                 dice1Label.setVisible(true);
                 dice2Label.setVisible(true);
-                rollButton.setVisible(false);
-                moveButton.setVisible(true);
+                doubleButton.setVisible(false);
             }else if(object == moveButton){
                 phase.move();
                 moveButton.setVisible(false);
@@ -211,8 +222,8 @@ public class GameControllerPanel extends JPanel {
                 tollPanel.setVisible(true);
             }else if(object == eggButton){
                 eggButton.setVisible(false);
-                goldCardPanel.set_card_panel_info();
-                goldCardPanel.setVisible(true);
+                goldCardPanel.setVisible(true);             goldCardPanel.set_card_panel_info();
+
             }
         }//mouseClicked
         public void mousePressed(MouseEvent event){ }

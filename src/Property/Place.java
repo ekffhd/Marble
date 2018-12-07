@@ -96,7 +96,9 @@ public class Place extends JPanel {
     public void purchase_house(){ city.buildings.purchase_house(); }
     public void purchase_building(){ city.buildings.purchase_building(); }
     public void purchase_hotel(){ city.buildings.purchase_hotel(); }
-    public void purchase_landmark(){ city.buildings.purchase_landmark(); }
+    public void purchase_landmark(){
+        city.buildings.purchase_landmark();
+        cityNameLabel.setForeground(Color.black);}
     public void set_city_price(){
         city.set_city_price();
     }
@@ -161,7 +163,6 @@ public class Place extends JPanel {
         return city.buildings.get_hotel_ownership();
     }
     public int get_landmark_ownership(){
-        cityNameLabel.setForeground(Color.black);
         return city.buildings.get_landmark_ownership();
     }
 }

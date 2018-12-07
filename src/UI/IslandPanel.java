@@ -74,9 +74,10 @@ public class IslandPanel extends JPanel {
             Object object = event.getSource();
 
             if(object == confirmButton) {
+                System.out.println("island confirm");
                 setVisible(false);
-                phase.next();
-
+                phase.gap();
+                phase.special();
             }
         }
         public void mousePressed(MouseEvent event){ }

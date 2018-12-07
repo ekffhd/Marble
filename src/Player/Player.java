@@ -32,7 +32,35 @@ public class Player {
     public void set_position(int position){
         this.playerData.position = position;
     }
-    public void set_island_count(){
-        this.playerData.island_count = 2;
+    public void add_island_count(){
+        playerData.islandCount = 3;
+    }
+    public void sub_island_count() {
+        playerData.islandCount --;
+    }
+    public void escape_island() {
+        playerData.islandCount = 0;
+    }
+    public void add_dice_count(){
+        playerData.diceCount++;
+    }
+    public void init_dice_count(){
+        playerData.diceCount = 0;
+    }
+    public void set_exemption(){
+        playerData.exemption = 1;
+    }
+    public void init_exemption(){
+        playerData.exemption = 0;
+    }
+
+    public int get_island_count(){
+        return playerData.islandCount;
+    }
+    public int get_dice_count(){
+        return playerData.diceCount;
+    }
+    public int get_exemption(){
+        return playerData.exemption;
     }
 }

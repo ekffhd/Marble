@@ -139,6 +139,11 @@ public class PurchasePanel extends JPanel {
 
         this.cash = Main.player[Main.playerTurn%4].get_cash();
         this.place = place;
+        land = 0;
+        house = 0;
+        building = 0;
+        hotel = 0;
+        landmark = 0;
 
         placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
 
@@ -184,7 +189,14 @@ public class PurchasePanel extends JPanel {
     }
 
     public int get_expense() { return expense; }
-    public int get_land() { return land; }
+    public int get_land() {
+        if(this.isOwn == false){
+            return 1;
+        }
+        else{
+            return 0;
+        }
+   }
     public int get_house() { return house; }
     public int get_building() { return building; }
     public int get_hotel() { return hotel; }
@@ -194,10 +206,11 @@ public class PurchasePanel extends JPanel {
         public void actionPerformed(ActionEvent event) {
             JCheckBox checkbox = (JCheckBox) event.getSource();
             expense = 0;
-            if (menuCheckBox[0].isSelected()){ // 부지
+            if (menuCheckBox[0].isSelected() && isOwn == false){ // 부지
                 expense += place.get_land_price();
                 land = 1;
             }
+
             if (menuCheckBox[1].isSelected()&&menuCheckBox[1].isEnabled()){ // 집
                 expense += place.get_house_price();
                 house = 1;
@@ -212,7 +225,6 @@ public class PurchasePanel extends JPanel {
             }
             else{
                 building = 0;
-                System.out.println(building);
             }
             if (menuCheckBox[3].isSelected()&&menuCheckBox[3].isEnabled()){ // 호텔
                 expense += place.get_hotel_price();
@@ -230,9 +242,12 @@ public class PurchasePanel extends JPanel {
             }
 
             if (expense > cash) {
-                purchaseButton.addMouseListener(null);
                 purchaseButton.setEnabled(false);
             }
+            else{
+                purchaseButton.setEnabled(true);
+            }
+
 
         } // actionPerformed()
     } // CheckBoxListener class
@@ -243,6 +258,7 @@ public class PurchasePanel extends JPanel {
             Object object = event.getSource();
             setVisible(false);
             if (object == purchaseButton){
+                System.out.println("purchasePanel");
                 phase.purchase();
             }else if (object == cancelButton){
                 phase.next();
