@@ -1,5 +1,6 @@
 package UI;
 
+import Property.GoldCard;
 import Property.GoldCardConstants;
 import Util.Phase;
 
@@ -16,10 +17,14 @@ public class GoldCardPanel extends JPanel {
     private Color                   goldColor;
     private ButtonListener          buttonListener;
     private Phase                   phase;
+    private GoldCard                goldCard;
+    protected int                     cardId;
 
     public GoldCardPanel(Phase phase){
         goldColor = new Color(248, 206, 88);
         this.phase = phase;
+
+        goldCard = new GoldCard();
 
         setBackground(goldColor);
         setBounds(40, 40, 800/7*5-80, 550/7*5-80); //491 310
@@ -66,20 +71,19 @@ public class GoldCardPanel extends JPanel {
         contentsPanel.add(contentsLabel);
     }//GoldCardPanel()
 
-    public void set_card_information(int cardId){
+    public void set_card_panel_info(){
+        cardId = (int)(Math.random() * 25);
         contentsLabel.setText(GoldCardConstants.CARD_CONTENT[cardId]);
         nameLabel.setText(GoldCardConstants.CARD_TITLE[cardId]);
-    }
-
+    }//set_card_panel_info()
 
     private class ButtonListener implements MouseListener {
-
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
 
             if(object == confirmButton) {
                 setVisible(false);
-                phase.gold_card();
+                phase.special();
             }
         }
         public void mousePressed(MouseEvent event){ }

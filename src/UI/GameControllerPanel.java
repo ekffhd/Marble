@@ -210,8 +210,8 @@ public class GameControllerPanel extends JPanel {
                 tollPanel.set_toll_panel_info(place[Main.nextPosition]);
                 tollPanel.setVisible(true);
             }else if(object == eggButton){
-                System.out.println("eggButton");
                 eggButton.setVisible(false);
+                goldCardPanel.set_card_panel_info();
                 goldCardPanel.setVisible(true);
             }
         }//mouseClicked

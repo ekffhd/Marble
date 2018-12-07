@@ -199,24 +199,45 @@ public class Main extends JPanel {
                 break;
             case 10:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[23],23, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = 23;
+                show_panel();
                 break;
             case 11:
                 goldCard.pay_taxes(30000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 12:
                 goldCard.pay_taxes(50000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
                 break;
             case 13:
                 goldCard.pay_taxes(100000, player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
+                phase.next();
+                break;
+            case 14:
+                phase.next();
+                break;
+            case 15:
+                phase.next();
+                break;
+            case 16:
+                phase.next();
                 break;
             case 17:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = 6;
+                show_panel();
                 break;
             case 18:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = 6;
+                show_panel();
                 break;
             case 19:
                 afterPosition = nextPosition-1;
@@ -224,6 +245,9 @@ public class Main extends JPanel {
                     afterPosition+=24;
                 }
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = afterPosition;
+                show_panel();
                 break;
             case 20:
                 afterPosition = nextPosition-3;
@@ -231,6 +255,9 @@ public class Main extends JPanel {
                     afterPosition+=24;
                 }
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = afterPosition;
+                show_panel();
                 break;
             case 21:
                 afterPosition = nextPosition+2;
@@ -238,6 +265,9 @@ public class Main extends JPanel {
                     afterPosition%=24;
                 }
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = afterPosition;
+                show_panel();
                 break;
             case 22:
                 afterPosition = nextPosition+3;
@@ -245,19 +275,31 @@ public class Main extends JPanel {
                     afterPosition%=24;
                 }
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[afterPosition],afterPosition, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = afterPosition;
+                show_panel();
                 break;
             case 23:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[18],18, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = 18;
+                show_panel();
                 break;
             case 24:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[18],18, player[playerTurn%4]);
+                originPosition = nextPosition;
+                nextPosition = 18;
+                show_panel();
                 break;
         }
-        phase.next();
     }// fire_gold_card_effect()
 
     public void special_event(){
-        if(nextPosition == 6){ // 직잭
+        if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){ //황금오리
+            this.cardId = gameBoard.gameControllerPanel.goldCardPanel.cardId;
+            fire_gold_card_effect();
+        }
+        else if(nextPosition == 6){ // 직잭
             player[playerTurn%4].set_island_count();
             System.out.println("Island");
         } else if (nextPosition == 12) { // ATM
@@ -282,8 +324,9 @@ public class Main extends JPanel {
     }
 
     public void show_panel(){
+        System.out.println("show"+this.nextPosition);
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){// 황금오리 패널
-            gameBoard.gameControllerPanel.goldCardPanel.setVisible(true);
+            gameBoard.gameControllerPanel.eggButton.setVisible(true);
         }
         else if(nextPosition == 0){
             gameBoard.gameControllerPanel.startCardPanel.setVisible(true);
