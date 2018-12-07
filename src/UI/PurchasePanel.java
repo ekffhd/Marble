@@ -22,10 +22,12 @@ public class PurchasePanel extends JPanel {
     private Phase            phase;
     private int              position, expense, cash;
     private int              land, house, building, hotel, landmark; // checkbox가 선택되었으면 1
+    protected boolean        isOwn;
 
     private JPanel[]         menuPanel;
     private JLabel[]         menuLabel, priceLabel;
     private JCheckBox[]      menuCheckBox;
+    private Place            place;
 
     private CheckBoxListener checkBoxListener;
     private ButtonListener   buttonListener;
@@ -36,8 +38,10 @@ public class PurchasePanel extends JPanel {
         checkBoxListener = new CheckBoxListener();
         buttonListener = new ButtonListener();
 
+        isOwn = false;
         this.phase = phase;
         expense = 0;
+        land = 0; house = 0; building = 0; hotel = 0; landmark = 0;
 
         setBackground(mainBackgroundColor);
         setBounds(40, 40, 800/7*5-80, 550/7*5-80);
@@ -46,8 +50,8 @@ public class PurchasePanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);
@@ -78,8 +82,8 @@ public class PurchasePanel extends JPanel {
             menuLabel[i].setBounds(0,0,95,60);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             menuLabel[i].setVerticalAlignment(SwingConstants.CENTER);
-            menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
-            //menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
+            //menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
+            menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
             menuPanel[i].add(menuLabel[i]);
         }
 
@@ -132,27 +136,33 @@ public class PurchasePanel extends JPanel {
 
     public void set_purchase_panel_info(Place place){
         reset_checkbox();
-        expense = 0;
+
         this.cash = Main.player[Main.playerTurn%4].get_cash();
+        this.place = place;
 
         placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
-        priceLabel[0].setText(PlaceConstants.LAND_PRICE[Main.nextPosition]+""); // 부지
-        priceLabel[1].setText(PlaceConstants.HOUSE_PRICE[Main.nextPosition]+""); // 집
-        priceLabel[2].setText(PlaceConstants.BUILDING_PRICE[Main.nextPosition]+""); // 빌딩
-        priceLabel[3].setText(PlaceConstants.HOTEL_PRICE[Main.nextPosition]+""); // 호텔
-        priceLabel[4] .setText(PlaceConstants.LANDMARK_PRICE[Main.nextPosition]+""); // 랜드마크
+
+        priceLabel[0].setText(place.get_land_price()+""); // 부지
+        priceLabel[1].setText(place.get_house_price()+""); // 집
+        priceLabel[2].setText(place.get_building_price()+""); // 빌딩
+        priceLabel[3].setText(place.get_hotel_price()+""); // 호텔
+        priceLabel[4] .setText(place.get_landmark_price()+""); // 랜드마크
 
         if (place.get_land_owner() != -1) { // 부지 소유
+            isOwn = true;
+            menuCheckBox[0].setSelected(true);
             menuCheckBox[0].setEnabled(false);
-            menuCheckBox[0].setSelected(false);
         }
         if (place.get_house_ownership() == 1) { // 집 소유
+            menuCheckBox[1].setSelected(true);
             menuCheckBox[1].setEnabled(false);
         }
         if (place.get_building_ownership() == 1) { // 빌딩 소유
+            menuCheckBox[2].setSelected(true);
             menuCheckBox[2].setEnabled(false);
         }
         if (place.get_hotel_ownership() == 1) { // 호텔 소유
+            menuCheckBox[3].setSelected(false);
             menuCheckBox[3].setEnabled(false);
         }
         if (place.get_land_owner() != -1  // 랜드마크만 남은 상황
@@ -169,6 +179,7 @@ public class PurchasePanel extends JPanel {
             menuCheckBox[i].setSelected(false);
         }
         menuCheckBox[0].setSelected(true);
+        menuCheckBox[0].setEnabled(false);
         menuCheckBox[4].setEnabled(false);
     }
 
@@ -182,47 +193,49 @@ public class PurchasePanel extends JPanel {
     private class CheckBoxListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             JCheckBox checkbox = (JCheckBox) event.getSource();
-            expense = 0; land = 0; house = 0; building = 0; hotel = 0; landmark = 0;
-            if (checkbox == menuCheckBox[0]){
-                menuCheckBox[0].setSelected(true);
-            } // if
-
+            expense = 0;
             if (menuCheckBox[0].isSelected()){ // 부지
-                expense += PlaceConstants.LAND_PRICE[Main.nextPosition];
+                expense += place.get_land_price();
                 land = 1;
             }
-            if (menuCheckBox[1].isSelected()){ // 집
-                expense += PlaceConstants.HOUSE_PRICE[Main.nextPosition];
+            if (menuCheckBox[1].isSelected()&&menuCheckBox[1].isEnabled()){ // 집
+                expense += place.get_house_price();
                 house = 1;
             }
-            if (menuCheckBox[2].isSelected()){ // 빌딩
-                expense += PlaceConstants.BUILDING_PRICE[Main.nextPosition];
+            else{
+                house = 0;
+            }
+            if (menuCheckBox[2].isSelected()&&menuCheckBox[2].isEnabled()) { // 빌딩
+                expense += place.get_building_price();
+                System.out.println(expense);
                 building = 1;
             }
-            if (menuCheckBox[3].isSelected()){ // 호텔
-                expense += PlaceConstants.HOTEL_PRICE[Main.nextPosition];
+            else{
+                building = 0;
+                System.out.println(building);
+            }
+            if (menuCheckBox[3].isSelected()&&menuCheckBox[3].isEnabled()){ // 호텔
+                expense += place.get_hotel_price();
                 hotel = 1;
             }
-            if (menuCheckBox[4].isSelected()){ // 랜드마크
-                expense += PlaceConstants.LANDMARK_PRICE[Main.nextPosition];
+            else{
+                hotel = 0;
+            }
+            if (menuCheckBox[4].isSelected()&&menuCheckBox[4].isEnabled()){ // 랜드마크
+                expense += place.get_landmark_price();
                 landmark = 1;
+            }
+            else{
+                landmark = 0;
             }
 
             if (expense > cash) {
+                purchaseButton.addMouseListener(null);
                 purchaseButton.setEnabled(false);
             }
 
         } // actionPerformed()
     } // CheckBoxListener class
-
-    public void setMainColor(){
-
-    }
-
-
-    public void set_panel_info(){
-        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
-    }
 
     private class ButtonListener implements MouseListener {
 
@@ -230,11 +243,6 @@ public class PurchasePanel extends JPanel {
             Object object = event.getSource();
             setVisible(false);
             if (object == purchaseButton){
-                if (expense == 0 && menuCheckBox[0].isSelected()){ // 부지
-                    expense += PlaceConstants.LAND_PRICE[Main.nextPosition];
-                    land = 1;
-                }
-                System.out.println(expense);
                 phase.purchase();
             }else if (object == cancelButton){
                 phase.next();
@@ -257,5 +265,4 @@ public class PurchasePanel extends JPanel {
             object.setForeground(mainColor);
         }
     }//ButtonListener class
-
 } // PurchasePanel class

@@ -31,24 +31,24 @@ public class HelicopterPanel extends JPanel {
 
         nameLabel = new JLabel(PlaceConstants.PLACE_LINE_NAME[18]); // 헬기
         nameLabel.setBounds(0,0,800/7*5-80, 80);
-        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
-        //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
+        nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(nameLabel);
 
         noticeLabel = new JLabel("목적지를 선택해주세요");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
-        noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        //noticeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        noticeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(noticeLabel);
 
         confirmLabel = new JLabel("이동하겠습니다");
         confirmLabel.setBounds(0 , 80, 800/7*5-80, 30);
-        confirmLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        //confirmLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //confirmLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        confirmLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         confirmLabel.setHorizontalAlignment(SwingConstants.CENTER);
         confirmLabel.setVerticalAlignment(SwingConstants.CENTER);
         confirmLabel.setVisible(false);

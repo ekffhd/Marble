@@ -22,7 +22,7 @@ public class GameControllerPanel extends JPanel {
     protected IslandPanel           islandPanel;
     protected WelfareFacilityPanel  welfareFacilityPanel;
     protected HelicopterPanel       helicopterPanel;
-    private StartCardPanel          startCardPanel;
+    protected StartCardPanel        startCardPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
     protected Place[]               place;
@@ -91,8 +91,8 @@ public class GameControllerPanel extends JPanel {
         projectName.setBounds(175,100,230,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        //projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
-        projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
+        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
+        //projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
@@ -162,12 +162,12 @@ public class GameControllerPanel extends JPanel {
                 dice2Label.setVisible(true);
                 rollButton.setVisible(false);
                 moveButton.setVisible(true);
-            }
-            if(object == moveButton){
+            }else if(object == moveButton){
                 phase.move();
                 moveButton.setVisible(false);
                 dice1Label.setVisible(false);
                 dice2Label.setVisible(false);
+                /*
                 if(Main.nextPosition < Main.originPosition){
                     startCardPanel.setVisible(true);
                 }
@@ -200,21 +200,16 @@ public class GameControllerPanel extends JPanel {
                             payButton.setVisible(true);
                         }
                     }
-                }
-            }
-            if(object == purchaseButton){
-                if(Main.nextPosition != 0 || Main.nextPosition != 6 || Main.nextPosition != 12 || Main.nextPosition != 18){
-                    purchaseButton.setVisible(false);
-                    purchasePanel.set_purchase_panel_info(place[Main.nextPosition]);
-                    purchasePanel.setVisible(true);
-                }
-            }
-            if(object == payButton) {
+                }*/
+            }else if(object == purchaseButton){
+                purchaseButton.setVisible(false);
+                purchasePanel.set_purchase_panel_info(place[Main.nextPosition]);
+                purchasePanel.setVisible(true);
+            }else if(object == payButton) {
                 payButton.setVisible(false);
                 tollPanel.set_toll_panel_info(place[Main.nextPosition]);
                 tollPanel.setVisible(true);
-            }
-            if(object == eggButton){
+            }else if(object == eggButton){
                 System.out.println("eggButton");
                 eggButton.setVisible(false);
                 goldCardPanel.setVisible(true);

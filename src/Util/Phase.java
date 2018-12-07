@@ -72,10 +72,10 @@ public class Phase {
         this.phase = PhaseConstants.SPECIAL_PHASE;
         propertyChangeSupport.firePropertyChange("SPECIAL", previousPhase, phase);
     }
-    public void lap(){
+    public void show_panel(){
         this.previousPhase = this.phase;
-        this.phase = PhaseConstants.BEFORE_START_PHASE;
-        propertyChangeSupport.firePropertyChange("LAP", previousPhase, phase);
+        this.phase = PhaseConstants.SHOW_PANEL;
+        propertyChangeSupport.firePropertyChange("SHOW_PANEL", previousPhase, phase);
     }
 
     public String getPreviousPhase() {

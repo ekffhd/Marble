@@ -16,15 +16,20 @@ public class Place extends JPanel {
     protected ImageIcon[] buildingIcon;
     protected JLabel[] buildingIconLabel;
 
-    public Place(String cityName) {
+    protected int placeId;
+
+
+
+    public Place(String cityName, int placeId) {
         setLayout(null);
-        city = new City();
+        city = new City(this);
         city.setName(cityName);
+        this.placeId = placeId;
 
         cityNameLabel = new JLabel(cityName);
         cityNameLabel.setBounds(0, 0, 800 / 7, 550 / 7);
-        //cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
-        cityNameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        cityNameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
+        //cityNameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
 
         cityNameLabel.setHorizontalAlignment((SwingConstants.CENTER));
         cityNameLabel.setVerticalTextPosition(SwingConstants.CENTER);
@@ -63,6 +68,44 @@ public class Place extends JPanel {
         this.city.price = cash;
         return this.city.price;
     }
+    public void set_building_price(int[] cash){
+        city.buildings.set_building_price(cash[0], cash[1], cash[2], cash[3], cash[4]);
+    }
+    public int get_land_price(){
+        return city.buildings.get_land_price();
+    }
+    public int get_house_price(){
+        return city.buildings.get_house_price();
+    }
+    public int get_building_price(){
+        return city.buildings.get_building_price();
+    }
+    public int get_hotel_price(){
+        return city.buildings.get_hotel_price();
+    }
+    public int get_landmark_price(){
+        return city.buildings.get_landmark_price();
+    }
+
+    public void purchase_land(Player player){
+        city.owner = player;
+        city.buildings.set_land_owner(player.get_player_id());
+        set_owner(player);
+        cityNameLabel.setForeground(PlayerConstants.PLAYER_COLOR[player.get_player_id()]);
+    }
+    public void purchase_house(){ city.buildings.purchase_house(); }
+    public void purchase_building(){ city.buildings.purchase_building(); }
+    public void purchase_hotel(){ city.buildings.purchase_hotel(); }
+    public void purchase_landmark(){ city.buildings.purchase_landmark(); }
+    public void set_city_price(){
+        city.set_city_price();
+    }
+
+    public int get_city_price(){
+        return city.price;
+    }
+
+
 
     public void show_player(int playerId) {
         this.playerIconLabel[playerId].setVisible(true);
@@ -76,17 +119,9 @@ public class Place extends JPanel {
         buildingIconLabel[1].setIcon(new ImageIcon(PlaceConstants.BUILDING_URL[1]+player.get_player_id()+".png"));
         buildingIconLabel[2].setIcon(new ImageIcon(PlaceConstants.BUILDING_URL[2]+player.get_player_id()+".png"));
     }
-    public void set_building_status(Player player, int house, int building,int hotel,  int landmark){
-        set_owner(player);
-        city.buildings.set_land_owner(player.get_player_id());
-        city.buildings.purchase_house(house);
-        city.buildings.purchase_building(building);
-        city.buildings.purchase_hotel(hotel);
-        city.buildings.purchase_landmark(landmark);
-        update_building_status(player.get_player_id());
-    }
+
     public void update_building_status(int playerId){
-        if(city.buildings.house== 1){
+        if(city.buildings.house == 1){
             buildingIconLabel[0].setVisible(true);
         }
         else{
@@ -126,7 +161,7 @@ public class Place extends JPanel {
         return city.buildings.get_hotel_ownership();
     }
     public int get_landmark_ownership(){
+        cityNameLabel.setForeground(Color.black);
         return city.buildings.get_landmark_ownership();
     }
-
 }

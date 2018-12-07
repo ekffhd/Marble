@@ -12,7 +12,7 @@ public class PhaseConstants {
             "ACQUIRING_PHASE",
             "NEXT_PHASE",
             "END_PHASE",
-            "LAP_PHASE",
+            "SHOW_PANEL",
             "RESTART_PHASE",
             "SPECIAL_PHASE",
     };
@@ -25,7 +25,7 @@ public class PhaseConstants {
     final public static String ACQUIRING = "ACQUIRING_PHASE";
     final public static String NEXT = "NEXT_PHASE";
     final public static String END = "END_PHASE";
-    final public static String LAP = "LAP_PHASE";
+    final public static String SHOW_PANEL = "SHOW_PANEL";
     final public static String RESTART = "RESTART_PHASE";
     final public static String BEFORE_START_PHASE = "BEFORE_START_PHASE";
     final public static String SPECIAL_PHASE = "SPECIAL_PHASE";

@@ -6,10 +6,12 @@ public class City implements IPlace {
     protected Building buildings;
     protected int price;
     protected Player owner;
+    protected Place place;
 
-    public City(){
+    public City(Place place){
         buildings = new Building();
         owner = new Player(-1);
+        this.place = place;
         price = 0;
     }
 
@@ -17,8 +19,23 @@ public class City implements IPlace {
         this.name = name;
     }
 
-    public void set_city_status(){
+    public void set_city_price(){
+        price = 0;
 
+        price += BuildingConstants.LAND_TOLL[place.placeId];
+
+        if(buildings.house == 1){
+            price += BuildingConstants.LAND_TOLL[place.placeId]+3;
+        }
+        if(buildings.building == 1){
+            price += BuildingConstants.LAND_TOLL[place.placeId]+7;
+        }
+        if(buildings.hotel == 1){
+            price += BuildingConstants.LAND_TOLL[place.placeId]+12;
+        }
+        if(buildings.landmark == 1){
+            price = BuildingConstants.LANDMARK_TOLL[place.placeId];
+        }
     }
 
 

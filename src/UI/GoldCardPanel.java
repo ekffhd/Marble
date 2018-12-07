@@ -56,8 +56,8 @@ public class GoldCardPanel extends JPanel {
         add(contentsPanel);
 
         contentsLabel = new JLabel();
-        //contentsLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 30));
-        contentsLabel.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 30));
+        contentsLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 30));
+        //contentsLabel.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 30));
         contentsLabel.setBounds(0,105,470,30);
         contentsLabel.setHorizontalAlignment(SwingConstants.CENTER);
         contentsLabel.setVerticalAlignment(SwingConstants.CENTER);

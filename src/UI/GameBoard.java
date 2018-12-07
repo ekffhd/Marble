@@ -1,11 +1,11 @@
 package UI;
-import Property.Place;
-import Property.PlaceConstants;
+import Property.*;
 
 import Property.Place;
 import Property.PlaceConstants;
 import Util.Dice;
 import Util.Phase;
+import Property.BuildingConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -50,7 +50,7 @@ public class GameBoard extends JPanel {
         place = new Place[24];
 
         //Start
-        place[0] = new Place(PlaceConstants.PLACE_NAME[0]);
+        place[0] = new Place(PlaceConstants.PLACE_NAME[0],0);
         place[0].setPreferredSize(new Dimension(125, 125));
         place[0].setBackground(new Color(14, 46,64));
         place[0].setBorder(BorderFactory.createMatteBorder(3, 3, 0, 0, Color.black));
@@ -67,7 +67,7 @@ public class GameBoard extends JPanel {
 
         //South 0~5
         for(int i=1;i<6;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(110, 125));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(3, 1, 0, 0, Color.black));
@@ -84,7 +84,7 @@ public class GameBoard extends JPanel {
         place[5].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.black));
 
         //지그재그
-        place[6] = new Place(PlaceConstants.PLACE_NAME[6]);
+        place[6] = new Place(PlaceConstants.PLACE_NAME[6], 6);
         place[6].setPreferredSize(new Dimension(125,125));
         place[6].setBackground(new Color(101,35,42));
         place[6].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 3, Color.black));
@@ -101,7 +101,7 @@ public class GameBoard extends JPanel {
 
         //West
         for(int i=7;i<12;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(125, 100));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -118,7 +118,7 @@ public class GameBoard extends JPanel {
         place[11].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.black));
 
         //사회복지기금
-        place[12] = new Place(PlaceConstants.PLACE_NAME[12]);
+        place[12] = new Place(PlaceConstants.PLACE_NAME[12], 12);
         place[12].setPreferredSize(new Dimension(125,125));
         place[12].setBackground(new Color(14, 46,64));
         place[12].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -135,7 +135,7 @@ public class GameBoard extends JPanel {
 
         //North
         for(int i=13; i<18;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(110,125));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 1, Color.black));
@@ -152,7 +152,7 @@ public class GameBoard extends JPanel {
         place[17].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.black));
 
         //헬기장
-        place[18] = new Place(PlaceConstants.PLACE_NAME[18]);
+        place[18] = new Place(PlaceConstants.PLACE_NAME[18], 18);
         place[18].setPreferredSize(new Dimension(125,125));
         place[18].setBackground(new Color(101,35,42));
         place[18].setBorder(BorderFactory.createMatteBorder(0, 3, 3, 0, Color.black));
@@ -168,7 +168,7 @@ public class GameBoard extends JPanel {
 
         //East
         for(int i=19;i<24;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(125, 100));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(1, 3, 0, 0, Color.black));
@@ -204,17 +204,11 @@ public class GameBoard extends JPanel {
 
 
 
-/*
-        for(int i=0;i<24;i++){
-            place[i].setLayout(null);
-            placeNameLabel[i] = new JLabel(PlaceConstants.PLACE_NAME[i]);
-            placeNameLabel[i].setBounds(0,0,800/7,550/7);
-            placeNameLabel[i].setFont(placeNameFont);
-            placeNameLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
 
-            place[i].add(placeNameLabel[i]);
+        for(int i=0;i<24;i++){
+            place[i].set_building_price(BuildingConstants.BUILDING_PRICE[i]);
         }
-*/
+
         place[0].setColor(Color.white);
         place[6].setColor(Color.white);
         place[12].setColor(Color.white);
