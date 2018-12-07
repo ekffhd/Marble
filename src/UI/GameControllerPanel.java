@@ -181,7 +181,7 @@ public class GameControllerPanel extends JPanel {
                         welfareFacilityPanel.set_price_info();
                         welfareFacilityPanel.setVisible(true);
                     } else if (Main.nextPosition == 18) { // 헬기
-                        //phase.next();
+                        Main.gameBoard.show_city_number();
                         helicopterPanel.reset_helicopter_panel();
                         helicopterPanel.setVisible(true);
                         //helicopterPanel.get_destination();

@@ -9,8 +9,6 @@ import Util.Phase;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class GameBoard extends JPanel {
 
@@ -21,7 +19,7 @@ public class GameBoard extends JPanel {
     private GridBagConstraints[]    gbc;
     private GridBagConstraints      gameControllerGbc;
     private Color                   goldEggColor;
-    private Phase phase;
+    private Phase                   phase;
 
     private ImageIcon               eggImageIcon;
     private JLabel[]                eggLabel;
@@ -43,7 +41,7 @@ public class GameBoard extends JPanel {
         place = new Place[24];
 
         //Start
-        place[0] = new Place(PlaceConstants.PLACE_NAME[0]);
+        place[0] = new Place(PlaceConstants.PLACE_NAME[0], 0);
         place[0].setPreferredSize(new Dimension(125, 125));
         place[0].setBackground(new Color(14, 46,64));
         place[0].setBorder(BorderFactory.createMatteBorder(3, 3, 0, 0, Color.black));
@@ -60,7 +58,7 @@ public class GameBoard extends JPanel {
 
         //South 0~5
         for(int i=1;i<6;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(110, 125));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(3, 1, 0, 0, Color.black));
@@ -77,7 +75,7 @@ public class GameBoard extends JPanel {
         place[5].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 0, Color.black));
 
         //지그재그
-        place[6] = new Place(PlaceConstants.PLACE_NAME[6]);
+        place[6] = new Place(PlaceConstants.PLACE_NAME[6], 6);
         place[6].setPreferredSize(new Dimension(125,125));
         place[6].setBackground(new Color(101,35,42));
         place[6].setBorder(BorderFactory.createMatteBorder(3, 0, 0, 3, Color.black));
@@ -94,7 +92,7 @@ public class GameBoard extends JPanel {
 
         //West
         for(int i=7;i<12;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(125, 100));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -111,7 +109,7 @@ public class GameBoard extends JPanel {
         place[11].setBorder(BorderFactory.createMatteBorder(0, 0, 0, 3, Color.black));
 
         //사회복지기금
-        place[12] = new Place(PlaceConstants.PLACE_NAME[12]);
+        place[12] = new Place(PlaceConstants.PLACE_NAME[12], 12);
         place[12].setPreferredSize(new Dimension(125,125));
         place[12].setBackground(new Color(14, 46,64));
         place[12].setBorder(BorderFactory.createLineBorder(Color.black));
@@ -128,7 +126,7 @@ public class GameBoard extends JPanel {
 
         //North
         for(int i=13; i<18;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(110,125));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 1, Color.black));
@@ -145,7 +143,7 @@ public class GameBoard extends JPanel {
         place[17].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Color.black));
 
         //헬기장
-        place[18] = new Place(PlaceConstants.PLACE_NAME[18]);
+        place[18] = new Place(PlaceConstants.PLACE_NAME[18], 18);
         place[18].setPreferredSize(new Dimension(125,125));
         place[18].setBackground(new Color(101,35,42));
         place[18].setBorder(BorderFactory.createMatteBorder(0, 3, 3, 0, Color.black));
@@ -161,7 +159,7 @@ public class GameBoard extends JPanel {
 
         //East
         for(int i=19;i<24;i++){
-            place[i] = new Place(PlaceConstants.PLACE_NAME[i]);
+            place[i] = new Place(PlaceConstants.PLACE_NAME[i], i);
             place[i].setPreferredSize(new Dimension(125, 100));
             place[i].setBackground(Color.white);
             place[i].setBorder(BorderFactory.createMatteBorder(1, 3, 0, 0, Color.black));
@@ -209,9 +207,13 @@ public class GameBoard extends JPanel {
         }
 */
         place[0].setColor(Color.white);
+        place[0].set_city_number_color(Color.white);
         place[6].setColor(Color.white);
+        place[6].set_city_number_color(Color.white);
         place[12].setColor(Color.white);
+        place[12].set_city_number_color(Color.white);
         place[18].setColor(Color.white);
+        place[18].set_city_number_color(Color.white);
 
         gameControllerPanel = new GameControllerPanel(phase, place);
 
@@ -223,10 +225,22 @@ public class GameBoard extends JPanel {
         gameControllerGbc.fill = GridBagConstraints.BOTH;
         gameBoardGridPanel.add(gameControllerPanel, gameControllerGbc);
 
+        hide_city_number();
+
     }//GameBoard()
 
     public void show_dice(int dice1, int dice2) {
         gameControllerPanel.show_dice(dice1, dice2);
+    }
+    public void show_city_number() {
+        for (int i=0; i< 24; i++) {
+            place[i].show_city_number();
+        }
+    }
+    public void hide_city_number() {
+        for (int i=0; i<24; i++) {
+            place[i].hide_city_number();
+        }
     }
     public void show_hide_player(int playerId,int originPosition, int nextPosition){
         place[originPosition].hide_player(playerId);

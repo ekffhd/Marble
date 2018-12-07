@@ -171,6 +171,7 @@ public class HelicopterPanel extends JPanel {
                 } // if ~ else
             } else if (object == goButton) {
                 setVisible(false);
+                Main.gameBoard.hide_city_number();
                 phase.special();
                 phase.next();
             }
