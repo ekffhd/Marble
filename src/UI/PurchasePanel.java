@@ -139,6 +139,7 @@ public class PurchasePanel extends JPanel {
 
         this.cash = Main.player[Main.playerTurn%4].get_cash();
         this.place = place;
+        expense = 0;
         land = 0;
         house = 0;
         building = 0;
@@ -201,15 +202,27 @@ public class PurchasePanel extends JPanel {
     public int get_building() { return building; }
     public int get_hotel() { return hotel; }
     public int get_landmark() { return landmark; }
+    public void calculate_expense() {
+        if(land == 1){
+            expense += place.get_land_price();
+        }
+        if(house == 1){
+            expense += place.get_house_price();
+        }
+        if(building == 1){
+            expense += place.get_building_price();
+        }
+        if(hotel == 1){
+            expense += place.get_hotel_price();
+        }
+        if(landmark == 1){
+            expense += place.get_landmark_price();
+        }
+    }
 
     private class CheckBoxListener implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             JCheckBox checkbox = (JCheckBox) event.getSource();
-            expense = 0;
-            if (menuCheckBox[0].isSelected() && isOwn == false){ // 부지
-                expense += place.get_land_price();
-                land = 1;
-            }
 
             if (menuCheckBox[1].isSelected()&&menuCheckBox[1].isEnabled()){ // 집
                 expense += place.get_house_price();
@@ -252,13 +265,24 @@ public class PurchasePanel extends JPanel {
         } // actionPerformed()
     } // CheckBoxListener class
 
+
+
     private class ButtonListener implements MouseListener {
 
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
             setVisible(false);
             if (object == purchaseButton){
-                System.out.println("purchasePanel");
+
+                if(isOwn == false){
+                    expense += place.get_land_price();
+                    land = 1;
+                }
+                else{
+                    land = 0;
+                }
+
+                System.out.println("purchasePanel"+expense);
                 phase.purchase();
             }else if (object == cancelButton){
                 phase.next();
