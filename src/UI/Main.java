@@ -89,7 +89,6 @@ public class Main extends JPanel {
         return player[playerTurn%4];
     }
     public void next(){
-        System.out.println("넘어가라 얍");
         int isLandCount = player[playerTurn%4].get_island_count();
         if(dice1Num == dice2Num && isLandCount == 0){
             gameBoard.gameControllerPanel.doubleButton.setVisible(true);
@@ -137,11 +136,8 @@ public class Main extends JPanel {
         player[playerTurn%4].add_dice_count();
         gameBoard.show_dice(dice1Num, dice2Num);
         int isLandCount = player[playerTurn%4].get_island_count();
-        System.out.println("island count:"+isLandCount);
         if(isLandCount!=0){ // 무인도
-            System.out.println("무인도"+player[playerTurn%4].get_island_count());
             if(dice1Num == dice2Num){ // 더블
-                System.out.println("탈출");
 
                 player[playerTurn%4].escape_island();
                 //고쳐야함
@@ -226,7 +222,6 @@ public class Main extends JPanel {
     public void fire_gold_card_effect(){
         switch(cardId){
             case 0:
-                System.out.println("fire");
                 goldCard.donate(30000, gameBoard.place[12], player[playerTurn%4]);
                 scoreBoard.set_player_cash_label(playerTurn%4);
                 phase.next();
@@ -310,6 +305,10 @@ public class Main extends JPanel {
                 break;
             case 18:
                 goldCard.move_player(gameBoard.place[nextPosition], gameBoard.place[6],6, player[playerTurn%4]);
+                player[playerTurn%4].set_position(6);
+                originPosition = nextPosition;
+                nextPosition = 6;
+                show_panel();
                 break;
             case 19:
                 afterPosition = nextPosition-1;
@@ -367,14 +366,12 @@ public class Main extends JPanel {
     }// fire_gold_card_effect()
 
     public void special_event(){
-        System.out.println("nextPosition"+nextPosition);
 
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){ //황금오리
             this.cardId = gameBoard.gameControllerPanel.goldCardPanel.cardId;
             fire_gold_card_effect();
         }
         else if(nextPosition == 6){ // 직잭
-            System.out.println("special 직잭");
             player[playerTurn%4].add_island_count();
             phase.next();
         }
@@ -405,7 +402,6 @@ public class Main extends JPanel {
     }
 
     public void show_panel(){
-        System.out.println("show"+this.nextPosition);
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){// 황금오리 패널
             gameBoard.gameControllerPanel.eggButton.setVisible(true);
         }

@@ -72,7 +72,7 @@ public class GoldCardPanel extends JPanel {
     }//GoldCardPanel()
 
     public void set_card_panel_info(){
-        cardId = (int)(Math.random() * 24);
+        cardId = (int)(Math.random() * 2)+17;
         contentsLabel.setText(GoldCardConstants.CARD_CONTENT[cardId]);
         nameLabel.setText(GoldCardConstants.CARD_TITLE[cardId]);
     }//set_card_panel_info()
