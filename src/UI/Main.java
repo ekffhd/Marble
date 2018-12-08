@@ -138,12 +138,13 @@ public class Main extends JPanel {
         int isLandCount = player[playerTurn%4].get_island_count();
         if(isLandCount!=0){ // 무인도
             if(dice1Num == dice2Num){ // 더블
-
+                gameBoard.gameControllerPanel.escapeSuccessIslandPanel.setVisible(true);
                 player[playerTurn%4].escape_island();
                 //고쳐야함
                 gameBoard.gameControllerPanel.moveButton.setVisible(true);
             }
             else{
+                gameBoard.gameControllerPanel.escapeFailIslandPanel.setVisible(true);
                 player[playerTurn%4].sub_island_count();
                 phase.next();
             }

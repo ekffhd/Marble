@@ -34,7 +34,7 @@ public class IslandPanel extends JPanel {
         textLabel1.setVerticalAlignment(SwingConstants.CENTER);
         textLabel1.setForeground(Color.white);
         add(textLabel1);
-        textLabel2 = new JLabel("숙취로 인해 3턴동안 움직이지 못합니다.");
+        textLabel2 = new JLabel("숙취로 인해 3턴 동안 움직이지 못합니다.");
         textLabel2.setBounds(0,120, 800/7*5-80, 30);
         textLabel2.setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
         //textLabel2.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 25));
