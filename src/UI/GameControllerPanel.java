@@ -20,6 +20,8 @@ public class GameControllerPanel extends JPanel {
     public TollPanel                tollPanel;
     protected GoldCardPanel         goldCardPanel;
     protected IslandPanel           islandPanel;
+    protected EscapeSuccessIslandPanel escapeSuccessIslandPanel;
+    protected EscapeFailIslandPanel escapeFailIslandPanel;
     protected WelfareFacilityPanel  welfareFacilityPanel;
     protected HelicopterPanel       helicopterPanel;
     protected StartCardPanel        startCardPanel;
@@ -54,6 +56,14 @@ public class GameControllerPanel extends JPanel {
         islandPanel = new IslandPanel(phase);
         islandPanel.setVisible(false);
         add(islandPanel);
+
+        escapeSuccessIslandPanel = new EscapeSuccessIslandPanel(phase);
+        escapeSuccessIslandPanel.setVisible(false);
+        add(escapeSuccessIslandPanel);
+
+        escapeFailIslandPanel = new EscapeFailIslandPanel(phase);
+        escapeFailIslandPanel.setVisible(false);
+        add(escapeFailIslandPanel);
 
         welfareFacilityPanel = new WelfareFacilityPanel(phase);
         welfareFacilityPanel.setVisible(false);

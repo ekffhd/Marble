@@ -23,4 +23,14 @@ public class PlayerConstants {
             "./image/player3_30.png",
             "./image/player4_30.png",
     };
+
+    final public static String[][] RANKING =
+                    {{"순위","플레이어","잔고"},
+                    {"1","",""},
+                    {"2", "","파산"},
+                    {"3", "","파산"},
+                    {"4", "","파산"}};
+    /*
+    RANKING data 넣어야함
+     */
 }

@@ -7,7 +7,6 @@ public class Player {
         playerData = new PlayerData(playerId);
     }
 
-
     public int get_player_id(){
         return playerData.characterId;
     }
@@ -26,7 +25,12 @@ public class Player {
         return playerData.cash;
     }
     public int sub_cash(int cash) {
-        playerData.cash -= cash;
+        if (playerData.cash - cash > 0) {
+            playerData.cash -= cash;
+        }
+        else{
+            playerData.cash = 0;
+        }
         return  playerData.cash;
     }
     public void set_position(int position){

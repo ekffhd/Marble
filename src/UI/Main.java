@@ -21,6 +21,7 @@ public class Main extends JPanel {
     private StartPanel startPanel;
     private StartController startController;
     private GoldCard goldCard;
+    private GameOverPanel gameoverPanel;
 
     private Dice dice1, dice2;
     private int dice1Num, dice2Num;
@@ -80,6 +81,11 @@ public class Main extends JPanel {
         phaseListener = new PhaseListener(dice1, dice2, scoreBoard, gameBoard, this, phase);
         phase.addPropertyChangeListener(phaseListener);
         phase.before_start();
+
+        //게임 오버 패널
+        gameoverPanel = new GameOverPanel(phase);
+        gameoverPanel.setVisible(false);
+        add(gameoverPanel);
     }
 
     public int get_origin_position(){
@@ -120,12 +126,13 @@ public class Main extends JPanel {
         int isLandCount = player[playerTurn%4].get_island_count();
         if(isLandCount!=0){ // 무인도
             if(dice1Num == dice2Num){ // 더블
-
+                gameBoard.gameControllerPanel.escapeSuccessIslandPanel.setVisible(true);
                 player[playerTurn%4].escape_island();
                 //고쳐야함
                 gameBoard.gameControllerPanel.moveButton.setVisible(true);
             }
             else{
+                gameBoard.gameControllerPanel.escapeFailIslandPanel.setVisible(true);
                 player[playerTurn%4].sub_island_count();
                 phase.next();
             }

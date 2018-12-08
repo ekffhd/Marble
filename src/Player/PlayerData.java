@@ -23,7 +23,7 @@ public class PlayerData {
     public boolean getStatus(){
         return this.isActive;
     }
-    public int getCharacterIdI(){
+    public int getCharacterId(){
         return this.characterId;
     }
     public int getPosition(){
