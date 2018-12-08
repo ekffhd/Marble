@@ -66,6 +66,10 @@ public class PhaseListener implements PropertyChangeListener {
             bill = bill*10000;
             main.bill(bill);
         }
+        else if (event.getPropertyName().equals("TAKEOVER")){
+            System.out.println("takeOver");
+            main.take_over();
+        }
         else if (event.getPropertyName().equals("NEXT")){
             System.out.println("next");
             main.next();

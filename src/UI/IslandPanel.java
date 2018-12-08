@@ -28,16 +28,16 @@ public class IslandPanel extends JPanel {
 
         textLabel1 = new JLabel("당신은 지그재그에 갇혔습니다.");
         textLabel1.setBounds(0,80, 800/7*5-80, 30);
-        textLabel1.setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
-        //textLabel1.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 25));
+        //textLabel1.setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
+        textLabel1.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 25));
         textLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         textLabel1.setVerticalAlignment(SwingConstants.CENTER);
         textLabel1.setForeground(Color.white);
         add(textLabel1);
         textLabel2 = new JLabel("숙취로 인해 3턴동안 움직이지 못합니다.");
         textLabel2.setBounds(0,120, 800/7*5-80, 30);
-        textLabel2.setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
-        //textLabel2.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 25));
+        //textLabel2.setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
+        textLabel2.setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 25));
         textLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         textLabel2.setVerticalAlignment(SwingConstants.CENTER);
         textLabel2.setForeground(Color.white);
@@ -45,8 +45,8 @@ public class IslandPanel extends JPanel {
 
         nameLabel = new JLabel("Z I G --- Z A G");
         nameLabel.setBounds(0,0,800/7*5-80, 80);
-        nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
-        //nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
         nameLabel.setForeground(Color.white);

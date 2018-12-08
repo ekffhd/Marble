@@ -14,7 +14,7 @@ public class GameControllerPanel extends JPanel {
     private JLabel                  projectName;
     private JLabel                  dice1Label, dice2Label;
     private ImageIcon               dice1Image, dice2Image, eggImage;
-    protected JButton               rollButton, doubleButton, moveButton, purchaseButton, eggButton, payButton;
+    protected JButton               rollButton, doubleButton, moveButton, purchaseButton, eggButton, payButton, takeOverButton;
     private Color                   mainColor;
     protected PurchasePanel         purchasePanel;
     public TollPanel                tollPanel;
@@ -23,6 +23,7 @@ public class GameControllerPanel extends JPanel {
     protected WelfareFacilityPanel  welfareFacilityPanel;
     protected HelicopterPanel       helicopterPanel;
     protected StartCardPanel        startCardPanel;
+    protected TakeOverPanel         takeOverPanel;
     private ButtonListener          buttonListener;
     private Phase                   phase;
     protected Place[]               place;
@@ -63,6 +64,10 @@ public class GameControllerPanel extends JPanel {
         helicopterPanel.setVisible(false);
         add(helicopterPanel);
 
+        takeOverPanel = new TakeOverPanel(phase);
+        takeOverPanel.setVisible(false);
+        add(takeOverPanel);
+
         dice1Image = new ImageIcon();
         dice2Image = new ImageIcon();
 
@@ -91,8 +96,8 @@ public class GameControllerPanel extends JPanel {
         projectName.setBounds(175,100,230,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
-        //projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
+        //projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
+        projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
@@ -155,6 +160,18 @@ public class GameControllerPanel extends JPanel {
         payButton.setVisible(false);
         add(payButton);
 
+        takeOverButton = new JButton("TAKE");
+        takeOverButton.setBounds(228, 300, 114, 50);
+        takeOverButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
+        takeOverButton.setBackground(Color.white);
+        takeOverButton.setForeground(mainColor);
+        takeOverButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        takeOverButton.setVerticalAlignment(SwingConstants.CENTER);
+        takeOverButton.setHorizontalAlignment(SwingConstants.CENTER);
+        takeOverButton.addMouseListener(buttonListener);
+        takeOverButton.setVisible(false);
+        add(takeOverButton);
+
     }//GameControllerPanel class
 
     public void show_dice(int dice1, int dice2){
@@ -190,6 +207,10 @@ public class GameControllerPanel extends JPanel {
                 eggButton.setVisible(false);
                 goldCardPanel.set_card_panel_info();
                 goldCardPanel.setVisible(true);
+            }else if(object == takeOverButton) {
+                takeOverButton.setVisible(false);
+                takeOverPanel.set_take_over_panel_info(place[Main.nextPosition]);
+                takeOverPanel.setVisible(true);
             }
         }//mouseClicked
         public void mousePressed(MouseEvent event){ }

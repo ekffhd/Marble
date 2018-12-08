@@ -42,6 +42,11 @@ public class Phase {
         this.phase = PhaseConstants.BILLING;
         propertyChangeSupport.firePropertyChange("BILL", previousPhase, phase);
     }
+    public void takeOver(){
+        this.previousPhase = this.phase;
+        this.phase = PhaseConstants.TAKEOVER;
+        propertyChangeSupport.firePropertyChange("TAKEOVER", previousPhase, phase);
+    }
     public void acquire(){
         this.previousPhase = this.phase;
         this.phase = PhaseConstants.ACQUIRING;
