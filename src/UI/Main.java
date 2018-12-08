@@ -101,25 +101,7 @@ public class Main extends JPanel {
         }
 
     }// next()
-/*
-    public void do_a_lap(){
-        player[playerTurn%4].add_cash(200000);
-        scoreBoard.set_player_cash_label(playerTurn%4);
 
-        if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){
-            gameBoard.gameControllerPanel.eggButton.setVisible(true);
-        }
-        else if(nextPosition == 0 || nextPosition == 12 || nextPosition == 18){
-            next();
-        }
-        else if(nextPosition == 6){
-            player[playerTurn%4].set_island_count();
-            gameBoard.gameControllerPanel.islandPanel.setVisible(true);
-        }
-        else{
-            gameBoard.gameControllerPanel.purchaseButton.setVisible(true);
-        }
-    }// do_a_lap()*/
 
     public void get_salary(){
         player[playerTurn%4].add_cash(200000);
@@ -215,7 +197,8 @@ public class Main extends JPanel {
             get_salary();
         }
         else{
-            show_panel();
+            phase.gap();
+            phase.show_panel();
         }
     }// move_player()
 
@@ -381,7 +364,6 @@ public class Main extends JPanel {
             gameBoard.place[12].set_price(0);
             scoreBoard.set_player_cash_label(playerTurn%4);
             phase.next();
-            System.out.println("ATM");
         } else if (nextPosition == 18) { //  헬기
             originPosition = 18;
             destination = gameBoard.gameControllerPanel.helicopterPanel.get_destination();
@@ -415,6 +397,7 @@ public class Main extends JPanel {
             gameBoard.gameControllerPanel.welfareFacilityPanel.setVisible(true);
         }
         else if(nextPosition == 18){// 헬리콥터
+            gameBoard.gameControllerPanel.helicopterPanel.reset_helicopter_panel();
             gameBoard.gameControllerPanel.helicopterPanel.setVisible(true);
         }
         else{

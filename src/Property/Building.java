@@ -1,5 +1,7 @@
 package Property;
 
+import Player.Player;
+
 public class Building {
     protected int land_price;
     protected int house_price;
@@ -7,6 +9,7 @@ public class Building {
     protected int hotel_price;
     protected int landmark_price;
 
+    protected Player player;
     protected int land; // 소유한 플레이어의 숫자 저장 ( -1은 소유한 사람 X)
     protected int house ; // 0 : 소유 X, 1 : 소유 O
     protected int building;
@@ -27,7 +30,7 @@ public class Building {
     public int get_hotel_ownership() { return hotel; }
     public int get_landmark_ownership() { return landmark; }
 
-    public void set_land_owner(int land) { this.land = land; }
+    public void set_land_owner(Player player) { this.player = player; }
     public void purchase_house() { this.house = 1; }
     public void purchase_building() { this.building = 1; }
     public void purchase_hotel() { this.hotel = 1; }

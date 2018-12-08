@@ -86,6 +86,7 @@ public class PurchasePanel extends JPanel {
         menuLabel[2] = new JLabel("빌딜");
         menuLabel[3] = new JLabel("호텔");
         menuLabel[4] = new JLabel("랜드마크");
+
         for (int i=0; i<5; i++){
             menuLabel[i].setBounds(0,0,95,60);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
@@ -147,9 +148,8 @@ public class PurchasePanel extends JPanel {
 
         this.cash = Main.player[Main.playerTurn%4].get_cash();
         this.place = place;
+
         expense = 0;
-
-
         land = 0;
         house = 0;
         building = 0;
@@ -178,7 +178,7 @@ public class PurchasePanel extends JPanel {
             menuCheckBox[2].setEnabled(false);
         }
         if (place.get_hotel_ownership() == 1) { // 호텔 소유
-            menuCheckBox[3].setSelected(false);
+            menuCheckBox[3].setSelected(true);
             menuCheckBox[3].setEnabled(false);
         }
         if (place.get_land_owner() != -1  // 랜드마크만 남은 상황

@@ -77,7 +77,6 @@ public class Phase {
         this.phase = PhaseConstants.SHOW_PANEL;
         propertyChangeSupport.firePropertyChange("SHOW_PANEL", previousPhase, phase);
     }
-
     public String getPreviousPhase() {
         return previousPhase;
     }

@@ -98,7 +98,7 @@ public class Place extends JPanel {
 
     public void purchase_land(Player player){
         city.owner = player;
-        city.buildings.set_land_owner(player.get_player_id());
+        city.buildings.set_land_owner(player);
         set_owner(player);
         cityNameLabel.setForeground(PlayerConstants.PLAYER_COLOR[player.get_player_id()]);
     }

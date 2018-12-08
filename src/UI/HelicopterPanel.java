@@ -61,7 +61,7 @@ public class HelicopterPanel extends JPanel {
         add(txtInput);
 
         chooseButton = new JButton("CHOOSE");
-        chooseButton.setBounds((800/7*5-225)/2+85, 120, 60, 30);
+        chooseButton.setBounds((800/7*5-225)/2+85, 120, 60, 15);
         chooseButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
         chooseButton.setBackground(Color.white);
         chooseButton.setForeground(borderColor);

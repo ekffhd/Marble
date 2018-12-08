@@ -35,8 +35,8 @@ public class GoldCardPanel extends JPanel {
 
         nameLabel = new JLabel();
         nameLabel.setBounds(0,0,800/7*5-80, 60);
-        //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
-        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
         nameLabel.setForeground(goldColor);
@@ -72,7 +72,7 @@ public class GoldCardPanel extends JPanel {
     }//GoldCardPanel()
 
     public void set_card_panel_info(){
-        cardId = (int)(Math.random() * 2)+17;
+        cardId = (int)(Math.random() * 25);
         contentsLabel.setText(GoldCardConstants.CARD_CONTENT[cardId]);
         nameLabel.setText(GoldCardConstants.CARD_TITLE[cardId]);
     }//set_card_panel_info()
@@ -83,6 +83,7 @@ public class GoldCardPanel extends JPanel {
 
             if(object == confirmButton) {
                 setVisible(false);
+                phase.gap();
                 phase.special();
             }
         }
