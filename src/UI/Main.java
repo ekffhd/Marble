@@ -147,27 +147,7 @@ public class Main extends JPanel {
             else{
                 gameBoard.gameControllerPanel.moveButton.setVisible(true);
             }
-            /*
-            if(dice1.get_dice() == dice2.get_dice()){
 
-                player[playerTurn%4].add_dice_count();
-                System.out.println(player[playerTurn%4].get_dice_count());
-                if(player[playerTurn%4].get_dice_count() == 2){
-                    player[playerTurn%4].init_dice_count();
-                    gameBoard.gameControllerPanel.doubleButton.setVisible(false);
-                    move_player(6);
-                }
-                else{
-                    gameBoard.gameControllerPanel.rollButton.setVisible(false);
-                    gameBoard.gameControllerPanel.doubleButton.setVisible(true);
-                }
-            }
-            else{
-                gameBoard.gameControllerPanel.rollButton.setVisible(false);
-                gameBoard.gameControllerPanel.doubleButton.setVisible(false);
-                gameBoard.gameControllerPanel.moveButton.setVisible(true);
-            }
-            */
         }
     }
 
@@ -358,26 +338,29 @@ public class Main extends JPanel {
     public void special_event(){
 
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){ //황금오리
+            System.out.println("황금오리");
             this.cardId = gameBoard.gameControllerPanel.goldCardPanel.cardId;
             fire_gold_card_effect();
         }
         else if(nextPosition == 6){ // 직잭
+            System.out.println("직잭");
+
             player[playerTurn%4].add_island_count();
             phase.next();
         }
         else if (nextPosition == 12) { // ATM
+            System.out.println("광개토");
+
             price = gameBoard.place[12].get_price();
             player[playerTurn%4].add_cash(price);
             gameBoard.place[12].set_price(0);
             scoreBoard.set_player_cash_label(playerTurn%4);
             phase.next();
         } else if (nextPosition == 18) { //  헬기
-            originPosition = 18;
+            System.out.println("헬기");
+
             destination = gameBoard.gameControllerPanel.helicopterPanel.get_destination();
-            nextPosition = destination;
-            gameBoard.show_hide_player(playerTurn%4, 18, destination);
-            player[playerTurn%4].set_position(destination);
-            show_panel();
+            move_player(destination);
         } // if ~ else if
     }
 

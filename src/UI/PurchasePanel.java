@@ -148,7 +148,7 @@ public class PurchasePanel extends JPanel {
 
         this.cash = Main.player[Main.playerTurn%4].get_cash();
         this.place = place;
-
+        isOwn = false;
         expense = 0;
         land = 0;
         house = 0;
@@ -156,18 +156,16 @@ public class PurchasePanel extends JPanel {
         hotel = 0;
         landmark = 0;
 
-        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);
+        placeLabel.setText(PlaceConstants.PLACE_LINE_NAME[Main.nextPosition]);// 장소이름
 
         priceLabel[0].setText(place.get_land_price()+""); // 부지
         priceLabel[1].setText(place.get_house_price()+""); // 집
         priceLabel[2].setText(place.get_building_price()+""); // 빌딩
         priceLabel[3].setText(place.get_hotel_price()+""); // 호텔
         priceLabel[4] .setText(place.get_landmark_price()+""); // 랜드마크
-
+        System.out.println("owner"+place.get_land_owner());
         if (place.get_land_owner() != -1) { // 부지 소유
             isOwn = true;
-            menuCheckBox[0].setSelected(true);
-            menuCheckBox[0].setEnabled(false);
         }
         if (place.get_house_ownership() == 1) { // 집 소유
             menuCheckBox[1].setSelected(true);
@@ -188,9 +186,10 @@ public class PurchasePanel extends JPanel {
             menuCheckBox[4].setEnabled(true);
         }
         if(isOwn == false){
+            System.out.println("비용"+expense);
             expense += place.get_land_price();
-            expenseLabel.setText(expense+"");
         }
+        expenseLabel.setText(expense+"");
     }
 
     private void reset_checkbox() {
