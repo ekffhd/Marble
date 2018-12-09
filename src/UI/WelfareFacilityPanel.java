@@ -32,16 +32,16 @@ public class WelfareFacilityPanel extends JPanel { // ATM
 
         nameLabel = new JLabel(PlaceConstants.PLACE_LINE_NAME[12]); // ATM
         nameLabel.setBounds(0,0,800/7*5-80, 80);
-        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
-        //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
+        nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(nameLabel);
 
         noticeLabel = new JLabel("누가 돈을..?");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
-        noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        //noticeLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 40));
+        //noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        noticeLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(noticeLabel);

@@ -43,8 +43,8 @@ public class TakeOverPanel extends JPanel { // 인수
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        //\\placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);
@@ -52,7 +52,8 @@ public class TakeOverPanel extends JPanel { // 인수
 
         titleLabel = new JLabel("인수를 하시겠습니까?");
         titleLabel.setBounds(0,80, 800/7*5-80, 30);
-        titleLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        //titleLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        titleLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setVerticalAlignment(SwingConstants.CENTER);
         titleLabel.setForeground(Color.black);
@@ -90,8 +91,8 @@ public class TakeOverPanel extends JPanel { // 인수
             menuLabel[i].setBounds(0,0,95,50);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             menuLabel[i].setVerticalAlignment(SwingConstants.CENTER);
-            menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
-            //menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
+            //menuLabel[i].setFont(new Font("Rix전자오락 3D", Font.PLAIN, 30));
+            menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
             menuPanel[i].add(menuLabel[i]);
         }
 
