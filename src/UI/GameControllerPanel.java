@@ -57,7 +57,7 @@ public class GameControllerPanel extends JPanel {
         islandPanel.setVisible(false);
         add(islandPanel);
 
-        escapeSuccessIslandPanel = new EscapeSuccessIslandPanel(phase);
+        escapeSuccessIslandPanel = new EscapeSuccessIslandPanel(phase, this);
         escapeSuccessIslandPanel.setVisible(false);
         add(escapeSuccessIslandPanel);
 

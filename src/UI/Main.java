@@ -127,14 +127,13 @@ public class Main extends JPanel {
         if(isLandCount!=0){ // 무인도
             if(dice1Num == dice2Num){ // 더블
                 gameBoard.gameControllerPanel.escapeSuccessIslandPanel.setVisible(true);
+                scoreBoard.escape_island_icon(playerTurn%4);
                 player[playerTurn%4].escape_island();
-                //고쳐야함
-                gameBoard.gameControllerPanel.moveButton.setVisible(true);
             }
             else{
-                gameBoard.gameControllerPanel.escapeFailIslandPanel.setVisible(true);
                 player[playerTurn%4].sub_island_count();
-                phase.next();
+                gameBoard.gameControllerPanel.escapeFailIslandPanel.setVisible(true);
+                scoreBoard.sub_island_icon_count(player[playerTurn%4].get_player_id(),player[playerTurn%4].get_island_count());
             }
         }
         else{
@@ -344,8 +343,14 @@ public class Main extends JPanel {
         }
         else if(nextPosition == 6){ // 직잭
             System.out.println("직잭");
-
-            player[playerTurn%4].add_island_count();
+            if(player[playerTurn%4].get_island_count() == 0){
+                player[playerTurn%4].add_island_count();
+                scoreBoard.set_island_icon_count(playerTurn%4);
+            }
+            else{
+                player[playerTurn%4].sub_island_count();
+                scoreBoard.sub_island_icon_count(playerTurn%4,player[playerTurn%4].get_island_count());
+            }
             phase.next();
         }
         else if (nextPosition == 12) { // ATM

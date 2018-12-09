@@ -13,9 +13,11 @@ public class ScoreBoard extends JPanel {
     private JPanel scoreBoardMainPanel;
     private Player[] player;
     private JPanel[]  playerInformationPanel;
-    protected JLabel[] playerNameLabel, playerCashLabel, playerIconLabel, islandCountIconLabel;
+    protected JLabel[] playerNameLabel, playerCashLabel, playerIconLabel;
+    protected JLabel[][] islandCountIconLabel;
     protected  JLabel tollFreeIconLabel;
-    private ImageIcon[] playerIcon, islandCountIcon;
+    private ImageIcon[] playerIcon;
+    private ImageIcon[][]  islandCountIcon;
     private ImageIcon tollFreeIcon;
     private JLabel dummy;
 
@@ -31,8 +33,8 @@ public class ScoreBoard extends JPanel {
         playerIconLabel = new JLabel[4];
         playerIcon = new ImageIcon[4];
 
-        islandCountIconLabel = new JLabel[3];
-        islandCountIcon = new ImageIcon[3];
+        islandCountIconLabel = new JLabel[4][3];
+        islandCountIcon = new ImageIcon[4][3];
 
         this.player = new Player[4];
 
@@ -63,12 +65,13 @@ public class ScoreBoard extends JPanel {
             playerCashLabel[i].setBounds(0,120, 200, 30);
             playerInformationPanel[i].add(playerCashLabel[i]);
 
+
             for (int j=0; j<3; j++) {
-                islandCountIcon[j] = new ImageIcon("./image/island_count"+(j+1)+".png");
-                islandCountIconLabel[j] = new JLabel(islandCountIcon[j]);
-                islandCountIconLabel[j].setBounds(8, 25*j+5, 27, 25);
-                islandCountIconLabel[j].setVisible(false);
-                playerInformationPanel[i].add(islandCountIconLabel[j]);
+                islandCountIcon[i][j] = new ImageIcon("./image/island_count"+(j+1)+".png");
+                islandCountIconLabel[i][j] = new JLabel(islandCountIcon[i][j]);
+                islandCountIconLabel[i][j].setBounds(8, 25*j+5, 27, 25);
+                islandCountIconLabel[i][j].setVisible(false);
+                playerInformationPanel[i].add(islandCountIconLabel[i][j]);
             }
 
             tollFreeIcon = new ImageIcon("./image/free.png");
@@ -89,6 +92,21 @@ public class ScoreBoard extends JPanel {
 
     public void set_player_cash_label(int playerId){
         playerCashLabel[playerId].setText(player[playerId].get_cash()+" won");
+    }
+
+    public void set_island_icon_count(int playerId){
+        System.out.println(playerId+"가 지그재그로");
+        islandCountIconLabel[playerId][2].setVisible(true);
+    }
+    public void sub_island_icon_count(int playerId, int count){
+        System.out.println(playerId+" "+count);
+        islandCountIconLabel[playerId][count].setVisible(false);
+        islandCountIconLabel[playerId][count-1].setVisible(true);
+    }
+    public void escape_island_icon(int playerId){
+        islandCountIconLabel[playerId][0].setVisible(false);
+        islandCountIconLabel[playerId][1].setVisible(false);
+        islandCountIconLabel[playerId][2].setVisible(false);
     }
 
 }//ScoreBoard class

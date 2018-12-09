@@ -13,15 +13,17 @@ public class EscapeSuccessIslandPanel extends JPanel {
     private JButton confirmBtn;
     private ImageIcon imgIcon;
     private Phase phase;
+    private GameControllerPanel gameControllerPanel;
 
     private ButtonListener buttonListener;
 
-    public EscapeSuccessIslandPanel(Phase phase){
+    public EscapeSuccessIslandPanel(Phase phase, GameControllerPanel gameControllerPanel){
         setBackground(Color.white);
         setBounds(40, 40, 800/7*5-80, 550/7*5-80);
         setBorder(BorderFactory.createLineBorder(Color.black, 6));
         setLayout(null);
 
+        this.gameControllerPanel = gameControllerPanel;
         this.phase = phase;
         buttonListener = new ButtonListener();
 
@@ -59,6 +61,7 @@ public class EscapeSuccessIslandPanel extends JPanel {
             Object obj = e.getSource();
             if(obj == confirmBtn){
                 setVisible(false);
+                gameControllerPanel.moveButton.setVisible(true);
             }
         }
         public void mouseEntered(MouseEvent e) {

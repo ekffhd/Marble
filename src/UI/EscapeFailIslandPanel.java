@@ -59,6 +59,7 @@ public class EscapeFailIslandPanel extends JPanel {
             Object obj = e.getSource();
             if(obj == confirmBtn){
                 setVisible(false);
+                phase.next();
             }
         }
         public void mouseEntered(MouseEvent e) {

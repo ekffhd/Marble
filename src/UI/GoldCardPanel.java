@@ -83,8 +83,9 @@ public class GoldCardPanel extends JPanel {
 
             if(object == confirmButton) {
                 setVisible(false);
-                phase.gap();
                 phase.special();
+                phase.gap();
+
             }
         }
         public void mousePressed(MouseEvent event){ }
