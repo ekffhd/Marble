@@ -33,7 +33,7 @@ public class Main extends JPanel {
     protected static int nextPosition;
     protected static int cardId;
     protected int afterPosition;
-    private int destination;
+    private int destination, originalOwner;
 
 
     private  int expense, land, house, building, hotel, landmark; // 선택 여부
@@ -375,6 +375,41 @@ public class Main extends JPanel {
 
         player[playerTurn%4].sub_cash(bill);
         scoreBoard.set_player_cash_label(playerTurn%4);
+
+        if(gameBoard.place[nextPosition].get_landmark_ownership() == 0) { // 매입 가능
+            gameBoard.gameControllerPanel.takeOverButton.setVisible(true);
+            //매입버튼.setVisible(true);
+        }
+        else{
+            phase.next();
+            //매입버튼.setVisible(false);
+        }
+        //phase.takeOver();
+        //phase.next();
+    }
+
+    public void take_over() {
+        originalOwner = gameBoard.place[nextPosition].get_land_owner();
+        expense = gameBoard.gameControllerPanel.takeOverPanel.get_expense();
+        house = gameBoard.gameControllerPanel.takeOverPanel.get_house();
+        building = gameBoard.gameControllerPanel.takeOverPanel.get_building();
+        hotel = gameBoard.gameControllerPanel.takeOverPanel.get_hotel();
+
+        this.expense = expense * 10000;
+        player[playerTurn%4].sub_cash(expense);
+        scoreBoard.set_player_cash_label(playerTurn%4);
+
+        player[originalOwner].add_cash(expense);
+        scoreBoard.set_player_cash_label(originalOwner);
+
+        gameBoard.place[nextPosition].purchase_land(player[playerTurn%4]);
+        if (house == 1) { gameBoard.place[nextPosition].purchase_house(); }
+        if (building == 1) {gameBoard.place[nextPosition].purchase_building(); }
+        if (hotel == 1) { gameBoard.place[nextPosition].purchase_hotel(); }
+
+        gameBoard.place[nextPosition].update_building_status(playerTurn%4);
+        gameBoard.place[nextPosition].set_city_price();
+
         phase.next();
     }
 
@@ -394,6 +429,7 @@ public class Main extends JPanel {
         else if(nextPosition == 18){// 헬리콥터
             gameBoard.gameControllerPanel.helicopterPanel.reset_helicopter_panel();
             gameBoard.gameControllerPanel.helicopterPanel.setVisible(true);
+            gameBoard.show_city_number();
         }
         else{
             if(gameBoard.place[nextPosition].get_land_owner() == -1){//소유자 x
@@ -416,12 +452,14 @@ public class Main extends JPanel {
                         phase.next();
                     }
                     else{
+                        /*
                         if(gameBoard.place[nextPosition].get_landmark_ownership() == -1) { // 매입 가능
                             //매입버튼.setVisible(true);
                         }
                         else{
                             //매입버튼.setVisible(false);
                         }
+                        */
                         gameBoard.gameControllerPanel.payButton.setVisible(true);
                     }
                 }
