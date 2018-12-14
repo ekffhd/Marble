@@ -163,8 +163,8 @@ public class PurchasePanel extends JPanel {
         priceLabel[2].setText(place.get_building_price()+""); // 빌딩
         priceLabel[3].setText(place.get_hotel_price()+""); // 호텔
         priceLabel[4] .setText(place.get_landmark_price()+""); // 랜드마크
-        System.out.println("owner"+place.get_land_owner());
-        if (place.get_land_owner() != -1) { // 부지 소유
+        System.out.println("owner"+place.get_land_owner_id());
+        if (place.get_land_owner_id() != -1) { // 부지 소유
             isOwn = true;
         }
         if (place.get_house_ownership() == 1) { // 집 소유
@@ -179,7 +179,7 @@ public class PurchasePanel extends JPanel {
             menuCheckBox[3].setSelected(true);
             menuCheckBox[3].setEnabled(false);
         }
-        if (place.get_land_owner() != -1  // 랜드마크만 남은 상황
+        if (place.get_land_owner_id() != -1  // 랜드마크만 남은 상황
                 && place.get_house_ownership() == 1
                 && place.get_building_ownership() == 1
                 && place.get_hotel_ownership() == 1){

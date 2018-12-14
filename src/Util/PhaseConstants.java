@@ -10,7 +10,6 @@ public class PhaseConstants {
             "PURCHASE_PHASE",
             "BILLING_PHASE",
             "TAKEOVER_PHASE",
-            "ACQUIRING_PHASE",
             "NEXT_PHASE",
             "END_PHASE",
             "SHOW_PANEL",
@@ -24,7 +23,6 @@ public class PhaseConstants {
     final public static String TAKEOVER = "TAKEOVER_PHASE";
     final public static String MOVING = "MOVING_PHASE";
     final public static String GAP = "GAP_PHASE";
-    final public static String ACQUIRING = "ACQUIRING_PHASE";
     final public static String NEXT = "NEXT_PHASE";
     final public static String END = "END_PHASE";
     final public static String SHOW_PANEL = "SHOW_PANEL";

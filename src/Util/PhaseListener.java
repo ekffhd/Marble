@@ -12,82 +12,74 @@ import java.beans.PropertyChangeListener;
 public class PhaseListener implements PropertyChangeListener {
 
     private Dice dice1, dice2;
-    private ScoreBoard scoreBoard;
     private GameBoard gameBoard;
     private Main main;
-    private Phase phase;
     private Player player;
     private int  bill;
 
-    public PhaseListener(Dice dice1, Dice dice2, ScoreBoard scoreBoard, GameBoard gameBoard, Main main, Phase phase){
+    public PhaseListener(Dice dice1, Dice dice2, GameBoard gameBoard, Main main){
         this.dice1 = dice1;
         this.dice2 = dice2;
-        this.scoreBoard = scoreBoard;
         this.gameBoard = gameBoard;
         this.main = main;
-        this.phase = phase;
         this.player = new Player(-1);
-
     }
 
     public void propertyChange(PropertyChangeEvent event) {
         if (event.getPropertyName().equals("START")){
-            System.out.println("start");
+            //시작
+            main.start();
             gameBoard.show_hide_player(0,0,0);
             gameBoard.show_hide_player(1,0,0);
             gameBoard.show_hide_player(2,0,0);
             gameBoard.show_hide_player(3,0,0);
         }
         else if (event.getPropertyName().equals("BEFORE_START")){
-            System.out.println("before start");
+            //없어도 될듯
         }
         else if (event.getPropertyName().equals("ROLL")){
-            System.out.println("roll");
+            //주사위 굴리기
             main.roll_dice();
         }
         else if (event.getPropertyName().equals("MOVE")){
-            System.out.println("move");
+            //플레이어 이동
             player = main.get_active_player();
             main.move_player( player.get_position()+ dice1.get_dice() + dice2.get_dice());
         }
         else if (event.getPropertyName().equals("GAP")){
-            System.out.println("GAP");
+            //GAP <-- 연속으로 같은 phase가 발생하면 잘 작동이 되지 않는 것 같아 추가하였습니다.
         }
         else if (event.getPropertyName().equals("PURCHASE")){
-            System.out.println("purchase");
+            //구매
             main.purchase_property();
         }
-        else if (event.getPropertyName().equals("ACQUIRE")){
-            System.out.println("acquire");
-        }
         else if (event.getPropertyName().equals("BILL")){
-            System.out.println("bill");
+            //통행료 지불
             this.bill = gameBoard.gameControllerPanel.tollPanel.get_bill();
             bill = bill*10000;
             main.bill(bill);
         }
         else if (event.getPropertyName().equals("TAKEOVER")){
-            System.out.println("takeOver");
+            //인수
             main.take_over();
         }
+        else if (event.getPropertyName().equals("SPECIAL")){
+            //특수 이벤트
+            main.special_event();
+        }
         else if (event.getPropertyName().equals("NEXT")){
-            System.out.println("next");
+            //다음 턴으로 넘기기
             main.next();
         }
         else if (event.getPropertyName().equals("END")){
-            System.out.println("end");
+            //종료
         }
         else if (event.getPropertyName().equals("SHOW_PANEL")){
-            System.out.println("show_panel");
+            //위치에 해당하는 패널 띄우기
             main.show_panel();
         }
         else if (event.getPropertyName().equals("RESTART")){
-            System.out.println("restart");
+            //재시작
         }
-        else if (event.getPropertyName().equals("SPECIAL")){
-            System.out.println("special");
-            main.special_event();
-        }
-
     }
 }

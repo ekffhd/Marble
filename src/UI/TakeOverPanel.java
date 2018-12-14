@@ -11,21 +11,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class TakeOverPanel extends JPanel { // 인수
-    private Color mainBackgroundColor, mainColor;
-    private JLabel titleLabel, placeLabel, expenseLabel;
-    private JPanel checkboxPanel;
-    private JPanel[] menuPanel;
-    private JLabel[] menuLabel, priceLabel;
-    private JCheckBox[] menuCheckBox;
-    private JButton takeOverButton, cancelButton;
-    private Phase phase;
-    private int expense;
-    private int house, building, hotel;
-    private Place place;
+//인수 패널
+public class TakeOverPanel extends JPanel {
+    private Color           mainBackgroundColor, mainColor;
+    private JLabel          titleLabel, placeLabel, expenseLabel;
+    private JPanel          checkboxPanel;
+    private JPanel[]        menuPanel;
+    private JLabel[]        menuLabel, priceLabel;
+    private JCheckBox[]     menuCheckBox;
+    private JButton         takeOverButton, cancelButton;
+    private Phase           phase;
+    private int             expense;
+    private int             house, building, hotel;
+    private Place               place;
 
     private CheckBoxListener checkBoxListener;
-    private ButtonListener buttonListener;
+    private ButtonListener  buttonListener;
 
     public TakeOverPanel(Phase phase) {
         mainBackgroundColor = Color.white;
@@ -44,7 +45,7 @@ public class TakeOverPanel extends JPanel { // 인수
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
         //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        //\\placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);

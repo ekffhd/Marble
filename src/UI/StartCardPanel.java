@@ -1,5 +1,5 @@
 package UI;
-
+//주석 완료
 import Util.Phase;
 
 import javax.swing.*;
@@ -9,15 +9,16 @@ import java.awt.event.MouseListener;
 
 public class StartCardPanel extends JPanel{
 
-    private Color startColor;
+    private Color           startColor;
 
-    private JLabel nameLabel, cashLabel;
-    private JButton getButton;
-    private ButtonListener buttonListener;
-    private Phase phase;
+    private JLabel          nameLabel, cashLabel;
+    private JButton         getButton;
+    private ButtonListener  buttonListener;
+    private Phase           phase;
 
+    //월급 패널
     public StartCardPanel(Phase phase){
-
+        //패널 설정
         startColor = new Color(14, 46,64);
         this.phase = phase;
         setBackground(startColor);
@@ -25,6 +26,7 @@ public class StartCardPanel extends JPanel{
         setLayout(null);
         buttonListener = new ButtonListener();
 
+        //제목 라벨
         nameLabel = new JLabel("S  A  L  A  R  Y");
         nameLabel.setBounds(0,0,800/7*5-80, 80);
         nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
@@ -34,6 +36,7 @@ public class StartCardPanel extends JPanel{
         nameLabel.setForeground(Color.white);
         add(nameLabel);
 
+        //월급 라벨
         cashLabel = new JLabel("+ 200000 won");
         cashLabel.setBounds(0,120, 800/7*5-80, 50);
         cashLabel.setFont(new Font("drid herder solid", Font.PLAIN, 45));
@@ -42,6 +45,7 @@ public class StartCardPanel extends JPanel{
         cashLabel.setForeground(Color.white);
         add(cashLabel);
 
+        //확인 버튼
         getButton = new JButton("GET");
         getButton.setBounds(184 , 210, 122, 50);
         getButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
@@ -57,22 +61,24 @@ public class StartCardPanel extends JPanel{
 
 
     private class ButtonListener implements MouseListener {
-
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
 
-            if(object == getButton) {
+            if(object == getButton) { //확인 버튼을 클릭할 경우
                 setVisible(false);
-                if(Main.nextPosition == 0) {
+                if(Main.nextPosition == 0) { //만약 월급지점에 도착했다면
+                    //다음 턴으로 넘어간다.
                     phase.next();
                 }
-                else{
+                else{ //월급지점을 지나쳤다면
+                    //플레이어가 밟은 place 에 해당하는 패널을 띄운다.
                     phase.show_panel();
                 }
             }
         }
         public void mousePressed(MouseEvent event){ }
         public void mouseReleased(MouseEvent event){ }
+        //button hovering
         public void mouseEntered(MouseEvent event) {
             JButton object = (JButton)event.getSource();
 

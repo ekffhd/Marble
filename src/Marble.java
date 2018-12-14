@@ -8,6 +8,8 @@ import java.io.File;
 
 public class Marble {
     public static void main(String[] args){
+
+        //BGM
         try{
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("Music.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
@@ -20,13 +22,14 @@ public class Marble {
             except.printStackTrace();
         }
 
+        //Frame 추가
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
 
+        //Main Panel추가
         Main main = new Main();
         frame.getContentPane().add(main);
-
 
         frame.pack();
         frame.setVisible(true);
