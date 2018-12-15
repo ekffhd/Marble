@@ -26,6 +26,7 @@ public class GameBoard extends JPanel {
         //패널 설정
         setBounds(0,0,800,550);
         setBackground(Color.white);
+
         setLayout(new GridBagLayout());
         this.phase = phase;
 
@@ -181,7 +182,7 @@ public class GameBoard extends JPanel {
 
         //부지 가격 설정
         for(int i=0;i<24;i++){
-            place[i].set_building_price(BuildingConstants.BUILDING_PRICE[i]);
+            place[i].set_building_price();
         }
 
         //특수 지역 배경 색 설정
@@ -229,5 +230,8 @@ public class GameBoard extends JPanel {
    public void show_hide_player(int playerId,int originPosition, int nextPosition){
         place[originPosition].hide_player(playerId);
         place[nextPosition].show_player(playerId);
+    }
+    public void hide_player(int playerId, int position){
+        place[position].hide_player(playerId);
     }
 }

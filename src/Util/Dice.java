@@ -10,6 +10,7 @@ public class Dice {
 
     //주사위 굴리기
     public void roll_dice(){
+        //dice_num = 2;
         dice_num = (int)(Math.random() * 6) + 1;
     }
 

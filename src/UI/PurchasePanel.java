@@ -167,22 +167,22 @@ public class PurchasePanel extends JPanel {
         if (place.get_land_owner_id() != -1) { // 부지 소유
             isOwn = true;
         }
-        if (place.get_house_ownership() == 1) { // 집 소유
+        if (place.get_house_ownership()) { // 집 소유
             menuCheckBox[1].setSelected(true);
             menuCheckBox[1].setEnabled(false);
         }
-        if (place.get_building_ownership() == 1) { // 빌딩 소유
+        if (place.get_building_ownership()) { // 빌딩 소유
             menuCheckBox[2].setSelected(true);
             menuCheckBox[2].setEnabled(false);
         }
-        if (place.get_hotel_ownership() == 1) { // 호텔 소유
+        if (place.get_hotel_ownership()) { // 호텔 소유
             menuCheckBox[3].setSelected(true);
             menuCheckBox[3].setEnabled(false);
         }
         if (place.get_land_owner_id() != -1  // 랜드마크만 남은 상황
-                && place.get_house_ownership() == 1
-                && place.get_building_ownership() == 1
-                && place.get_hotel_ownership() == 1){
+                && place.get_house_ownership()
+                && place.get_building_ownership()
+                && place.get_hotel_ownership()){
             menuCheckBox[4].setEnabled(true);
         }
         if(isOwn == false){

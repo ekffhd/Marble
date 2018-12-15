@@ -2,16 +2,14 @@ package UI;
 //주석 완료
 import Player.Player;
 import Player.PlayerConstants;
-import Player.PlayerData;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 
 public class ScoreBoard extends JPanel {
     private Player[]        player;
-    private JPanel[]        playerInformationPanel;
+    protected JPanel[]      playerInformationPanel;
     protected JLabel[]      playerNameLabel, playerCashLabel, playerIconLabel;
     protected JLabel[][]    islandCountIconLabel;
     protected  JLabel       tollFreeIconLabel;
@@ -88,16 +86,24 @@ public class ScoreBoard extends JPanel {
     }//ScoreBoard()
 
     //턴을 나타내는 (분홍색)테두리 설정
-    public void setBorder(int player_turn){
-        if(player_turn != 0){
-            playerInformationPanel[(player_turn-1)%4].setBorder(null);
+    public void setBorder(int playerId){
+
+        for(int i=0;i<4;i++){
+            playerInformationPanel[i].setBorder(null);
         }
-        playerInformationPanel[player_turn%4].setBorder(BorderFactory.createLineBorder(Color.magenta, 10));
+
+        playerInformationPanel[playerId].setBorder(BorderFactory.createLineBorder(Color.magenta, 10));
     }
 
     //소지금 라벨 재설정
     public void set_player_cash_label(int playerId){
-        playerCashLabel[playerId].setText(player[playerId].get_cash()+" won");
+        if(player[playerId].get_status()){
+            playerCashLabel[playerId].setText(player[playerId].get_cash()+" won");
+        }
+        else{
+            playerCashLabel[playerId].setText("파산");
+            playerCashLabel[playerId].setFont(new Font("RixVideoGameB",Font.PLAIN, 18));
+        }
     }
 
     //지그재그 탈출 카운트 설정
@@ -110,7 +116,9 @@ public class ScoreBoard extends JPanel {
     public void sub_island_icon_count(int playerId, int count){
         System.out.println(playerId+" "+count);
         islandCountIconLabel[playerId][count].setVisible(false);
-        islandCountIconLabel[playerId][count-1].setVisible(true);
+        if(count!=0){
+            islandCountIconLabel[playerId][count-1].setVisible(true);
+        }
     }
 
     //지그재그 탈출 성공
@@ -118,5 +126,9 @@ public class ScoreBoard extends JPanel {
         islandCountIconLabel[playerId][0].setVisible(false);
         islandCountIconLabel[playerId][1].setVisible(false);
         islandCountIconLabel[playerId][2].setVisible(false);
+    }
+
+    public void set_player_die(int playerId){
+        playerInformationPanel[playerId].setBackground(Color.gray);
     }
 }//ScoreBoard class

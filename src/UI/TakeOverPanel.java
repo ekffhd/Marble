@@ -160,19 +160,19 @@ public class TakeOverPanel extends JPanel {
         priceLabel[2].setText(place.get_building_price()+""); // 빌딩
         priceLabel[3].setText(place.get_hotel_price()+""); // 호텔
 
-        if (place.get_house_ownership() == 1) { // 집 소유
+        if (place.get_house_ownership()) { // 집 소유
             expense += place.get_house_price();
             menuCheckBox[1].setSelected(true);
             menuCheckBox[1].setEnabled(false);
             house = 1;
         }
-        if (place.get_building_ownership() == 1) { // 빌딩 소유
+        if (place.get_building_ownership()) { // 빌딩 소유
             expense += place.get_building_price();
             menuCheckBox[2].setSelected(true);
             menuCheckBox[2].setEnabled(false);
             building = 1;
         }
-        if (place.get_hotel_ownership() == 1) { // 호텔 소유
+        if (place.get_hotel_ownership()) { // 호텔 소유
             expense += place.get_hotel_price();
             menuCheckBox[3].setSelected(true);
             menuCheckBox[3].setEnabled(false);

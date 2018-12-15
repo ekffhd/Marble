@@ -29,6 +29,8 @@ public class Main extends JPanel {
     private int                     destination, originalOwner;
     private int                     expense, land, house, building, hotel, landmark; // 선택 여부
     private int                     price;
+    private Player[]                rank;
+    private int                     dieCount;
 
     public Main() {
         setPreferredSize(new Dimension(800, 750));
@@ -49,10 +51,13 @@ public class Main extends JPanel {
         for(int i=0; i<4; i++){
             player[i] = new Player(i);
             player[i].set_position(0);
-            player[i].add_cash(2000000);
+            player[i].add_cash(200000);
         }
 
         activePlayer = player[0];
+
+        rank = new Player[4];
+        dieCount = 0;
 
         //게임 판
         gameBoard = new GameBoard(phase);
@@ -100,18 +105,32 @@ public class Main extends JPanel {
     public void next(){
 
         int isLandCount = player[playerTurn%4].get_island_count();
-        if(dice1Num == dice2Num && isLandCount == 0){
+
+        if(dice1Num == dice2Num && isLandCount == 0 && activePlayer.get_status()){
             //더블이 나왔을 때, 한번 더 주사위를 한번 더 던진다.
             gameBoard.gameControllerPanel.doubleButton.setVisible(true);
         }
         else{
             //더블이 나오지 않았을 경우, 턴을 넘긴다.
-            //이번 턴에 주사위를 던진 횟수를 초기화시킨다. (한 턴에 주사위를 3번이상 던질 경우엔 무인도로 이동)
+            //이번 턴에 주사위를 던진 횟수를 초기화시킨다. (한 턴에 주사위를 4번이상 던질 경우엔 무인도로 이동)
             activePlayer.init_dice_count();
+
             this.playerTurn++;
             set_active_player();
-            scoreBoard.setBorder(this.playerTurn);
-            gameBoard.gameControllerPanel.rollButton.setVisible(true);
+
+            while(!activePlayer.get_status()){
+                this.playerTurn++;
+                set_active_player();
+            }
+
+            scoreBoard.setBorder(activePlayer.get_player_id());
+
+            if(dieCount!=3){
+                gameBoard.gameControllerPanel.rollButton.setVisible(true);
+            }
+            else{
+                gameBoard.gameControllerPanel.endButton.setVisible(true);
+            }
         }
     }// next()
 
@@ -136,6 +155,7 @@ public class Main extends JPanel {
 
         //주사위를 굴린 횟수를 증가시킨다.
         activePlayer.add_dice_count();
+        System.out.println(activePlayer.get_dice_count()+"번 던져서 무인도");
 
         //플레이어가 무인도에 있을 경우 isLandCount는 1이상이다.
         int isLandCount = activePlayer.get_island_count();
@@ -156,8 +176,9 @@ public class Main extends JPanel {
             }
         }
         else{ //플레이어가 무인도에 있지 않을 경우
-            if(dice1Num == dice2Num && activePlayer.get_dice_count() >= 2){ //플레이어가 주사위를 3번이상 던지게 될 경우
+            if(dice1Num == dice2Num && activePlayer.get_dice_count() > 2){ //플레이어가 주사위를 4번이상 던지게 될 경우
                 //플레이어를 무인도로 이동시킨다.
+                System.out.println(activePlayer.get_dice_count()+"번 던져서 무인도");
                 activePlayer.init_dice_count();
                 gameBoard.gameControllerPanel.doubleButton.setVisible(false);
                 activePlayer.add_island_count();
@@ -186,13 +207,17 @@ public class Main extends JPanel {
         scoreBoard.set_player_cash_label(playerTurn%4);
 
         //해당 부지의 빌딩정보를 업데이트 한다.
-        if (land == 1) {gameBoard.place[nextPosition].purchase_land(player[playerTurn%4]);}
+        if (land == 1) {
+            gameBoard.place[nextPosition].purchase_land(activePlayer);
+
+            //player 의 부지 소유 배열에 추가한다.
+            activePlayer.add_owned_place(nextPosition);
+        }
         if (house == 1) { gameBoard.place[nextPosition].purchase_house();}
         if (building == 1) {gameBoard.place[nextPosition].purchase_building();}
         if (hotel == 1) { gameBoard.place[nextPosition].purchase_hotel(); }
         if (landmark == 1) { gameBoard.place[nextPosition].purchase_landmark();}
         gameBoard.place[nextPosition].update_building_status(playerTurn%4);
-        gameBoard.place[nextPosition].set_city_price();
 
         //턴을 넘긴다.
         phase.next();
@@ -225,21 +250,38 @@ public class Main extends JPanel {
         switch(cardId){
             case 0:
                 // ATM에 30000원 기부
-                goldCard.donate(30000, gameBoard.place[12], player[playerTurn%4]);
-                scoreBoard.set_player_cash_label(playerTurn%4);
-                phase.next();
+                goldCard.donate(30000, gameBoard.place[12], activePlayer);
+                scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+
+                //player 의 소지금이 마이너스가 될 경우, player_dead()를 실행시키고 그렇지 않을 경우, next phase 로 넘어간다.
+                if(activePlayer.get_cash()<0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 1:
                 // ATM에 50000원 기부
-                goldCard.donate(50000, gameBoard.place[12], player[playerTurn%4]);
-                scoreBoard.set_player_cash_label(playerTurn%4);
-                phase.next();
+                goldCard.donate(50000, gameBoard.place[12], activePlayer);
+                scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+                if(activePlayer.get_cash()<0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 2:
                 // ATM에 80000원 기부
-                goldCard.donate(80000, gameBoard.place[12], player[playerTurn%4]);
-                scoreBoard.set_player_cash_label(playerTurn%4);
-                phase.next();
+                goldCard.donate(80000, gameBoard.place[12], activePlayer);
+                scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+                if(activePlayer.get_cash() < 0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 3:
                 //면제권
@@ -248,10 +290,12 @@ public class Main extends JPanel {
                 break;
             case 4:
                 //면제권
+                player[playerTurn%4].set_exemption();
                 phase.next();
                 break;
             case 5:
                 //면제권
+                player[playerTurn%4].set_exemption();
                 phase.next();
                 break;
             case 6:
@@ -290,19 +334,34 @@ public class Main extends JPanel {
                 //세금 30000원 지불
                 goldCard.pay_taxes(30000, activePlayer);
                 scoreBoard.set_player_cash_label(activePlayer.get_player_id());
-                phase.next();
+                if(activePlayer.get_cash() < 0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 12:
                 //세금 50000원 지불
                 goldCard.pay_taxes(50000, activePlayer);
                 scoreBoard.set_player_cash_label(activePlayer.get_player_id());
-                phase.next();
+                if(activePlayer.get_cash() < 0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 13:
                 //세금 100000원 지불
                 goldCard.pay_taxes(100000, activePlayer);
                 scoreBoard.set_player_cash_label(activePlayer.get_player_id());
-                phase.next();
+                if(activePlayer.get_cash() < 0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 14:
                 if( activePlayer.get_dice_count() >= 2){//한 턴에 3번 이상 주사위를 굴리게 될 경우
@@ -444,7 +503,6 @@ public class Main extends JPanel {
             phase.next();
         }
         else if (nextPosition == 12) { //ATM
-            // TODO 확인해야함~
             price = gameBoard.place[12].get_city_price();
             player[playerTurn%4].add_cash(price);
             gameBoard.place[12].init_price(0);
@@ -466,18 +524,34 @@ public class Main extends JPanel {
 
         //땅을 밟은 플레이어 돈 지불
         activePlayer.sub_cash(bill);
-        scoreBoard.set_player_cash_label(playerTurn%4);
-
-        if(gameBoard.place[nextPosition].get_landmark_ownership() == 0) { // 매입 가능
-            gameBoard.gameControllerPanel.takeOverButton.setVisible(true);
+        if(activePlayer.get_cash()<0){//파산했을 경우
+           player_dead();
         }
         else{
-            phase.next();
+            scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+
+            if(!gameBoard.place[nextPosition].get_landmark_ownership()) { // 매입 가능
+                gameBoard.gameControllerPanel.takeOverButton.setVisible(true);
+            }
+            else{
+                phase.next();
+            }
         }
         //phase.takeOver();
         //phase.next();
     }
 
+    public void player_dead(){
+        //player 의 상태를 false(파산)으로 바꾼 후, player 의 scoreBoard 배경색을 회색으로 바꾼 후 next phase 로 넘어간다.
+        activePlayer.set_status(false);
+        scoreBoard.set_player_die(activePlayer.get_player_id());
+        scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+        gameBoard.hide_player(activePlayer.get_player_id(),nextPosition);
+        activePlayer.game_over(gameBoard.place);
+        rank[dieCount] = activePlayer;
+        dieCount++;
+        phase.next();
+    }
     //인수
     public void take_over() {
         //인수 정보 설정
@@ -491,18 +565,21 @@ public class Main extends JPanel {
         this.expense = expense * 10000;
         activePlayer.sub_cash(expense);
         scoreBoard.set_player_cash_label(playerTurn%4);
+        activePlayer.add_owned_place(nextPosition);
 
         //땅 판매자 자금 증가
         player[originalOwner].add_cash(expense);
         scoreBoard.set_player_cash_label(originalOwner);
+        player[originalOwner].sub_owned_place(nextPosition);
 
         //땅 정보 및 UI 설정
         gameBoard.place[nextPosition].purchase_land(player[playerTurn%4]);
-        if (house == 1) { gameBoard.place[nextPosition].purchase_house();}
+        if (house == 1) {
+            gameBoard.place[nextPosition].purchase_house();
+        }
         if (building == 1) {gameBoard.place[nextPosition].purchase_building();}
         if (hotel == 1) { gameBoard.place[nextPosition].purchase_hotel();}
         gameBoard.place[nextPosition].update_building_status(playerTurn%4);
-        gameBoard.place[nextPosition].set_city_price();
 
         phase.next();
     }
@@ -539,7 +616,7 @@ public class Main extends JPanel {
             }
             else{ //소유자가 있는 땅에 도착했을 경우
                 if(gameBoard.place[nextPosition].get_land_owner_id() == playerTurn%4){//자신의 땅에 도착했을 경우
-                    if(gameBoard.place[nextPosition].get_landmark_ownership() == 1){//모든 건물을 다 구입했을 경우
+                    if(gameBoard.place[nextPosition].get_landmark_ownership()){//모든 건물을 다 구입했을 경우
                         //바로 다음턴으로 넘어간다.
                         phase.next();
                     }
@@ -561,5 +638,13 @@ public class Main extends JPanel {
                 }
             }
         }
+    }//show_panel
+
+    public void end(){
+        rank[3] = activePlayer;
+        gameBoard.setVisible(false);
+        scoreBoard.setVisible(false);
+        gameoverPanel.set_rank(rank);
+        gameoverPanel.setVisible(true);
     }
 }

@@ -3,18 +3,18 @@ package Property;
 import Player.Player;
 
 public class Building {
-    protected int land_price;
-    protected int house_price;
-    protected int building_price;
-    protected int hotel_price;
-    protected int landmark_price;
+    protected int       land_price;
+    protected int       house_price;
+    protected int       building_price;
+    protected int       hotel_price;
+    protected int       landmark_price;
 
-    protected Player player;
-    protected int land; // 소유한 플레이어의 숫자 저장 ( -1은 소유한 사람 X)
-    protected int house ; // 0 : 소유 X, 1 : 소유 O
-    protected int building;
-    protected int hotel;
-    protected int landmark;
+    protected Player    player;
+    protected int       land; // 소유한 플레이어의 숫자 저장 ( -1은 소유한 사람 X)
+    protected int       house ; // 0 : 소유 X, 1 : 소유 O
+    protected int       building;
+    protected int       hotel;
+    protected int       landmark;
 
     public Building (){
         land = -1; // 소유한 플레이어의 숫자 저장 ( -1은 소유한 사람 X)

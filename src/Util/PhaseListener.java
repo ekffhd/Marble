@@ -73,6 +73,7 @@ public class PhaseListener implements PropertyChangeListener {
         }
         else if (event.getPropertyName().equals("END")){
             //종료
+            main.end();
         }
         else if (event.getPropertyName().equals("SHOW_PANEL")){
             //위치에 해당하는 패널 띄우기

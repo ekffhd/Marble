@@ -53,8 +53,7 @@ public class PlaceConstants { // 부지 데이터
             "율지",
             "이노베이션 센터"};
 
-
-    final public static String[] BUILDING_URL={
+    final public static String[] BUILDING_URL={ //빌딩아이콘 url
             "./image/building/house",
             "./image/building/building",
             "./image/building/hotel"};

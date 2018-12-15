@@ -18,7 +18,7 @@ public class GameControllerPanel extends JPanel {
     private ImageIcon                   dice1Image, dice2Image, eggImage;
 
     //버튼
-    protected JButton                   rollButton, doubleButton, moveButton, purchaseButton, eggButton, payButton, takeOverButton;
+    protected JButton                   rollButton, doubleButton, moveButton, purchaseButton, eggButton, payButton, takeOverButton, endButton;
     private Color                       mainColor;
     protected PurchasePanel             purchasePanel;              //구매 패널
     public TollPanel                    tollPanel;                  //통행료 지불 패널
@@ -204,6 +204,19 @@ public class GameControllerPanel extends JPanel {
         takeOverButton.addMouseListener(buttonListener);
         takeOverButton.setVisible(false);
         add(takeOverButton);
+
+
+        endButton = new JButton("END");
+        endButton.setBounds(228, 300, 114, 50);
+        endButton.setFont(new Font("drid herder solid", Font.PLAIN, 20));
+        endButton.setBackground(Color.white);
+        endButton.setForeground(mainColor);
+        endButton.setBorder(BorderFactory.createLineBorder(mainColor, 2));
+        endButton.setVerticalAlignment(SwingConstants.CENTER);
+        endButton.setHorizontalAlignment(SwingConstants.CENTER);
+        endButton.addMouseListener(buttonListener);
+        endButton.setVisible(false);
+        add(endButton);
     }//GameControllerPanel class
 
     //주사위 값 설정
@@ -255,6 +268,9 @@ public class GameControllerPanel extends JPanel {
                 takeOverButton.setVisible(false);
                 takeOverPanel.set_take_over_panel_info(place[Main.nextPosition]);
                 takeOverPanel.setVisible(true);
+            }
+            else if(object == endButton){
+                phase.end();
             }
         }//mouseClicked
         public void mousePressed(MouseEvent event){}
