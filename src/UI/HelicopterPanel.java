@@ -40,8 +40,8 @@ public class HelicopterPanel extends JPanel {
         //헬리콥터 패널 이름 라벨
         nameLabel = new JLabel(PlaceConstants.PLACE_LINE_NAME[18]);
         nameLabel.setBounds(0,0,800/7*5-80, 80);
-       // nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
-        nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
+        //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(nameLabel);
@@ -49,8 +49,8 @@ public class HelicopterPanel extends JPanel {
         //안내 메세지 라벨
         noticeLabel = new JLabel("목적지를 입력해주세요");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
-        //noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        noticeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        //noticeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(noticeLabel);
@@ -79,8 +79,8 @@ public class HelicopterPanel extends JPanel {
         //에러 메세지 라벨
         errorLabel = new JLabel("0~23사이의 숫자를 입력해주세요!!");
         errorLabel.setBounds(0, 150, 800/7*5-80, 30);
-        //errorLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
-        errorLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
+        errorLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        //errorLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 20));
         errorLabel.setForeground(Color.red);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
         errorLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -89,8 +89,8 @@ public class HelicopterPanel extends JPanel {
         //확인 안내 메세지 라벨
         confirmLabel = new JLabel(); // ~ 이동 합니다
         confirmLabel.setBounds(0 , 120, 800/7*5-80, 60);
-        //confirmLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 60));
-        confirmLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        confirmLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 60));
+        //confirmLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         confirmLabel.setHorizontalAlignment(SwingConstants.CENTER);
         confirmLabel.setVerticalAlignment(SwingConstants.CENTER);
         add(confirmLabel);

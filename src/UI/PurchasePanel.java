@@ -50,8 +50,8 @@ public class PurchasePanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        //placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
-        placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
+        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
         placeLabel.setForeground(Color.black);
@@ -91,8 +91,8 @@ public class PurchasePanel extends JPanel {
             menuLabel[i].setBounds(0,0,95,60);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             menuLabel[i].setVerticalAlignment(SwingConstants.CENTER);
-            //menuLabel[i].setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 30));
-            menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
+            menuLabel[i].setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 30));
+            // menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
             menuPanel[i].add(menuLabel[i]);
         }
 
@@ -190,7 +190,7 @@ public class PurchasePanel extends JPanel {
             expense += place.get_land_price();
         }
         expenseLabel.setText(expense+"");
-    }
+    } // set_purchase_panel_info()
 
     private void reset_checkbox() {
         for (int i=0; i<5; i++) {
@@ -200,7 +200,7 @@ public class PurchasePanel extends JPanel {
         menuCheckBox[0].setSelected(true);
         menuCheckBox[0].setEnabled(false);
         menuCheckBox[4].setEnabled(false);
-    }
+    } // reset_checkbox()
 
     public int get_expense() { return expense; }
     public int get_land() {
@@ -210,7 +210,7 @@ public class PurchasePanel extends JPanel {
         else{
             return 0;
         }
-   }
+   } // get_land()
     public int get_house() { return house; }
     public int get_building() { return building; }
     public int get_hotel() { return hotel; }
@@ -284,12 +284,16 @@ public class PurchasePanel extends JPanel {
             }
             expenseLabel.setText(expense+"");
 
-
+            if (expense * 10000 >= Main.activePlayer.get_cash()){
+                purchaseButton.setEnabled(false);
+                //System.out.println("false "+expense);
+            } else {
+                purchaseButton.setEnabled(true);
+                //System.out.println("true");
+            }
 
         } // actionPerformed()
     } // CheckBoxListener class
-
-
 
     private class ButtonListener implements MouseListener {
 
@@ -301,17 +305,21 @@ public class PurchasePanel extends JPanel {
 
                 System.out.println("purchasePanel"+expense);
                 phase.purchase();
-            }else if (object == cancelButton){
+            } else if (object == cancelButton) {
                 phase.next();
-            } // if ~ else if
+            }
         }
         public void mousePressed(MouseEvent event){ }
         public void mouseReleased(MouseEvent event){ }
+
+        // hovering event
         public void mouseEntered(MouseEvent event) {
             JButton object = (JButton)event.getSource();
-            object.setBackground(mainColor);
-            object.setOpaque(true);
-            object.setForeground(Color.white);
+            if (object.isEnabled()) {
+                object.setBackground(mainColor);
+                object.setOpaque(true);
+                object.setForeground(Color.white);
+            }
         }
         public void mouseExited(MouseEvent event){
             JButton object = (JButton)event.getSource();

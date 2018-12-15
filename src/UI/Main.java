@@ -25,7 +25,7 @@ public class Main extends JPanel {
     protected static int            nextPosition;
     protected static int            cardId;
     protected int                   afterPosition;
-    protected Player                activePlayer;
+    protected static Player         activePlayer;
     private int                     destination, originalOwner;
     private int                     expense, land, house, building, hotel, landmark; // 선택 여부
     private int                     price;
@@ -141,7 +141,7 @@ public class Main extends JPanel {
         // scoreBoard의 잔금을 업데이트 한 후, 시작 지점 패널을 띄운다.
         scoreBoard.set_player_cash_label(playerTurn%4);
         gameBoard.gameControllerPanel.startCardPanel.setVisible(true);
-    }
+    } // get_salary()
 
     //주사위 굴리기
     public void roll_dice(){
@@ -189,7 +189,7 @@ public class Main extends JPanel {
                 gameBoard.gameControllerPanel.moveButton.setVisible(true);
             }
         }
-    }
+    } // roll_dice()
 
     //땅/건물 구매하기
     public void purchase_property() {

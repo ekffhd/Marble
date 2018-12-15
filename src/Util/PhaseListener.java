@@ -11,11 +11,11 @@ import java.beans.PropertyChangeListener;
 
 public class PhaseListener implements PropertyChangeListener {
 
-    private Dice dice1, dice2;
+    private Dice      dice1, dice2;
     private GameBoard gameBoard;
-    private Main main;
-    private Player player;
-    private int  bill;
+    private Main      main;
+    private Player    player;
+    private int       bill;
 
     public PhaseListener(Dice dice1, Dice dice2, GameBoard gameBoard, Main main){
         this.dice1 = dice1;

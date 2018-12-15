@@ -123,8 +123,8 @@ public class GameControllerPanel extends JPanel {
         projectName.setBounds(175,100,230,200);
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
-        projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
-        //projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
+        //projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
+        projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 

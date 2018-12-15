@@ -102,7 +102,8 @@ public class ScoreBoard extends JPanel {
         }
         else{
             playerCashLabel[playerId].setText("파산");
-            playerCashLabel[playerId].setFont(new Font("RixVideoGameB",Font.PLAIN, 18));
+            //playerCashLabel[playerId].setFont(new Font("RixVideoGameB",Font.PLAIN, 18));
+            playerCashLabel[playerId].setFont(new Font("Rix전자오락 Bold",Font.PLAIN, 18));
         }
     }
 

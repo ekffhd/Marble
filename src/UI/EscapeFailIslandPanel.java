@@ -37,7 +37,8 @@ public class EscapeFailIslandPanel extends JPanel {
         //탈출실패 메세지
         messageLbl = new JLabel();
         messageLbl.setText("탈출에 실패했습니다.");
-        messageLbl.setFont(new Font("RIXVideoGame3D", Font.PLAIN, 30));
+        //messageLbl.setFont(new Font("RIXVideoGame3D", Font.PLAIN, 30));
+        messageLbl.setFont(new Font("RIX전자오락 3D", Font.PLAIN, 30));
         messageLbl.setBounds(0,100,800/7*5-80,100);
         messageLbl.setHorizontalAlignment(SwingConstants.CENTER);
         messageLbl.setVerticalAlignment(SwingConstants.CENTER);
