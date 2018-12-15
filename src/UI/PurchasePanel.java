@@ -31,7 +31,7 @@ public class PurchasePanel extends JPanel {
 
     private CheckBoxListener checkBoxListener;
     private ButtonListener   buttonListener;
-;
+
     public PurchasePanel(Phase phase){
         mainBackgroundColor = Color.white;
         mainColor = new Color(52, 81, 138);
@@ -83,7 +83,7 @@ public class PurchasePanel extends JPanel {
         menuLabel = new JLabel[5];
         menuLabel[0] = new JLabel("부지");
         menuLabel[1] = new JLabel("집");
-        menuLabel[2] = new JLabel("빌딜");
+        menuLabel[2] = new JLabel("빌딩");
         menuLabel[3] = new JLabel("호텔");
         menuLabel[4] = new JLabel("랜드마크");
 
@@ -190,6 +190,14 @@ public class PurchasePanel extends JPanel {
             expense += place.get_land_price();
         }
         expenseLabel.setText(expense+"");
+
+        if (expense * 10000 >= Main.activePlayer.get_cash()){
+            purchaseButton.setEnabled(false);
+            //System.out.println("false "+expense);
+        } else {
+            purchaseButton.setEnabled(true);
+            //System.out.println("true");
+        }
     } // set_purchase_panel_info()
 
     private void reset_checkbox() {
@@ -299,13 +307,15 @@ public class PurchasePanel extends JPanel {
 
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
-            setVisible(false);
 
-            if (object == purchaseButton){
-
-                System.out.println("purchasePanel"+expense);
+            if (object == purchaseButton && purchaseButton.isEnabled()) {
+                setVisible(false);
+                System.out.println("purchasePanel" + expense);
                 phase.purchase();
-            } else if (object == cancelButton) {
+            }
+
+            if (object == cancelButton) {
+                setVisible(false);
                 phase.next();
             }
         }

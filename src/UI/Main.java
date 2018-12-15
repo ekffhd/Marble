@@ -129,6 +129,8 @@ public class Main extends JPanel {
                 gameBoard.gameControllerPanel.rollButton.setVisible(true);
             }
             else{
+                gameBoard.hide_player(activePlayer.get_player_id(),activePlayer.get_position());
+                activePlayer.game_over(gameBoard.place);
                 gameBoard.gameControllerPanel.endButton.setVisible(true);
             }
         }
@@ -539,7 +541,7 @@ public class Main extends JPanel {
         }
         //phase.takeOver();
         //phase.next();
-    }
+    } // bill()
 
     public void player_dead(){
         //player 의 상태를 false(파산)으로 바꾼 후, player 의 scoreBoard 배경색을 회색으로 바꾼 후 next phase 로 넘어간다.
@@ -551,7 +553,8 @@ public class Main extends JPanel {
         rank[dieCount] = activePlayer;
         dieCount++;
         phase.next();
-    }
+    } // player_dead()
+
     //인수
     public void take_over() {
         //인수 정보 설정
@@ -582,10 +585,10 @@ public class Main extends JPanel {
         gameBoard.place[nextPosition].update_building_status(playerTurn%4);
 
         phase.next();
-    }
+    } // take_over()
 
     //도착한 땅에 해당하는 패널 띄우기
-    public void show_panel(){
+    public void show_panel() {
         if(nextPosition == 3 || nextPosition == 9 || nextPosition == 15 || nextPosition == 21){ //황금오리
             //황금알 버튼 띄우기
             gameBoard.gameControllerPanel.eggButton.setVisible(true);
@@ -638,13 +641,39 @@ public class Main extends JPanel {
                 }
             }
         }
-    }//show_panel
+    } // show_panel
 
-    public void end(){
+    public void end() {
         rank[3] = activePlayer;
         gameBoard.setVisible(false);
         scoreBoard.setVisible(false);
         gameoverPanel.set_rank(rank);
         gameoverPanel.setVisible(true);
-    }
+    } // end()
+
+    public void init_main() {
+        playerTurn = 0;
+        originPosition = 0;
+
+        //플레이어
+        for(int i=0; i<4; i++){
+            player[i].init_player();
+            player[i].set_position(0);
+            player[i].add_cash(200000);
+        }
+
+        activePlayer = player[0];
+
+        dieCount = 0;
+
+        //점수 판
+        for (int i=0 ; i<4; i++) {
+            scoreBoard.set_player_cash_label(i);
+            scoreBoard.set_player_alive(i);
+            gameBoard.place[0].show_player(i);
+        }
+
+        gameBoard.gameControllerPanel.endButton.setVisible(false);
+        gameBoard.gameControllerPanel.rollButton.setVisible(true);
+    } // init_main()
 }

@@ -81,6 +81,8 @@ public class PhaseListener implements PropertyChangeListener {
         }
         else if (event.getPropertyName().equals("RESTART")){
             //재시작
+            main.init_main();
+            main.start();
         }
     }
 }

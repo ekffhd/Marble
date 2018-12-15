@@ -219,7 +219,8 @@ public class GameOverPanel extends JPanel {
             Object obj = e.getSource();
             if(obj == replayBtn){ // 재시작 버튼을 누를 경우
                 // restart phase
-                phase.start();
+                setVisible(false);
+                phase.restart();
             }
         }
         //button hovering

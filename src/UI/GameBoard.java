@@ -227,11 +227,47 @@ public class GameBoard extends JPanel {
     }
 
     //플레이어 위치를 옮겨준다. (move phase일때 실행)
-   public void show_hide_player(int playerId,int originPosition, int nextPosition){
+    public void show_hide_player(int playerId,int originPosition, int nextPosition){
         place[originPosition].hide_player(playerId);
         place[nextPosition].show_player(playerId);
     }
     public void hide_player(int playerId, int position){
         place[position].hide_player(playerId);
     }
+
+    public void init_gameboard(){
+
+        //South Place 1~5
+        for(int i=1;i<6;i++){
+            place[i].setBackground(Color.white);
+            place[i].setForeground(Color.black);;
+        }
+
+        //West Place 7~11
+        for(int i=7;i<12;i++){
+            place[i].setBackground(Color.white);
+            place[i].setForeground(Color.black);
+        }
+
+        place[12].init_price(0); // ATM 초기화
+
+        //North Place 13~17
+        for(int i=13; i<18;i++){
+            place[i].setBackground(Color.white);
+            place[i].setForeground(Color.black);
+        }
+
+        //East Place 19~24
+        for(int i=19;i<24;i++) {
+            place[i].setBackground(Color.white);
+            place[i].setForeground(Color.black);
+        }
+
+
+        //부지 가격 설정
+        for(int i=0;i<24;i++){
+            place[i].set_building_price();
+        }
+    }
+
 }

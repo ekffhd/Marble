@@ -43,7 +43,7 @@ public class Player {
     public void add_owned_place(int placeId){
         ownedPlaceId[ownedPlaceCount] = placeId;
         ownedPlaceCount ++;
-    }
+    } // add_owned_place()
 
     public void sub_owned_place(int placeId){
         int flag = 0;
@@ -68,7 +68,7 @@ public class Player {
         for(int i=0;i<ownedPlaceCount;i++){
             System.out.println(ownedPlaceId[i]+" ");
         }
-    }
+    } // sub_owned_place()
 
     //소지자금 설정&반환
     public int add_cash(int cash){
@@ -82,8 +82,6 @@ public class Player {
     public int get_cash(){
         return cash;
     }
-
-
 
     //현 위치 설정&반환
     public void set_position(int position){
@@ -135,6 +133,17 @@ public class Player {
         }
     }
 
-
+    public void init_player(){
+        position = 0;
+        cash = 0;
+        ownedPlaceCount = 0;
+        for (int i=0; i<24; i++){
+            ownedPlaceId[i] = 0;
+        }
+        isActive = true;
+        islandCount = 0;
+        diceCount = 0;
+        exemption = 0;
+    }
 
 }

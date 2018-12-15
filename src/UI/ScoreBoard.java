@@ -71,7 +71,7 @@ public class ScoreBoard extends JPanel {
             for (int j=0; j<3; j++) {
                 islandCountIcon[i][j] = new ImageIcon("./image/island_count"+(j+1)+".png");
                 islandCountIconLabel[i][j] = new JLabel(islandCountIcon[i][j]);
-                islandCountIconLabel[i][j].setBounds(8, 25*j+5, 27, 25);
+                islandCountIconLabel[i][j].setBounds(8, 5, 27, 25);
                 islandCountIconLabel[i][j].setVisible(false);
                 playerInformationPanel[i].add(islandCountIconLabel[i][j]);
             }
@@ -99,6 +99,7 @@ public class ScoreBoard extends JPanel {
     public void set_player_cash_label(int playerId){
         if(player[playerId].get_status()){
             playerCashLabel[playerId].setText(player[playerId].get_cash()+" won");
+            playerCashLabel[playerId].setFont(new Font("drid herder solid", Font.PLAIN, 18));
         }
         else{
             playerCashLabel[playerId].setText("파산");
@@ -132,4 +133,5 @@ public class ScoreBoard extends JPanel {
     public void set_player_die(int playerId){
         playerInformationPanel[playerId].setBackground(Color.gray);
     }
+    public void set_player_alive(int playerId) { playerInformationPanel[playerId].setBackground(PlayerConstants.PLAYER_COLOR[playerId]); }
 }//ScoreBoard class

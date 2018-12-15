@@ -180,8 +180,15 @@ public class TakeOverPanel extends JPanel {
         }
 
         expenseLabel.setText(expense+"");
+        if (expense * 10000 >= Main.activePlayer.get_cash()){
+            takeOverButton.setEnabled(false);
+            //System.out.println("false "+expense);
+        } else {
+            takeOverButton.setEnabled(true);
+            //System.out.println("true");
+        }
 
-    }
+    } // set_take_over_panel_info()
 
     private void reset_checkbox() {
         for (int i=0; i<4; i++) {
@@ -251,12 +258,13 @@ public class TakeOverPanel extends JPanel {
 
         public void mouseClicked(MouseEvent event){
             Object object = event.getSource();
-            setVisible(false);
 
-            if (object == takeOverButton){
+            if (object == takeOverButton && takeOverButton.isEnabled()){
+                setVisible(false);
                 System.out.println("purchasePanel "+expense);
                 phase.takeOver();
             }else if (object == cancelButton){
+                setVisible(false);
                 phase.next();
             } // if ~ else if
         }
@@ -264,9 +272,11 @@ public class TakeOverPanel extends JPanel {
         public void mouseReleased(MouseEvent event){ }
         public void mouseEntered(MouseEvent event) {
             JButton object = (JButton)event.getSource();
-            object.setBackground(mainColor);
-            object.setOpaque(true);
-            object.setForeground(Color.white);
+            if (object.isEnabled()) {
+                object.setBackground(mainColor);
+                object.setOpaque(true);
+                object.setForeground(Color.white);
+            }
         }
         public void mouseExited(MouseEvent event){
             JButton object = (JButton)event.getSource();

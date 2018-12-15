@@ -215,6 +215,6 @@ public class Place extends JPanel {
         city.init_city();
 
         update_building_status(player.get_player_id());
-
     }
+
 }
