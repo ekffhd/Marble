@@ -51,7 +51,7 @@ public class Main extends JPanel {
         for(int i=0; i<4; i++){
             player[i] = new Player(i);
             player[i].set_position(0);
-            player[i].add_cash(200000);
+            player[i].add_cash(2000000);
         }
 
         activePlayer = player[0];
@@ -235,7 +235,6 @@ public class Main extends JPanel {
         //gameBoard에서 플레이어를 이동
         gameBoard.show_hide_player(playerTurn%4, originPosition, nextPosition);
 
-
         if(nextPosition < originPosition) {
             // 한 바퀴 돌았을 때 월급지급
             get_salary();
@@ -286,18 +285,31 @@ public class Main extends JPanel {
                 }
                 break;
             case 3:
-                //면제권
-                player[playerTurn%4].set_exemption();
-                phase.next();
+                // ATM에 100000원 기부
+                goldCard.donate(100000, gameBoard.place[12], activePlayer);
+                scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+                if(activePlayer.get_cash() < 0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 4:
-                //면제권
-                player[playerTurn%4].set_exemption();
-                phase.next();
+                // ATM에 500000원 기부
+                goldCard.donate(500000, gameBoard.place[12], activePlayer);
+                scoreBoard.set_player_cash_label(activePlayer.get_player_id());
+                if(activePlayer.get_cash() < 0){
+                    player_dead();
+                }
+                else{
+                    phase.next();
+                }
                 break;
             case 5:
-                //면제권
-                player[playerTurn%4].set_exemption();
+                // 500000원 당첨
+                goldCard.lotto(500000, activePlayer);
+                scoreBoard.set_player_cash_label(activePlayer.get_player_id());
                 phase.next();
                 break;
             case 6:
@@ -629,21 +641,16 @@ public class Main extends JPanel {
                     }
                 }
                 else{//타인의 땅에 도착했을 경우
-                    if(player[playerTurn%4].get_exemption() == 1){ //면제권이 있을 경우
-                        //TODO 면제 패널
-                        player[playerTurn%4].init_exemption();
-                        phase.next();
-                    }
-                    else{//면제권이 없을 경우
-                        //통행료 불 버튼을 띄운다.
-                        gameBoard.gameControllerPanel.payButton.setVisible(true);
-                    }
+                    //통행료 지불 버튼을 띄운다.
+                    gameBoard.gameControllerPanel.payButton.setVisible(true);
+
                 }
             }
         }
     } // show_panel
 
-    public void end() {
+    public void end() { // 게임이 종료되었을 경우
+        //gameBoard 와 scoreBoard 를 보이지 않게한 후, gameOverPanel 을 띄운다.
         rank[3] = activePlayer;
         gameBoard.setVisible(false);
         scoreBoard.setVisible(false);
@@ -651,7 +658,8 @@ public class Main extends JPanel {
         gameoverPanel.setVisible(true);
     } // end()
 
-    public void init_main() {
+    public void init_main() { // 재시작 할 경우
+        // 모든 정보를 초기화 시킨다.
         playerTurn = 0;
         originPosition = 0;
 
@@ -659,7 +667,7 @@ public class Main extends JPanel {
         for(int i=0; i<4; i++){
             player[i].init_player();
             player[i].set_position(0);
-            player[i].add_cash(200000);
+            player[i].add_cash(2000000);
         }
 
         activePlayer = player[0];

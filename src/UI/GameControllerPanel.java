@@ -21,6 +21,7 @@ public class GameControllerPanel extends JPanel {
     //버튼
     protected JButton                   rollButton, doubleButton, moveButton, purchaseButton, eggButton, payButton, takeOverButton, endButton;
     private Color                       mainColor;
+
     protected PurchasePanel             purchasePanel;              //구매 패널
     public TollPanel                    tollPanel;                  //통행료 지불 패널
     protected GoldCardPanel             goldCardPanel;              //황금카드 패널
@@ -31,6 +32,7 @@ public class GameControllerPanel extends JPanel {
     protected HelicopterPanel           helicopterPanel;            //헬리콥터 패널
     protected StartCardPanel            startCardPanel;             //월급 패널
     protected TakeOverPanel             takeOverPanel;              //인수 패널
+
     private ButtonListener              buttonListener;
     private Phase                       phase;
     protected Place[]                   place;
