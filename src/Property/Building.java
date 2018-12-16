@@ -1,8 +1,9 @@
 package Property;
 
+// 건물/부지 클래스
 public class Building {
-    protected boolean existence;
-    protected int price;
+    protected boolean       existence;  //건물 소유여부
+    protected int           price;      //건물 가격
     public Building(){
         existence = false;
         price = 0;
@@ -16,6 +17,7 @@ public class Building {
         return price;
     }
 
+    //소유 여부 설정/초기화/반환
     public void set_existence(){
         existence = true;
     }

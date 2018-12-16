@@ -40,18 +40,15 @@ public class Player {
         return isActive;
     }
 
+    //부지를 구매/인수 하였을 때, ownedPlaceId 배열에 해당 부지의 id를 추가한다.
     public void add_owned_place(int placeId){
         ownedPlaceId[ownedPlaceCount] = placeId;
         ownedPlaceCount ++;
     } // add_owned_place()
 
+    //인수 당햐였을 때, ownedPlaceId 배열에서 해당 부지의 id를 제거한다.
     public void sub_owned_place(int placeId){
         int flag = 0;
-
-        System.out.println("인수전");
-        for(int i=0;i<ownedPlaceCount;i++){
-            System.out.println(ownedPlaceId[i]+" ");
-        }
 
         for(int i=0;i<ownedPlaceCount;i++) {
             if (ownedPlaceId[i] == placeId) {
@@ -64,10 +61,6 @@ public class Player {
             ownedPlaceId[i] = ownedPlaceId[i+1];
         }
         ownedPlaceCount --;
-        System.out.println("인수후");
-        for(int i=0;i<ownedPlaceCount;i++){
-            System.out.println(ownedPlaceId[i]+" ");
-        }
     } // sub_owned_place()
 
     //소지자금 설정&반환
@@ -127,12 +120,14 @@ public class Player {
         return exemption;
     }
 
+    //플레이어가 파산하였을 경우, 소유한 부지 정보들을 모두 초기화한다.
     public void game_over(Place[] place){
         for(int i=0;i<ownedPlaceCount;i++){
             place[ownedPlaceId[i]].init_place_info(this);
         }
     }
 
+    //플레이어의 정보를 초기화 한다.
     public void init_player(){
         position = 0;
         cash = 0;
