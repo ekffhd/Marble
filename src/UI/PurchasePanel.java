@@ -2,6 +2,7 @@ package UI;
 
 import Property.Place;
 import Property.PlaceConstants;
+import Util.GameFont;
 import Util.Phase;
 
 import javax.swing.*;
@@ -50,7 +51,7 @@ public class PurchasePanel extends JPanel {
 
         placeLabel = new JLabel();
         placeLabel.setBounds(0,0,800/7*5-80, 80);
-        placeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 40));
+        placeLabel.setFont(new GameFont("Rix전자오락 3D", Font.PLAIN, 40));
         //placeLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         placeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         placeLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -91,7 +92,7 @@ public class PurchasePanel extends JPanel {
             menuLabel[i].setBounds(0,0,95,60);
             menuLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
             menuLabel[i].setVerticalAlignment(SwingConstants.CENTER);
-            menuLabel[i].setFont(new Font("Rix전자오락 Bold", Font.PLAIN, 30));
+            menuLabel[i].setFont(new GameFont("Rix전자오락 Bold", Font.PLAIN, 30));
             // menuLabel[i].setFont(new Font("RixVideoGameB", Font.PLAIN, 25));
             menuPanel[i].add(menuLabel[i]);
         }

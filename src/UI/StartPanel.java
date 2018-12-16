@@ -1,5 +1,6 @@
 package UI;
 //주석 완료
+import Util.GameFont;
 import Util.Phase;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class StartPanel extends JPanel {
         projectTitle = new JLabel("<html><div style='text-align: center;'>파란구슬<BR>놀이</div></html>");
         projectTitle.setBounds(200,200, 400, 200);
         //projectTitle.setFont(new Font("RixVideoGame3D", Font.ITALIC, 100));
-        projectTitle.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 100));
+        projectTitle.setFont(new GameFont("Rix전자오락 3D", Font.ITALIC, 100));
         projectTitle.setHorizontalAlignment(SwingConstants.CENTER);
         projectTitle.setForeground(Color.white);
         add(projectTitle);
@@ -41,7 +42,7 @@ public class StartPanel extends JPanel {
         startButton.setBackground(mainColor);
         startButton.setBorder(BorderFactory.createLineBorder(Color.white, 3));
         startButton.setForeground(Color.white);
-        startButton.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 30));
+        startButton.setFont(new GameFont("Rix전자오락 3D", Font.ITALIC, 30));
         //startButton.setFont(new Font("RixVideoGame3D", Font.ITALIC, 30));
         startButton.addMouseListener(hoveringListener);
 

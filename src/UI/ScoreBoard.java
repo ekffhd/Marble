@@ -2,6 +2,7 @@ package UI;
 //주석 완료
 import Player.Player;
 import Player.PlayerConstants;
+import Util.GameFont;
 
 import javax.swing.*;
 import java.awt.*;
@@ -104,7 +105,7 @@ public class ScoreBoard extends JPanel {
         else{
             playerCashLabel[playerId].setText("파산");
             //playerCashLabel[playerId].setFont(new Font("RixVideoGameB",Font.PLAIN, 18));
-            playerCashLabel[playerId].setFont(new Font("Rix전자오락 Bold",Font.PLAIN, 18));
+            playerCashLabel[playerId].setFont(new GameFont("Rix전자오락 Bold",Font.PLAIN, 18));
         }
     }
 

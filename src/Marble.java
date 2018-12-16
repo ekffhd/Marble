@@ -8,7 +8,7 @@ import java.io.File;
 
 public class Marble {
     public static void main(String[] args){
-
+        System.out.println(System.getProperty("os.name"));
         //BGM
         try{
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("Music.wav").getAbsoluteFile());

@@ -1,5 +1,6 @@
 package UI;
 //주석 완료
+import Util.GameFont;
 import Util.Phase;
 
 import javax.swing.*;
@@ -39,7 +40,7 @@ public class EscapeSuccessIslandPanel extends JPanel {
         messageLbl = new JLabel();
         messageLbl.setText("<html><div style='text-align: center;'>축하합니다!<BR>지그재그 탈출에 성공하셨습니다!</div></html>");
         //messageLbl.setFont(new Font("RIXVideoGame3D", Font.PLAIN, 30));
-        messageLbl.setFont(new Font("RIX전자오락 3D", Font.PLAIN, 30));
+        messageLbl.setFont(new GameFont("RIX전자오락 3D", Font.PLAIN, 30));
         messageLbl.setBounds(0,100,800/7*5-80,100);
         messageLbl.setHorizontalAlignment(SwingConstants.CENTER);
         messageLbl.setVerticalAlignment(SwingConstants.CENTER);

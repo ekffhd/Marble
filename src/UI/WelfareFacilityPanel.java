@@ -1,6 +1,7 @@
 package UI;
 //주석 완료
 import Property.PlaceConstants;
+import Util.GameFont;
 import Util.Phase;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ public class WelfareFacilityPanel extends JPanel {
         //패널 제목 라벨
         nameLabel = new JLabel(PlaceConstants.PLACE_LINE_NAME[12]);
         nameLabel.setBounds(0,0,800/7*5-80, 80);
-        nameLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 50));
+        nameLabel.setFont(new GameFont("Rix전자오락 3D", Font.PLAIN, 50));
         //nameLabel.setFont(new Font("RixVideoGame3D", Font.PLAIN, 40));
         nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         nameLabel.setVerticalAlignment(SwingConstants.CENTER);
@@ -44,7 +45,7 @@ public class WelfareFacilityPanel extends JPanel {
         //안내 라벨
         noticeLabel = new JLabel("누가 돈을..?");
         noticeLabel.setBounds(0 , 80, 800/7*5-80, 30);
-        noticeLabel.setFont(new Font("Rix전자오락 3D", Font.PLAIN, 20));
+        noticeLabel.setFont(new GameFont("Rix전자오락 3D", Font.PLAIN, 20));
         //noticeLabel.setFont(new Font("RixVideoGameB", Font.PLAIN, 40));
         noticeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         noticeLabel.setVerticalAlignment(SwingConstants.CENTER);

@@ -3,6 +3,7 @@ package UI;
 
 import Property.Place;
 import Util.DiceConstants;
+import Util.GameFont;
 import Util.Phase;
 
 import javax.swing.*;
@@ -124,7 +125,7 @@ public class GameControllerPanel extends JPanel {
         projectName.setVerticalAlignment(SwingConstants.CENTER);
         projectName.setHorizontalAlignment(SwingConstants.CENTER);
         //projectName.setFont(new Font("RixVideoGame3D", Font.ITALIC, 70));
-        projectName.setFont(new Font("Rix전자오락 3D", Font.ITALIC, 70));
+        projectName.setFont(new GameFont("Rix전자오락 3D", Font.ITALIC, 70));
         projectName.setForeground(mainColor);
         add(projectName);
 
