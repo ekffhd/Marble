@@ -2,15 +2,21 @@ package Property;
 import Player.Player;
 
 public class City implements IPlace {
-    private String name;
-    protected Building buildings;
-    protected int price;
-    protected Player owner;
-    protected Place place;
+    private String          name;
+    protected Building[] buildings;
+    protected int           price;
+    protected Player        player;
+    protected Place         place;
 
     public City(Place place){
-        buildings = new Building();
-        owner = new Player(-1);
+        buildings = new Building[5];
+
+        for(int i=0;i<5;i++){
+            buildings[i] = new Building();
+        }
+
+        player = new Player(-1);
+
         this.place = place;
         price = 0;
     }
@@ -18,29 +24,43 @@ public class City implements IPlace {
     public void setName(String name){ //도시 이름 설정
         this.name = name;
     }
-
-    public void set_city_price(){
+    public String get_name(){
+        return name;
+    }
+    public void set_building_price(){
         price = 0;
 
-        price += BuildingConstants.LAND_TOLL[place.cityNumber];
+        buildings[0].set_price(BuildingConstants.LAND_TOLL[place.cityNumber]);      //땅
+        buildings[1].set_price(BuildingConstants.LAND_TOLL[place.cityNumber]+3);    //집
+        buildings[2].set_price(BuildingConstants.LAND_TOLL[place.cityNumber]+7);    //빌딩
+        buildings[3].set_price(BuildingConstants.LAND_TOLL[place.cityNumber]+12);   //호텔
+        buildings[4].set_price(BuildingConstants.LANDMARK_TOLL[place.cityNumber]);  //랜드마크
+    }
 
-        if(buildings.house == 1){
-            price += BuildingConstants.LAND_TOLL[place.cityNumber]+3;
+    public void add_city_price(int building_id){
+        price += buildings[building_id].get_price();
+    }
+    public void init_city(){
+        price = 0;
+        for(int i=0;i<4;i++){
+            buildings[i].init_existence();
         }
-        if(buildings.building == 1){
-            price += BuildingConstants.LAND_TOLL[place.cityNumber]+7;
-        }
-        if(buildings.hotel == 1){
-            price += BuildingConstants.LAND_TOLL[place.cityNumber]+12;
-        }
-        if(buildings.landmark == 1){
-            price = BuildingConstants.LANDMARK_TOLL[place.cityNumber];
-        }
+        player = new Player(-1);
+    }
+    public int get_city_price(){
+        return price;
+    }
+
+    public void set_owner(Player player){
+        this.player = player;
+    }
+    public Player get_owner(){
+        return player;
     }
 
 
     public void onEnter(){
-        if (owner == null){ // 주인이 없을 떄
+        if (player == null){ // 주인이 없을 떄
 
         }
         else { // 주인이 있을 때

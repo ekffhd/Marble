@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Place extends JPanel {
-    protected CityNew       city; //도시 정보 클래스
+    protected City city; //도시 정보 클래스
     protected JLabel        cityNameLabel;
     protected JLabel        cityNumberLabel;
 
@@ -25,7 +25,7 @@ public class Place extends JPanel {
         setLayout(null);
 
         //도시 정보 설정
-        city = new CityNew(this);
+        city = new City(this);
         city.setName(cityName);
         this.cityNumber = cityNumber;
 

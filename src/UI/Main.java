@@ -51,7 +51,7 @@ public class Main extends JPanel {
         for(int i=0; i<4; i++){
             player[i] = new Player(i);
             player[i].set_position(0);
-            player[i].add_cash(200000);
+            player[i].add_cash(2000000);
         }
 
         activePlayer = player[0];
